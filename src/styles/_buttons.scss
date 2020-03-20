@@ -1,0 +1,23 @@
+.buttons, .sharing {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.btn {
+    display: inline-block;
+    &--primary, &--secondary {
+        margin: 1rem 0;
+        background: black;
+        padding: 1rem 3rem;
+        border-radius: 10rem;
+        color: white;
+    }
+    &--secondary {
+        background: lightgray;   
+        color: black;
+    }
+    &--tertiary {
+        color: blue;
+    }
+}
