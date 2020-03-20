@@ -1,6 +1,8 @@
 <script>
   import { curRoute } from '../store';
+  
   export let page;
+  export let linkClass;
 
   function redirectTo(event){
     // change current router path
@@ -10,11 +12,4 @@
   }
 </script>
 
-<style>
-a {
-  text-transform: uppercase;
-  text-decoration: underline;
-}
-</style>
-
-<a href={page.path} on:click|preventDefault={redirectTo}>{page.name}</a>
+<a class={linkClass} href={page.path} on:click|preventDefault={redirectTo}>{page.name}</a>

@@ -12,12 +12,6 @@ onDestroy(unsubscribe);
 
 </script>
 
-<style>
-.main-container {
-  padding: 1rem;
-}
-</style>
-
 <div class="main-container">
   <svelte:component {...$user} this={component} />
 </div>
