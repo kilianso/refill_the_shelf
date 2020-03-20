@@ -10,6 +10,8 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
+    "autoprefixer": "^9.7.4",
+    "postcss": "^7.0.27",
     "rollup": "^1.20.0",
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
@@ -18,7 +20,9 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "format-message": "^6.2.3",
     "sirv-cli": "^0.4.4",
+    "svelte-intl": "^1.1.0",
     "svelte-preprocess": "^3.5.0"
   }
 }

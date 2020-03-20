@@ -7,6 +7,20 @@ import autoPreprocess from 'svelte-preprocess';
 
 const production = !process.env.ROLLUP_WATCH;
 
+const preprocessOptions = {
+	scss: {
+	  includePaths: [
+		'node_modules',
+		'src/styles'
+	  ]
+	},
+	postcss: {
+	  plugins: [
+		require('autoprefixer'),
+	  ]
+	}
+  }
+
 export default {
 	input: 'src/main.js',
 	output: {
@@ -24,7 +38,7 @@ export default {
 			css: css => {
 				css.write('public/build/bundle.css');
 			},
-			preprocess: autoPreprocess()
+			preprocess: autoPreprocess(preprocessOptions)
 		}),
 
 		// If you have external dependencies installed from
