@@ -1,29 +1,29 @@
 <script>
+	import Header from './components/Header.svelte';
     import Link from './components/Link.svelte';
-    import Route from './components/Route.svelte';
+	import Route from './components/Route.svelte';
 </script>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+<style lang="scss" global>
+	@import "./styles/global.scss";
 </style>
 
+<header>
+	<Header />
+</header>
 <main>
+	<Route />
+	<br>
+	<br>
+	<hr>
+	<h3>Debug nav</h3>
 	<nav class="navigation">
 		<Link page={{path: '/', name: 'Feed'}} />
 		<Link page={{path: '/create', name: 'Create'}} />
 		<Link page={{path: '/save', name: 'Save'}} />
+		<Link page={{path: '/donate', name: 'Donate'}} />
 		<Link page={{path: '/about', name: 'About'}} />
 	</nav>
-	<Route />
+	<br>
+	<br>
 </main>
