@@ -7,11 +7,13 @@
     
     translations.update({
         de: {
-            fe_cta: 'Jetzt auffüllen',
+            fe_title: 'Lasst uns gemeinsam die Regale wieder auffüllen.',
+            fe_cta: 'Jetzt mitmachen',
             fe_msg_title: 'Regal-Fakten',
             fe_msg: `Unser Regal ist aktuell ${shelf_height} Meter hoch und kostet ${shelf_price} CHF.`
         },
         en: {
+            fe_title: 'Let\'s refill the shelves together!',
             fe_cta: 'Start refilling',
             fe_msg_title: 'Height of shelf',
             fe_msg: `Our shelf is currently ${shelf_height} meters height and costs ${shelf_price} CHF.`
@@ -20,6 +22,7 @@
 </script>
 
 <div class="buttons">
+    <p>{$_('fe_title')}</p>
     <Link linkClass={'btn btn--primary'} page={{path: '/create', name: $_('fe_cta')}}/>
 </div>
 
