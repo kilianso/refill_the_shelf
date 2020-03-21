@@ -2,7 +2,9 @@
     import Link from '../components/Link.svelte';
     import Dragzone from '../components/DragDrop/Dragzone.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
+    import Sortable from 'sortablejs/modular/sortable.core.esm.js';
     import { translations, _ } from 'svelte-intl';
+    import { onMount } from 'svelte';
     
     translations.update({
         de: {
@@ -20,13 +22,69 @@
     })
 
     let audioUp = 'assets/audio/up.mp3',
-        audioDown = 'assets/audio/down.mp3';
+        audioDown = 'assets/audio/down.mp3',
+        dropzones,
+        articles;
     
     //$: tabArray = $_('cr_tabs').split(',');
 
+    onMount(() => {
+        const body = document.body,
+            dropzones = document.querySelectorAll('.dropzone'),
+            articles = document.querySelectorAll('.articles');
+    
+        dropzones.forEach((el, i) => {
+            const sortable = new Sortable(el, {
+                group: {
+                    name: 'dropzone',
+                    put: function (to) {
+                        return to.el.children.length < 1;
+                    }
+                    //pull: 'clone' // To clone: set pull to 'clone'
+                },
+                delay: 0,
+                animation: 250,
+                onStart: function (evt, originalEvent) {
+                    document.body.classList.add('lock');
+                    evt.from.classList.remove('taken');                    
+                },
+                onEnd: function (evt, originalEvent) {
+                    document.body.classList.remove('lock');
+                    if (evt.to.classList.contains('dropzone')) {
+                        evt.to.classList.add('taken');        
+                    }
+                }
+            });
+        });
+    
+        articles.forEach((el, i) => {
+            const sortable = new Sortable(el, {
+                group: {
+                    name: 'articles',
+                    put: 'dropzone',
+                    pull: function (to, from) {
+                        return from.el.children.length > 2 || 'clone';
+                    }
+                },
+                delay: 0,
+                animation: 250,
+                onStart: function (evt, originalEvent) {
+                    document.body.classList.add('lock');
+                },
+                onEnd: function (evt, originalEvent) {
+                    document.body.classList.remove('lock');
+                    if (evt.to.classList.contains('dropzone')) {
+                        evt.to.classList.add('taken');
+                    }
+                }
+            });
+        });
+    });
+
+
 </script>
 
-<div class="layer dropzone">{$_('cr_drop')}</div>
+<div class="layer">{$_('cr_drop')}</div>
 <Dropzone />
 <!-- <ul>
     {#each tabArray as tab }

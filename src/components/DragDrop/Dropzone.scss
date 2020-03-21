@@ -1,0 +1,51 @@
+$borderRadius: 1em;
+// 100vw - paddingLR dragwrap - paddingLR grid - grid-gap - number of columns
+$itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
+
+.grid {
+    width: 100%;
+    display: grid;
+    grid-template: #{$itemSize} / $itemSize $itemSize $itemSize $itemSize;
+    grid-gap: 2vw;
+    background-color: #ffffff;
+    outline: 0;
+    border-width: 1px;
+    border-style: dashed;
+    border-color: transparent;
+    border-radius: $borderRadius;
+}
+
+.dropzone {
+    border: 1px dashed black;
+    border-radius: $borderRadius;
+    transform: scale3d(1,1,1);
+    &.taken {
+        border-color: transparent;
+    }
+    .lock & {
+        &:not(.taken) {
+            animation: draggablePulseBorder 1s linear infinite;
+            &:nth-child(2) {
+                animation-delay: 0.15s;
+            }
+            &:nth-child(3) {
+                animation-delay: 0.25s;
+            } 
+        }
+    }
+}
+
+@keyframes draggablePulseBorder {
+    0% {
+        transform:scale3d(1,1,1);
+    }
+    20% {
+        transform:scale3d(1.01,1.01,1);
+    }
+    40% {
+        transform:scale3d(1,1,1);
+    }
+    100% {
+        transform:scale3d(1,1,1);
+    }
+}
