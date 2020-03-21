@@ -1,16 +1,5 @@
 <script>
-    import { locale, locales, translations, getBrowserLocale } from 'svelte-intl';
-
-    translations.update({
-        de: {
-            brand: 'Füll das Regal',
-            layer: 'Ebene'
-        },
-        en: {
-            brand: 'Refill the Shelf',
-            layer: 'layer'
-        },
-    })
+    import { locale, locales, getBrowserLocale } from 'svelte-intl';
     
     locale.set(getBrowserLocale('en')) // try to use window.navigator.language, fallback to EN
     const setLocale = e => locale.set(e.target.value)

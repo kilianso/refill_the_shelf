@@ -7,13 +7,13 @@
     
     translations.update({
         de: {
-            fe_title: 'Lasst uns gemeinsam die Regale wieder auffüllen.',
+            fe_title: 'Lasst uns gemeinsam die Regale wieder auffüllen und Spenden sammeln.',
             fe_cta: 'Jetzt mitmachen',
             fe_msg_title: 'Regal-Fakten',
             fe_msg: `Unser Regal ist aktuell ${shelf_height} Meter hoch und kostet ${shelf_price} CHF.`
         },
         en: {
-            fe_title: 'Let\'s refill the shelves together!',
+            fe_title: 'Let\'s refill the shelves together and donate!',
             fe_cta: 'Start refilling',
             fe_msg_title: 'Height of shelf',
             fe_msg: `Our shelf is currently ${shelf_height} meters height and costs ${shelf_price} CHF.`

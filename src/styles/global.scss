@@ -10,6 +10,13 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+	--main-padding: 5vw;
+	@media (min-width: 48em) {
+		--main-padding: 20vw;
+	}
+}
+
 html {
 	-webkit-text-size-adjust: 100%;
 	-ms-content-zooming: none; /* Disables zooming */
@@ -21,13 +28,17 @@ body {
 	padding: 0;
     margin: 0;
     font-weight: normal;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	overflow-x: hidden;
+	&.lock {
+		user-select:none;
+	}
 }
 
 main, header {
     margin: 0 auto;
-	max-width: 48em;
-	padding: 0 1rem;
+	// max-width: 48em;
+	padding: 0 var(--main-padding);
 }
 
 input {
@@ -98,7 +109,15 @@ button:focus {
 	}
 }
 
+.pricetag {
+	display: flex;
+}
+
 .pricetag__text {
+	flex: 1;
+}
+
+.input__name, .input__msg  {
 	display: block;
 	width: 100%;
 	padding: 1rem;

@@ -1,0 +1,17 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lang, .about {
+    flex: 0 0 5%;
+}
+.about {
+    text-align: right;
+}
+
+.logo {
+    flex: 1;
+    text-align: center;
+}
