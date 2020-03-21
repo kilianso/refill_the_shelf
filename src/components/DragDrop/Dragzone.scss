@@ -36,10 +36,6 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
         background-color: #F2C85B;
         box-shadow: 1px 1px 1em #F2C85B;
     }
-    &.is--red {
-        background-color: #F86E51;
-        box-shadow: 1px 1px 1em #F86E51;
-    }
     &.is--blue {
         background-color: #3A0751;
         box-shadow: 1px 1px 1em #3A0751;
@@ -61,6 +57,11 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
             display: block;
             color: white;
         }
-        opacity: 0.5;
+        &.is--yellow {
+            background-color: rgba(#F2C85B, 0.5)
+        }
+        &.is--blue {
+            background-color: rgba(#3A0751, 0.5);
+        }
     }
 }
