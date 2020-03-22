@@ -108,7 +108,6 @@
         {$_('cr_more')} &#x21bb;
     </span>
 </p>
-<br>
 <div class="buttons">
     <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
 </div>
