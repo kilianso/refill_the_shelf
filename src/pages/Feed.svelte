@@ -13,7 +13,7 @@
             fe_ff_msg: `An dieser Stelle ist unser Regal ${shelf_height} Meter hoch und es wurden ${shelf_price} CHF gespendet.`
         },
         en: {
-            fe_title: 'Let\'s refill the shelves togheter, for those in need!',
+            fe_title: 'Let\'s refill the shelves together, for all those in need!',
             fe_cta: 'Start refilling',
             fe_ff_title: 'Facts & figures',
             fe_ff_msg: `At this point, our shelf is ${shelf_height} meters height and ${shelf_price} CHF have been donated.`

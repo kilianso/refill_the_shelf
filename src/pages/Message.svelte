@@ -10,14 +10,14 @@
     
     translations.update({
         de: {
-            me_title: 'Schritt 2/3 — Schreib etwas auf das Preischild',
+            me_title: 'Schritt 2/3 — Füge eine Nachricht hinzu',
             me_name: 'Dein Name',
             me_msg: 'Deine Nachricht',
             me_cta: 'Nächster Schritt',
             me_cta2: 'Zurück'
         },
         en: {
-            me_title: 'Step 2/3 — Write something on the pricetag',
+            me_title: 'Step 2/3 — Add a message',
             me_name: 'Your name',
             me_msg: 'Your message',
             me_cta: 'Next Step',
@@ -33,8 +33,7 @@
     </div>
     <div class="pricetag__price">{layer_price} CHF</div>
 </div>
-<br>
-<br>
+<hr>
 <br>
 <div>
     <input class="input__name" type="text" placeholder="{$_('me_name')}" bind:value={pricetag_name}>

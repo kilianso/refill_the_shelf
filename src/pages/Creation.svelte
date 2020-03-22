@@ -14,7 +14,7 @@
             cr_more: 'Mehr Produkte',
         },
         en: {
-            cr_title: 'Step 1/3 — Drag items on the shelf',
+            cr_title: 'Step 1/3 — Drag items to the shelf',
             cr_tabs: 'Hygiene, Food, Specials',
             cr_cta: 'Next step',
             cr_more: 'More products',

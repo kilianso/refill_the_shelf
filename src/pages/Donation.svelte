@@ -32,6 +32,7 @@
     </div>
     <div class="pricetag__price">{layer_price} CHF</div>
 </div>
+<hr>
 <div>
     <p class="messages">{$_('do_msg')}</p>
 </div>
