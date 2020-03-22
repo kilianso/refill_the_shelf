@@ -13,7 +13,7 @@
 :root {
 	--main-padding: 5vw;
 	--close-size: calc(8px + 0.5vw);
-	--item-size: calc((100vw - var(--main-padding) * 2 - 8vw) / 5);
+	--item-size: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
 	@media (min-width: 48em) {
 		--close-size: calc(5px + 0.5vw);
 		--main-padding: 20vw;
@@ -138,4 +138,9 @@ button:focus {
     text-align: center;
     max-width: 90%;
     margin: 2em auto;
+}
+
+.reload {
+	cursor: pointer;
+	text-decoration: underline;
 }

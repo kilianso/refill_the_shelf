@@ -1,7 +1,7 @@
 .dragzone {
     width: 100%;
     display: grid;
-    grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size) var(--item-size);
+    grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size);
     grid-gap: 2vw;
     outline: 0;
 }

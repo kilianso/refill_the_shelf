@@ -9,13 +9,15 @@
     translations.update({
         de: {
             cr_title: 'Schritt 1/3 — Zieh Artikel ins Regal',
-            // cr_tabs: 'Hygiene, Essen, Spezial',
+            cr_tabs: 'Hygiene, Essen, Spezial',
             cr_cta: 'Nächster Schritt',
+            cr_more: 'Mehr Produkte',
         },
         en: {
             cr_title: 'Step 1/3 — Drag items on the shelf',
-            // cr_tabs: 'Hygiene, Food, Specials',
+            cr_tabs: 'Hygiene, Food, Specials',
             cr_cta: 'Next step',
+            cr_more: 'More products',
         },
     })
 
@@ -23,7 +25,7 @@
         audioDown = 'assets/audio/down.mp3',
         dragzone,
         dropzones;
-    //$: tabArray = $_('cr_tabs').split(',');
+    $: tabArray = $_('cr_tabs').split(',');
 
     onMount(() => {
         dropzones = document.querySelectorAll('.droppable');
@@ -89,6 +91,9 @@
 </script>
 <p class="title">{$_('cr_title')}</p>
 <Dropzone />
+<br>
+<br>
+<hr>
 <!-- <ul>
     {#each tabArray as tab }
         <li>
@@ -97,12 +102,12 @@
     {/each}
 </ul> -->
 <br>
-<br>
-<hr>
-<br>
-<br>
 <Dragzone />
-<br>
+<p class="messages">
+    <span class="reload">
+        {$_('cr_more')} &#x21bb;
+    </span>
+</p>
 <br>
 <div class="buttons">
     <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
