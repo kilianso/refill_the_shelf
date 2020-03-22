@@ -20,8 +20,8 @@
             me_title: 'Step 2/3 — Write something on the pricetag',
             me_name: 'Your name',
             me_msg: 'Your message',
-            me_cta: 'Nächster Schritt',
-            me_cta2: 'Zurück'
+            me_cta: 'Next Step',
+            me_cta2: 'Back'
         },
     })
 </script>

@@ -20,7 +20,7 @@
             do_title: 'Schritt 2/3 Donate your shelf',
             do_msg: `Donate your shelf to ${charity} and give something back to the ones, who cannot refill. Thank you!`,
             do_cta: `Donate ${layer_price} CHF`,
-            do_cta2: 'Zurück'
+            do_cta2: 'Back'
         },
     })
 </script>
