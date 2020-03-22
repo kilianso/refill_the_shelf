@@ -8,6 +8,9 @@
         outline: 0;
         background: none;
         border: none;
+        &:hover {
+            cursor: pointer;
+        }
     }
     &:after {
         content: "\25BF";
