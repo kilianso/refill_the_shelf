@@ -51,17 +51,41 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
         pointer-events: none;
         user-select: none;
     }
-    .lock .dropzone.taken & {
-        &__content:before {
-            content: "🔒";
-            display: block;
-            color: white;
+    &__remove {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: calc(0.5vw + 0.5vh);
+        transform: translate(50%, -50%);
+        background: white;
+        border-radius: 50%;    
+        box-shadow: 1px 1px 0.25em rgba(0,0,0,0.5);
+        cursor: pointer;
+        &:before {
+            content: url(../assets/images/close.svg);
+            width: 10px;
+            height: 10px;
+            /* padding: 10px; */
+            line-height: 10px;
         }
-        &.is--yellow {
-            background-color: rgba(#F2C85B, 0.5)
-        }
-        &.is--blue {
-            background-color: rgba(#3A0751, 0.5);
+        .dropzone.taken & {
+            display: flex;
         }
     }
+    // .lock .dropzone.taken & {
+        // &__content:before {
+        //     content: "🔒";
+        //     display: block;
+        //     color: white;
+        // }
+        // &.is--yellow {
+        //     background-color: rgba(#F2C85B, 0.5)
+        // }
+        // &.is--blue {
+        //     background-color: rgba(#3A0751, 0.5);
+        // }
+    // }
 }

@@ -24,14 +24,13 @@
     let audioUp = 'assets/audio/up.mp3',
         audioDown = 'assets/audio/down.mp3',
         dropzones,
-        articles;
+        dragzone;
     
     //$: tabArray = $_('cr_tabs').split(',');
 
     onMount(() => {
-        const body = document.body,
-            dropzones = document.querySelectorAll('.dropzone'),
-            articles = document.querySelectorAll('.articles');
+        const dropzones = document.querySelectorAll('.dropzone'),
+            dragzone = document.querySelectorAll('.dragzone');
     
         dropzones.forEach((el, i) => {
             const sortable = new Sortable(el, {
@@ -44,6 +43,15 @@
                 },
                 delay: 0,
                 animation: 250,
+                filter: '.js-remove',
+                onFilter: function(evt){
+                    let item = evt.item,
+                        ctrl = evt.target;
+                    if (Sortable.utils.is(ctrl, ".js-remove")) {  // Click on remove button
+			            item.parentNode.removeChild(item); // remove sortable item
+			            el.classList.remove('taken'); // remove taken class
+		            }
+                },
                 onStart: function (evt, originalEvent) {
                     document.body.classList.add('lock');
                     evt.from.classList.remove('taken');                    
@@ -57,14 +65,12 @@
             });
         });
     
-        articles.forEach((el, i) => {
+        dragzone.forEach((el, i) => {
             const sortable = new Sortable(el, {
                 group: {
-                    name: 'articles',
-                    put: 'dropzone',
-                    pull: function (to, from) {
-                        return from.el.children.length > 2 || 'clone';
-                    }
+                    name: 'dragzone',
+                    put: false,
+                    pull: 'clone'
                 },
                 delay: 0,
                 animation: 250,
