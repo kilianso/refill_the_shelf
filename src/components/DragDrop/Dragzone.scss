@@ -60,10 +60,10 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
         right: 0;
         padding: var(--close-size);
         user-select: none;
+        transform: translate(var(--close-size), calc(var(--close-size) * -1));
         cursor: pointer;
         &:before {
             content: url(../assets/images/close.svg);
-            transform: translate(var(--close-size), calc(var(--close-size) * -1));
             background: white;
             border-radius: 50%;    
             width: var(--close-size);
