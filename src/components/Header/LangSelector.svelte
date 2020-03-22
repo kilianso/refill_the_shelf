@@ -6,8 +6,11 @@
 
 </script>
 
-<select value={$locale} on:change={setLocale}>
-  {#each $locales as l}
-    <option value={l}> {l} </option>
-  {/each}
-</select>
+<style lang="scss" src="./LangSelector.scss"></style>
+<div class="lang">
+  <select value={$locale} on:change={setLocale}>
+    {#each $locales as l}
+      <option value={l}> {l} </option>
+    {/each}
+  </select>
+</div>

@@ -1,7 +1,8 @@
 import Feed from './pages/Feed.svelte';
-import Create from './pages/Create.svelte';
-import Save from './pages/Save.svelte';
-import Confirm from './pages/Confirm.svelte';
+import Creation from './pages/Creation.svelte';
+import Message from './pages/Message.svelte';
+import Donation from './pages/Donation.svelte';
+import Confirmation from './pages/Confirmation.svelte';
 import About from './pages/About.svelte';
 
 export default [
@@ -11,19 +12,24 @@ export default [
     component: Feed,
   },
   {
-    path: '/create',
-    name: 'Create',
-    component: Create,
+    path: '/creation',
+    name: 'Creation',
+    component: Creation,
   },
   {
-    path: '/save',
-    name: 'Save',
-    component: Save,
+    path: '/message',
+    name: 'Message',
+    component: Message,
   },
   {
-    path: '/confirm',
-    name: 'Confirm',
-    component: Confirm,
+    path: '/donation',
+    name: 'Donation',
+    component: Donation,
+  },
+  {
+    path: '/confirmation',
+    name: 'Confirmation',
+    component: Confirmation,
   },
   {
     path: '/about',

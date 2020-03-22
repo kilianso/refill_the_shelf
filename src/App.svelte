@@ -19,9 +19,10 @@
 	<h3>Debug nav</h3>
 	<nav class="navigation">
 		<Link page={{path: '/', name: 'Feed'}} />
-		<Link page={{path: '/create', name: 'Create'}} />
-		<Link page={{path: '/save', name: 'Save'}} />
-		<Link page={{path: '/confirm', name: 'Confirm'}} />
+		<Link page={{path: '/creation', name: 'Creation'}} />
+		<Link page={{path: '/message', name: 'Message'}} />
+		<Link page={{path: '/donation', name: 'Donation'}} />
+		<Link page={{path: '/confirmation', name: 'Confirmation'}} />
 		<Link page={{path: '/about', name: 'About'}} />
 	</nav>
 	<br>

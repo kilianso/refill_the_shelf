@@ -18,16 +18,17 @@
 <div class="sharing">
     <p><strong>{$_('co_title')}</strong></p>
     <p>{$_('co_cta')}</p>
-    <p>Social Icons</p>
+    <p class="social">Social Icons</p>
 </div>
 
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
-
-<strong>{$_('fe_msg_title')}</strong>
-<p>{$_('fe_msg')}</p>
+<div class="messages">
+    <strong>{$_('fe_ff_title')}</strong>
+    <p>{$_('fe_ff_msg')}</p>
+</div>
 
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>

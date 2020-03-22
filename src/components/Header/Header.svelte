@@ -5,12 +5,12 @@
 
     translations.update({
         de: {
-            brand: 'Refill Shelf',
-            layer: 'Ebene'
+            brand: 'Refill the Shelf',
+            layer: 'Regal-Ebene'
         },
         en: {
-            brand: 'Refill Shelf',
-            layer: 'layer'
+            brand: 'Refill the Shelf',
+            layer: 'shelf-layer'
         },
     })
 
@@ -19,9 +19,7 @@
 <style lang="scss" src="./Header.scss"></style>
 
 <div class="main-header">
-    <div class="lang">
-        <LangSelector />
-    </div>
+    <LangSelector />
     <div class="logo">
         <h1>
             <Link page={{path: '/', name: $_('brand')}}/>

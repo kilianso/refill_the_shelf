@@ -1,0 +1,17 @@
+.lang {
+    position: relative;
+    flex: 1 0 15%;
+    select {
+        appearance: none;
+        padding: 1em;
+        margin: -1em;
+        outline: 0;
+        background: none;
+        border: none;
+    }
+    &:after {
+        content: "\25BF";
+        margin-left: 5px;
+        pointer-events: none;
+    }
+}

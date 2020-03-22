@@ -7,32 +7,33 @@
     
     translations.update({
         de: {
-            fe_title: 'Lasst uns gemeinsam die Regale wieder auffüllen und Spenden sammeln.',
+            fe_title: 'Lasst uns gemeinsam die Regale wiederauffüllen, für all jene in Not.',
             fe_cta: 'Jetzt mitmachen',
-            fe_msg_title: 'Regal-Fakten',
-            fe_msg: `Unser Regal ist aktuell ${shelf_height} Meter hoch und kostet ${shelf_price} CHF.`
+            fe_ff_title: 'Fakten & Zahlen',
+            fe_ff_msg: `An dieser Stelle ist unser Regal ${shelf_height} Meter hoch und es wurden ${shelf_price} CHF gespendet.`
         },
         en: {
-            fe_title: 'Let\'s refill the shelves together and donate!',
+            fe_title: 'Let\'s refill the shelves togheter, for those in need!',
             fe_cta: 'Start refilling',
-            fe_msg_title: 'Height of shelf',
-            fe_msg: `Our shelf is currently ${shelf_height} meters height and costs ${shelf_price} CHF.`
+            fe_ff_title: 'Facts & figures',
+            fe_ff_msg: `At this point, our shelf is ${shelf_height} meters height and ${shelf_price} CHF have been donated.`
         },
     })
 </script>
 
+<p class="title">{$_('fe_title')}</p>
 <div class="buttons">
-    <p>{$_('fe_title')}</p>
-    <Link linkClass={'btn btn--primary'} page={{path: '/create', name: $_('fe_cta')}}/>
+    <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('fe_cta')}}/>
 </div>
 
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
-
-<strong>{$_('fe_msg_title')}</strong>
-<p>{$_('fe_msg')}</p>
+<div class="messages">
+    <strong>{$_('fe_ff_title')}</strong>
+    <p>{$_('fe_ff_msg')}</p>
+</div>
 
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>

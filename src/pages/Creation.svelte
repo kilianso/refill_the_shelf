@@ -8,16 +8,14 @@
     
     translations.update({
         de: {
-            cr_drop: 'Zieh Artikel hier hin',
+            cr_title: 'Schritt 1/3 — Zieh Artikel ins Regal',
             // cr_tabs: 'Hygiene, Essen, Spezial',
-            cr_cta: 'Preisschild hinzufügen',
-            cr_items: 'Artikel Icons'
+            cr_cta: 'Nächster Schritt',
         },
         en: {
-            cr_drop: 'Drag items here',
+            cr_title: 'Step 1/3 — Drag items on the shelf',
             // cr_tabs: 'Hygiene, Food, Specials',
-            cr_cta: 'Add a pricetag',
-            cr_items: 'article icons'
+            cr_cta: 'Next step',
         },
     })
 
@@ -89,8 +87,7 @@
     });
 
 </script>
-
-<div class="layer">{$_('cr_drop')}</div>
+<p class="title">{$_('cr_title')}</p>
 <Dropzone />
 <!-- <ul>
     {#each tabArray as tab }
@@ -99,15 +96,22 @@
         </li>
     {/each}
 </ul> -->
-
-<div class="layer">{$_('cr_items')}</div>
+<br>
+<br>
+<hr>
+<br>
+<br>
 <Dragzone />
+<br>
+<br>
 <div class="buttons">
-    <Link linkClass={'btn btn--primary'} page={{path: '/save', name: $_('cr_cta')}}/>
+    <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
 </div>
 <br>
 <br>
 <hr>
+<br>
+<br>
 <div>
     <p>Drag & Drop sounds</p>
     <audio src="{audioUp}" type ="audio/mp3" preload="auto" controls></audio>

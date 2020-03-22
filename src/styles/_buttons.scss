@@ -8,16 +8,16 @@
     display: inline-block;
     &--primary, &--secondary {
         margin: 1rem 0;
-        background: black;
+        background: #F8E71C;
         padding: 1rem 3rem;
         border-radius: 10rem;
-        color: white;
+        color: #1C1648;
     }
     &--secondary {
         background: lightgray;   
-        color: black;
+        color: #1C1648;
     }
     &--tertiary {
-        color: blue;
+        color: #1C1648;
     }
 }
