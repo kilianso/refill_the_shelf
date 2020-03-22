@@ -23,14 +23,14 @@
 
     let audioUp = 'assets/audio/up.mp3',
         audioDown = 'assets/audio/down.mp3',
-        dropzones,
-        dragzone;
+        dragzone,
+        dropzones;
     
     //$: tabArray = $_('cr_tabs').split(',');
 
     onMount(() => {
-        const dropzones = document.querySelectorAll('.dropzone'),
-            dragzone = document.querySelectorAll('.dragzone');
+        dropzones = document.querySelectorAll('.dropzone');
+        dragzone = document.querySelectorAll('.dragzone');
     
         dropzones.forEach((el, i) => {
             const sortable = new Sortable(el, {
@@ -99,6 +99,7 @@
         </li>
     {/each}
 </ul> -->
+
 <div class="layer">{$_('cr_items')}</div>
 <Dragzone />
 <div class="buttons">
