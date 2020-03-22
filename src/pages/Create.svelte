@@ -28,7 +28,7 @@
     //$: tabArray = $_('cr_tabs').split(',');
 
     onMount(() => {
-        dropzones = document.querySelectorAll('.dropzone');
+        dropzones = document.querySelectorAll('.droppable');
         dragzone = document.querySelectorAll('.dragzone');
     
         dropzones.forEach((el, i) => {
@@ -58,7 +58,7 @@
                 },
                 onEnd: function (evt, originalEvent) {
                     document.body.classList.remove('lock');
-                    if (evt.to.classList.contains('dropzone')) {
+                    if (evt.to.classList.contains('droppable')) {
                         evt.to.classList.add('taken');        
                     }
                 }
@@ -80,7 +80,7 @@
                 },
                 onEnd: function (evt, originalEvent) {
                     document.body.classList.remove('lock');
-                    if (evt.to.classList.contains('dropzone')) {
+                    if (evt.to.classList.contains('droppable')) {
                         evt.to.classList.add('taken');
                     }
                 }

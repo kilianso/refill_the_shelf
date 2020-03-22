@@ -1,9 +1,15 @@
-$borderRadius: 1em;
-
 .dropzone {
+    width: 100%;
+    display: grid;
+    grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size);
+    grid-gap: 2vw;
+}
+
+.droppable {
     border: 1px dashed black;
-    border-radius: $borderRadius;
+    border-radius: calc(var(--close-size) * 2);
     transform: scale3d(1,1,1);
+    outline: 0;
     &.taken {
         border-color: transparent;
     }

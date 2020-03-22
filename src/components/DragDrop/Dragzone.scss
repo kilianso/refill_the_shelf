@@ -1,25 +1,16 @@
-$borderRadius: 1em;
-// 100vw - main paddingLR - grid-gap - number of columns
-$itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
-
-.grid {
+.dragzone {
     width: 100%;
     display: grid;
-    grid-template: #{$itemSize} / $itemSize $itemSize $itemSize $itemSize;
+    grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size);
     grid-gap: 2vw;
-    background-color: #ffffff;
     outline: 0;
-    border-width: 1px;
-    border-style: dashed;
-    border-color: transparent;
-    border-radius: $borderRadius;
 }
-.item {
+.draggable {
     position: relative;
     outline: 0;
     border-radius: calc(var(--close-size) * 2);
-    width: $itemSize;
-    height: $itemSize;
+    width: var(--item-size);
+    height: var(--item-size);
     cursor: grab;
     display: flex;
     flex-direction: column;
@@ -71,7 +62,7 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
             padding: var(--close-size);
             line-height: 0;
         }
-        .dropzone.taken & {
+        .droppable.taken & {
             display: flex;
         }
     }
