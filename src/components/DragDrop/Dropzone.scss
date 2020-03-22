@@ -3,7 +3,7 @@ $borderRadius: 1em;
 .dropzone {
     border: 1px dashed black;
     border-radius: $borderRadius;
-    // transform: scale3d(1,1,1);
+    transform: scale3d(1,1,1);
     &.taken {
         border-color: transparent;
     }
