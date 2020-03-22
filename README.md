@@ -1,4 +1,4 @@
-# Refill the shelf
+# Refill shelf
 A not that serious game where you have to refill empty shelves with toiletpaper, hand-sanitizer, pasta and ravioli.
 
 This is a Svelte project, follow the instructions below if you are new to this stack.
