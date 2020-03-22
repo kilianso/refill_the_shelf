@@ -17,7 +17,7 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
 .item {
     position: relative;
     outline: 0;
-    border-radius: 1em;
+    border-radius: calc(var(--close-size) * 2);
     width: $itemSize;
     height: $itemSize;
     cursor: grab;
@@ -58,22 +58,25 @@ $itemSize: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
         position: absolute;
         top: 0;
         right: 0;
-        padding: calc(0.5vw + 0.5vh);
-        transform: translate(50%, -50%);
-        background: white;
-        border-radius: 50%;    
-        box-shadow: 1px 1px 0.25em rgba(0,0,0,0.5);
+        padding: var(--close-size);
+        user-select: none;
         cursor: pointer;
         &:before {
             content: url(../assets/images/close.svg);
-            width: 10px;
-            height: 10px;
-            /* padding: 10px; */
-            line-height: 10px;
+            transform: translate(var(--close-size), calc(var(--close-size) * -1));
+            background: white;
+            border-radius: 50%;    
+            width: var(--close-size);
+            height: var(--close-size);
+            padding: var(--close-size);
+            line-height: 0;
         }
         .dropzone.taken & {
             display: flex;
         }
+    }
+    .lock & {
+        cursor: grabbing;
     }
     // .lock .dropzone.taken & {
         // &__content:before {

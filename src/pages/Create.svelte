@@ -25,7 +25,6 @@
         audioDown = 'assets/audio/down.mp3',
         dragzone,
         dropzones;
-    
     //$: tabArray = $_('cr_tabs').split(',');
 
     onMount(() => {
@@ -44,6 +43,7 @@
                 delay: 0,
                 animation: 250,
                 filter: '.js-remove',
+                supportPointer: false, // safari needs this
                 onFilter: function(evt){
                     let item = evt.item,
                         ctrl = evt.target;
@@ -54,7 +54,7 @@
                 },
                 onStart: function (evt, originalEvent) {
                     document.body.classList.add('lock');
-                    evt.from.classList.remove('taken');                    
+                    evt.from.classList.remove('taken');            
                 },
                 onEnd: function (evt, originalEvent) {
                     document.body.classList.remove('lock');
@@ -74,6 +74,7 @@
                 },
                 delay: 0,
                 animation: 250,
+                supportPointer: false, // safari needs this
                 onStart: function (evt, originalEvent) {
                     document.body.classList.add('lock');
                 },
@@ -86,7 +87,6 @@
             });
         });
     });
-
 
 </script>
 
