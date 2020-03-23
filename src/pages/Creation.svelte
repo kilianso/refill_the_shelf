@@ -51,7 +51,9 @@
                         ctrl = evt.target;
                     if (Sortable.utils.is(ctrl, ".js-remove")) {  // Click on remove button
 			            item.parentNode.removeChild(item); // remove sortable item
-			            el.classList.remove('taken'); // remove taken class
+                        el.classList.remove('taken'); // remove taken class
+                        // remove item from totalPrice
+                        userLayer.update((entries) => {entries[1].price -= 10; return entries});
 		            }
                 },
                 onStart: function (evt, originalEvent) {
