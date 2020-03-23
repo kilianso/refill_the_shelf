@@ -23,18 +23,11 @@
     &.sortable-drag {
         box-shadow: none!important;
     }
-    &.is--black {
-        background-color: black;
-        // box-shadow: 1px 1px 1em #F2C85B;
-    }
-    &.is--gray {
-        background-color: #1C1648;
-        // box-shadow: 1px 1px 1em #3A0751;
-    }
-    &__content {
+    &__media {
         position:absolute;
         top:50%;
         left:50%;
+        width: 100%;
         transform: translate(-50%, -50%);
         font-size: 1rem;
         text-align: center;

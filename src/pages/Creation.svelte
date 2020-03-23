@@ -9,13 +9,13 @@
     translations.update({
         de: {
             cr_title: 'Schritt 1/3 — Zieh Artikel ins Regal',
-            cr_tabs: 'Hygiene, Essen, Spezial',
+            // cr_tabs: 'Hygiene, Essen, Spezial',
             cr_cta: 'Nächster Schritt',
             cr_more: 'Mehr Produkte',
         },
         en: {
             cr_title: 'Step 1/3 — Drag items to the shelf',
-            cr_tabs: 'Hygiene, Food, Specials',
+            // cr_tabs: 'Hygiene, Food, Specials',
             cr_cta: 'Next step',
             cr_more: 'More products',
         },
@@ -25,7 +25,7 @@
         audioDown = 'assets/audio/down.mp3',
         dragzone,
         dropzones;
-    $: tabArray = $_('cr_tabs').split(',');
+    // $: tabArray = $_('cr_tabs').split(',');
 
     onMount(() => {
         dropzones = document.querySelectorAll('.droppable');

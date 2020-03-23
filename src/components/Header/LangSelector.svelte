@@ -7,6 +7,7 @@
 </script>
 
 <style lang="scss" src="./LangSelector.scss"></style>
+
 <div class="lang">
   <select value={$locale} on:change={setLocale}>
     {#each $locales as l}
