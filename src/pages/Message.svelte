@@ -1,12 +1,12 @@
 <script>
     import Link from '../components/Link.svelte';
     import {translations, _ } from 'svelte-intl';
+    import { userLayer, layerPrice } from '../store';
 
     let shelf_height = 400,
         shelf_price = 320000,
         pricetag_name = '',
-        pricetag_text = '',
-        layer_price = 15; // TODO
+        pricetag_text = '';
     
     translations.update({
         de: {
@@ -31,7 +31,7 @@
     <div class="pricetag__text">
         <strong>{pricetag_name}</strong> {pricetag_text}
     </div>
-    <div class="pricetag__price">{layer_price} CHF</div>
+    <div class="pricetag__price">{$layerPrice} CHF</div>
 </div>
 <hr>
 <br>

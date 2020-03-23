@@ -5,7 +5,8 @@
     import Sortable from 'sortablejs/modular/sortable.core.esm.js';
     import { translations, _ } from 'svelte-intl';
     import { onMount } from 'svelte';
-    
+    import { userLayer, layerPrice } from '../store';
+
     translations.update({
         de: {
             cr_title: 'Schritt 1/3 — Zieh Artikel ins Regal',
@@ -19,13 +20,14 @@
             cr_cta: 'Next step',
             cr_more: 'More products',
         },
-    })
-
+    });
+    
     let audioUp = 'assets/audio/up.mp3',
         audioDown = 'assets/audio/down.mp3',
         dragzone,
         dropzones;
-    // $: tabArray = $_('cr_tabs').split(',');
+    
+    // $_('cr_tabs').split(',');
 
     onMount(() => {
         dropzones = document.querySelectorAll('.droppable');
@@ -59,7 +61,7 @@
                 onEnd: function (evt, originalEvent) {
                     document.body.classList.remove('lock');
                     if (evt.to.classList.contains('droppable')) {
-                        evt.to.classList.add('taken');        
+                        evt.to.classList.add('taken');
                     }
                 }
             });
@@ -83,6 +85,7 @@
                     if (evt.to.classList.contains('droppable')) {
                         evt.to.classList.add('taken');
                     }
+                    userLayer.update((entries) => {entries[1].price += 10; return entries});
                 }
             });
         });
@@ -92,7 +95,11 @@
 <p class="title">{$_('cr_title')}</p>
 <Dropzone />
 <br>
-<br>
+<div class="pricetag">
+    <div class="pricetag__text">
+    </div>
+    <div class="pricetag__price">{$layerPrice} CHF</div>
+</div>
 <hr>
 <!-- <ul>
     {#each tabArray as tab }
