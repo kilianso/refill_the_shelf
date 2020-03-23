@@ -63,6 +63,9 @@
                     if (evt.to.classList.contains('droppable')) {
                         evt.to.classList.add('taken');
                     }
+                },
+                onChange: function() {
+                    userLayer.update((entries) => {entries[1].price += 10; return entries});
                 }
             });
         });
@@ -85,7 +88,6 @@
                     if (evt.to.classList.contains('droppable')) {
                         evt.to.classList.add('taken');
                     }
-                    userLayer.update((entries) => {entries[1].price += 10; return entries});
                 }
             });
         });
