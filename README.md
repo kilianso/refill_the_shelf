@@ -15,15 +15,7 @@ yarn install
 ## Important
 
 There is a currently an open issue, where Svelte routing fails if you remove DOM nodes after mounting.
-This is the case in this project! Till there is a real fix, you have to change the `detach` function in `node_modules/svelte/internal/index.mjs` to the following.
-
-``bash
-    function detach(node) {
-        if(node.parentNode) {
-            node.parentNode.removeChild(node);
-        }
-    }
-```
+This is the case in this project! Till there is a real fix, i made a patch file that will update the `detach` function in `node_modules/svelte/internal/index.mjs` automatically after you run `yarn install`.
 
 Track the issue here:
 https://github.com/sveltejs/svelte/issues/2086#issuecomment-603245101
