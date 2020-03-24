@@ -30,9 +30,10 @@
     // $_('cr_tabs').split(',');
 
     onMount(() => {
+        
         dropzones = document.querySelectorAll('.droppable');
         dragzone = document.querySelectorAll('.dragzone');
-    
+
         dropzones.forEach((el, i) => {
             const sortable = new Sortable(el, {
                 group: {
@@ -40,21 +41,21 @@
                     put: function (to) {
                         return to.el.children.length < 1;
                     }
-                    //pull: 'clone' // To clone: set pull to 'clone'
                 },
                 delay: 0,
                 animation: 250,
                 filter: '.js-remove',
-                supportPointer: false, // safari needs this
-                onFilter: function(evt){
+                supportPointer: false,  // safari has drag glitches without this
+                onFilter: function(evt){                    
                     let item = evt.item,
                         ctrl = evt.target;
+
                     if (Sortable.utils.is(ctrl, ".js-remove")) {  // Click on remove button
-			            item.parentNode.removeChild(item); // remove sortable item
-                        el.classList.remove('taken'); // remove taken class
-                        // remove item from totalPrice
-                        userLayer.update((entries) => {entries[1].price -= 10; return entries});
-		            }
+                        evt.from.removeChild(evt.item);
+                        evt.from.classList.remove('taken'); // remove taken class
+                    }
+                    // remove item from layer in store                       
+                    userLayer.update((entries) => {entries[evt.to.dataset.position] = {price: 0, icon: '', alt: ''}; return entries});
                 },
                 onStart: function (evt, originalEvent) {
                     document.body.classList.add('lock');
@@ -66,8 +67,14 @@
                         evt.to.classList.add('taken');
                     }
                 },
-                onChange: function() {
-                    userLayer.update((entries) => {entries[1].price += 10; return entries});
+                onSort: function(evt) {
+                    userLayer.update((entries) => {
+                        if(evt.from.dataset.position) {
+                            entries[evt.from.dataset.position] = {price: 0, icon: '', alt: ''};
+                        }
+                        entries[evt.to.dataset.position] = {...evt.item.dataset};                         
+                        return entries
+                    });                    
                 }
             });
         });
@@ -81,7 +88,7 @@
                 },
                 delay: 0,
                 animation: 250,
-                supportPointer: false, // safari needs this
+                supportPointer: false, // safari has drag glitches without this
                 onStart: function (evt, originalEvent) {
                     document.body.classList.add('lock');
                 },

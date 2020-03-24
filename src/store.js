@@ -23,25 +23,21 @@ layer: {
 export const userLayer = writable(
     [
         {
-            taken: false,
             price: 0,
             icon: '',
             alt: ''
         },
         {
-            taken: false,
-            price: 10,
-            icon: '',
-            alt: ''
-        },
-        {
-            taken: false,
             price: 0,
             icon: '',
             alt: ''
         },
         {
-            taken: false,
+            price: 0,
+            icon: '',
+            alt: ''
+        },
+        {
             price: 0,
             icon: '',
             alt: ''
@@ -52,7 +48,7 @@ export const userLayer = writable(
 function calculateTotal (userLayer) {
     let total = 0;
     userLayer.forEach((el)=> {
-        total += el.price;
+        total += parseInt(el.price);
     });
     return total;
 }
