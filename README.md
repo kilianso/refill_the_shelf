@@ -1,39 +1,37 @@
 # Refill shelf
-A not that serious game where you have to refill empty shelves with toiletpaper, hand-sanitizer, pasta and ravioli.
-
-This is a Svelte project, follow the instructions below if you are new to this stack.
-
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+A not that serious game where you have to refill empty shelves with toiletpaper, hand-sanitizer, pasta, cans and so on.
+Your refill value can be donated in the end.
 
 ---
-
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
 
 ## Get started
 
 Install the dependencies...
 
 ```bash
-cd svelte-app
-npm install
+yarn install
 ```
+
+## Important
+
+There is a currently an open issue, where Svelte routing fails if you remove DOM nodes after mounting.
+This is the case in this project! Till there is a real fix, you have to change the `detach` function in `node_modules/svelte/internal/index.mjs` to the following.
+
+``bash
+    function detach(node) {
+        if(node.parentNode) {
+            node.parentNode.removeChild(node);
+        }
+    }
+```
+
+Track the issue here:
+https://github.com/sveltejs/svelte/issues/2086#issuecomment-603245101
 
 ...then start [Rollup](https://rollupjs.org):
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
@@ -46,10 +44,10 @@ By default, the server will only respond to requests from localhost. To allow co
 To create an optimised version of the app:
 
 ```bash
-npm run build
+yarn run build
 ```
 
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
+You can run the newly built app with `yarn run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
 
 
 ## Single-page app mode
@@ -62,7 +60,6 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 "start": "sirv public --single"
 ```
 
-
 ## Deploying to the web
 
 ### With [now](https://zeit.co/now)
@@ -70,7 +67,7 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 Install `now` if you haven't already:
 
 ```bash
-npm install -g now
+yarn add -g now
 ```
 
 Then, from within your project folder:
@@ -87,12 +84,12 @@ As an alternative, use the [Now desktop client](https://zeit.co/download) and si
 Install `surge` if you haven't already:
 
 ```bash
-npm install -g surge
+yarn add -g surge
 ```
 
 Then, from within your project folder:
 
 ```bash
-npm run build
+yarn run build
 surge public my-project.surge.sh
 ```
