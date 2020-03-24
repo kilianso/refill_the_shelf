@@ -2,7 +2,7 @@
   import { curRoute } from '../store';
   
   export let page;
-  export let linkClass;
+  export let linkClass = '';
 
   function redirectTo(event){
     // change current router path

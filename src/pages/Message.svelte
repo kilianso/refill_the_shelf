@@ -1,12 +1,12 @@
 <script>
     import Link from '../components/Link.svelte';
+    import Dropzone from '../components/DragDrop/Dropzone.svelte';
+
     import {translations, _ } from 'svelte-intl';
-    import { userLayer, layerPrice } from '../store';
+    import { userLayer } from '../store';
 
     let shelf_height = 400,
-        shelf_price = 320000,
-        pricetag_name = '',
-        pricetag_text = '';
+        shelf_price = 320000;
     
     translations.update({
         de: {
@@ -26,18 +26,12 @@
     })
 </script>
 <p class="title">{$_('me_title')}</p>
-<div class="layer">{$_('layer')}</div>
-<div class="pricetag">
-    <div class="pricetag__text">
-        <strong>{pricetag_name}</strong> {pricetag_text}
-    </div>
-    <div class="pricetag__price">{$layerPrice} CHF</div>
-</div>
+<Dropzone />
 <hr>
 <br>
 <div>
-    <input class="input__name" type="text" placeholder="{$_('me_name')}" bind:value={pricetag_name}>
-    <input class="input__msg" type="text" placeholder="{$_('me_msg')}" bind:value={pricetag_text}>
+    <input class="input__name" type="text" placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
+    <input class="input__msg" type="text" placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
 </div>
 
 <div class="buttons">

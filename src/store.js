@@ -9,7 +9,7 @@ layer: {
     id: null,
     name: '',
     message: '',
-    layerPrice,
+    layerPrice: 0,
     items: [
         {
             taken: false,
@@ -20,8 +20,11 @@ layer: {
     ]
 }
 */
-export const userLayer = writable(
-    [
+export const userLayer = writable({
+    name: '',
+    message: '',
+    layerPrice: 0,
+    items: [
         {
             price: 0,
             icon: '',
@@ -43,11 +46,11 @@ export const userLayer = writable(
             alt: ''
         }
     ]
-);
+});
 
-function calculateTotal (userLayer) {
+function calculateTotal (items) {
     let total = 0;
-    userLayer.forEach((el)=> {
+    items.forEach((el)=> {
         total += parseInt(el.price);
     });
     return total;
@@ -57,6 +60,5 @@ function calculateTotal (userLayer) {
 //derived(storeName, ($storeValues) => {})
 
 export const layerPrice = derived(userLayer,($userLayer) => {
-      return calculateTotal($userLayer);
-    }
-)
+    return calculateTotal($userLayer.items);
+})

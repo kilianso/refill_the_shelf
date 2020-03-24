@@ -1,5 +1,7 @@
 <script>
     import Link from '../components/Link.svelte';
+    import Dropzone from '../components/DragDrop/Dropzone.svelte';
+
     import {translations, _ } from 'svelte-intl';
 
     let shelf_height = 400,
@@ -25,17 +27,9 @@
     })
 </script>
 <p class="title">{$_('do_title')}</p>
-<div class="layer">{$_('layer')}</div>
-<div class="pricetag">
-    <div class="pricetag__text">
-        <strong>{pricetag_name}</strong> {pricetag_text}
-    </div>
-    <div class="pricetag__price">{layer_price} CHF</div>
-</div>
+<Dropzone />
 <hr>
-<div>
-    <p class="messages">{$_('do_msg')}</p>
-</div>
+<br>
 <div class="buttons">
     <Link linkClass={'btn btn--primary'} page={{path: '/confirmation', name: $_('do_cta')}}/>
     <Link linkClass={'btn btn--tertiary'} page={{path: '/message', name: $_('do_cta2')}}/>

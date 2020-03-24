@@ -2,6 +2,7 @@
     import Link from '../components/Link.svelte';
     import Dragzone from '../components/DragDrop/Dragzone.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
+    
     import Sortable from 'sortablejs/modular/sortable.core.esm.js';
     import { translations, _ } from 'svelte-intl';
     import { onMount } from 'svelte';
@@ -55,7 +56,10 @@
                         evt.from.classList.remove('taken'); // remove taken class
                     }
                     // remove item from layer in store                       
-                    userLayer.update((entries) => {entries[evt.to.dataset.position] = {price: 0, icon: '', alt: ''}; return entries});
+                    userLayer.update((entries) => {
+                        entries.items[evt.to.dataset.position] = {price: 0, icon: '', alt: ''};
+                        return entries
+                    });
                 },
                 onStart: function (evt, originalEvent) {
                     document.body.classList.add('lock');
@@ -70,9 +74,9 @@
                 onSort: function(evt) {
                     userLayer.update((entries) => {
                         if(evt.from.dataset.position) {
-                            entries[evt.from.dataset.position] = {price: 0, icon: '', alt: ''};
+                            entries.items[evt.from.dataset.position] = {price: 0, icon: '', alt: ''};
                         }
-                        entries[evt.to.dataset.position] = {...evt.item.dataset};                         
+                        entries.items[evt.to.dataset.position] = {...evt.item.dataset};  
                         return entries
                     });                    
                 }
@@ -104,13 +108,7 @@
 
 </script>
 <p class="title">{$_('cr_title')}</p>
-<Dropzone />
-<br>
-<div class="pricetag">
-    <div class="pricetag__text">
-    </div>
-    <div class="pricetag__price">{$layerPrice} CHF</div>
-</div>
+<Dropzone creationRoute={true}/>
 <hr>
 <!-- <ul>
     {#each tabArray as tab }
