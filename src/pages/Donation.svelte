@@ -7,8 +7,6 @@
 
     let shelf_height = 400,
         shelf_price = 320000,
-        pricetag_name = 'Dis Mami',
-        pricetag_text = 'Voll super!',
         charity = 'Caritas';
     
     translations.update({
@@ -30,6 +28,7 @@
 <Dropzone />
 <hr>
 <br>
+<p class="message">{$_('do_msg')}</p>
 <div class="buttons">
     <Link linkClass={'btn btn--primary'} page={{path: '/confirmation', name: $_('do_cta')}}/>
     <Link linkClass={'btn btn--tertiary'} page={{path: '/message', name: $_('do_cta2')}}/>
