@@ -3,25 +3,25 @@
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
 
     import {translations, _ } from 'svelte-intl';
+    import {layerPrice} from '../store';
 
     let shelf_height = 400,
         shelf_price = 320000,
         pricetag_name = 'Dis Mami',
         pricetag_text = 'Voll super!',
-        charity = 'Caritas',
-        layer_price = 15; // TODO
+        charity = 'Caritas';
     
     translations.update({
         de: {
             do_title: 'Schritt 3/3 — Spende dein Regal',
             do_msg: `Spende jetzt dein Regal an ${charity} und gib etwas an all jene zurück, die ihre Reserven selbst nicht auffüllen können. Danke!`,
-            do_cta: `Jetzt ${layer_price} CHF spenden`,
+            do_cta: `Jetzt ${$layerPrice} CHF spenden`,
             do_cta2: 'Zurück'
         },
         en: {
             do_title: 'Schritt 3/3 Donate your shelf',
             do_msg: `Donate your shelf to ${charity} and give something back to the ones, who cannot refill. Thank you!`,
-            do_cta: `Donate ${layer_price} CHF`,
+            do_cta: `Donate ${$layerPrice} CHF`,
             do_cta2: 'Back'
         },
     })
