@@ -141,6 +141,9 @@ button:focus {
 }
 
 .reload {
-	cursor: pointer;
-	text-decoration: underline;
+	text-align: center;
+	.reload__trigger {
+		cursor: pointer;
+		text-decoration: underline;
+	}
 }

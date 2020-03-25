@@ -13,12 +13,14 @@
             cr_title: 'Schritt 1/3 — Zieh Artikel ins Regal',
             // cr_tabs: 'Hygiene, Essen, Spezial',
             cr_cta: 'Nächster Schritt',
+            cr_cta2: 'Zurück',
             cr_more: 'Mehr Produkte',
         },
         en: {
             cr_title: 'Step 1/3 — Drag items to the shelf',
             // cr_tabs: 'Hygiene, Food, Specials',
             cr_cta: 'Next step',
+            cr_cta2: 'Back',
             cr_more: 'More products',
         },
     });
@@ -107,7 +109,6 @@
     });
 
 </script>
-<p class="title">{$_('cr_title')}</p>
 <Dropzone creationRoute={true}/>
 <hr>
 <!-- <ul>
@@ -117,23 +118,14 @@
         </li>
     {/each}
 </ul> -->
-<br>
+<p class="title">{$_('cr_title')}</p>
 <Dragzone />
-<p class="messages">
-    <span class="reload">
+<p class="reload">
+    <span class="reload__trigger">
         {$_('cr_more')} &#x21bb;
     </span>
 </p>
 <div class="buttons">
     <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
-</div>
-<br>
-<br>
-<hr>
-<br>
-<br>
-<div>
-    <p>Drag & Drop sounds</p>
-    <audio src="{audioUp}" type ="audio/mp3" preload="auto" controls></audio>
-    <audio src="{audioDown}" type ="audio/mp3" preload="auto" controls></audio>
+    <Link linkClass={'btn btn--teritrary'} page={{path: '/', name: $_('cr_cta2')}}/>
 </div>

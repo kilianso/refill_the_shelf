@@ -25,10 +25,9 @@
         },
     })
 </script>
-<p class="title">{$_('me_title')}</p>
 <Dropzone />
 <hr>
-<br>
+<p class="title">{$_('me_title')}</p>
 <div>
     <input class="input__name" type="text" placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
     <input class="input__msg" type="text" placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
