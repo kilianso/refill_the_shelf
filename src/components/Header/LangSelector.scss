@@ -17,9 +17,11 @@
     &:after {
         content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDEwMDAiPjxwYXRoIGQ9Ik05NTIuMyAxNjguM2MzOC4zLTM4LjMgMzguMy0xMDAuMyAwLTEzOC42Uzg1Mi04LjYgODEzLjcgMjkuN0w0OTEgMzUyLjQgMTY4LjMgMjkuN0MxMzAtOC42IDY4LTguNiAyOS43IDI5LjdzLTM4LjMgMTAwLjMgMCAxMzguNkw0OTEgNjI5LjZsNDYxLjMtNDYxLjN6Ii8+PC9zdmc+);
         margin-left: 5px;
-        transform: translateY(-2px);
-        width: var(--close-size);
-        height: var(--close-size);
+        transform: translateY(-.175em);
+        width: .5em;
+        pointer-events: none;
+        line-height: 0;
+        align-self: flex-end;
         pointer-events: none;
     }
 }

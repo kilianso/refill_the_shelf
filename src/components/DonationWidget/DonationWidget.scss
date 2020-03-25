@@ -1,0 +1,204 @@
+@import '../../styles/mixins.scss';
+
+$textColor: #1C1648;
+$carRed: #db001b;
+$mainFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+#bre2-sms {
+    font-family: $mainFont;
+    * {
+      box-sizing: border-box!important;
+    }
+    #bre2-sms-inner {
+      #bre2-container.bre2-container {
+        width: 100%;
+        .bre2-wrapper {
+          background: none;
+  
+          .bre2-page .bre2-row {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            a {
+              font-family: $mainFont;
+              color: $textColor;
+            }
+  
+            input {
+              font-family: $mainFont;
+              @include reset-input;
+            }
+  
+            &.bre2-title {
+              color: $textColor;
+              font-family: $mainFont;
+              font-size: 30px;
+              line-height: 34px;
+              font-weight: bold;
+              &:after {
+                display: none;
+              }
+            }
+            
+            &.bre2-amounts {
+              display: none;
+            }
+  
+            /*&.bre2-amounts {
+              margin: 0 -7.5px;
+  
+              .bre2-amounts-currency {
+                display: none;
+              }
+  
+              ul li {
+                display: none;
+                float: left;
+                width: 50%;
+                margin: 0;
+                padding: 0 7.5px 15px;
+                vertical-align: top;
+                box-sizing: border-box;
+  
+                a, .bre2-custom-amount {
+                  display: block;
+                  border: none;
+                  border-radius: 4px;
+                  text-transform: uppercase;
+                  font-size: 30px;
+                  line-height: 30px;
+                  font-weight: bold;
+                  width: 100%;
+                  height: 66px;
+                  text-decoration: none;
+                  padding: 24px 6px 10px;
+                  color: #4a4a4a;
+                  background-color: $carRed;
+                  box-sizing: border-box;
+                  position: relative;
+                  margin: 0;
+                  text-align: center;
+                  vertical-align: middle;
+                  cursor: pointer;
+                }
+  
+                a:after, .bre2-custom-amount:after {
+                  display: none;
+                }
+  
+                a:hover, .bre2-custom-amount:hover, a:hover input, .bre2-custom-amount:hover input {
+                  color: white;
+                }
+  
+                a.active, .bre2-custom-amount.active, a.active input, .bre2-custom-amount.active input {
+                  color: white;
+                }
+  
+                a input, .bre2-custom-amount input {
+                  height: auto;
+                  color: #4a4a4a;
+                  font-size: 30px;
+                  line-height: 30px;
+                  font-weight: bold;
+                  text-transform: uppercase;
+                }
+              }
+            }*/
+  
+            &.bre2-text {
+              color: $textColor;
+            }
+  
+            &.bre2-input-container .bre2-input.bre2-input-mobile {
+              font-family: $mainFont;
+              font-size: 1rem;
+              padding: 0.4em;
+              margin: 0 0 0.5em 0;
+              box-sizing: border-box;
+              border: 1px solid #ccc;
+              border-radius: 2px;
+            }
+            
+            .bre2-btn {
+                display: inline-block;
+                width: auto;
+                margin: 1rem 0;
+                background: #F8E71C;
+                padding: 1rem 3rem;
+                border-radius: 10rem;
+                color: #1C1648;
+                font-size: 1rem;
+                line-height: 1rem;
+            }
+  
+            /*.bre2-btn {
+              display: block;
+              font-weight: bold;
+              text-align: center;
+              vertical-align: middle;
+              touch-action: manipulation;
+              border: 1px solid transparent;
+              white-space: nowrap;
+              border-radius: 4px;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              text-transform: uppercase;
+              font-size: 15px;
+              line-height: 30px;
+              cursor: pointer;
+              width: auto;
+              margin: 0;
+              padding: 7.5px 50px;
+              text-decoration: none;
+              color: $textColor;
+              background-color: #4a4a4a;
+              border-color: #3d3d3d;
+  
+              &:hover {
+                background-color: #313131;
+                border-color: #1f1f1f;
+              }
+            }*/
+  
+            &.bre2-meta {
+            display: none;
+              margin: 0;
+              color: $textColor;
+  
+              img {
+                display: block;
+                margin: 0 auto;
+              }
+  
+              a {
+                display: block;
+              }
+  
+              br {
+                display: none;
+              }
+            }
+  
+            &.bre2-timer-container .bre2-timer .bre2-timer-info {
+              color: $textColor;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  #bre2-overlay {
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+    background-color: white;
+  }
