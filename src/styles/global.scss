@@ -163,3 +163,14 @@ button:focus {
 		text-decoration: underline;
 	}
 }
+
+.is-hidden {
+	display: none;
+}
+
+.warning {
+	width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    vertical-align: bottom;
+}

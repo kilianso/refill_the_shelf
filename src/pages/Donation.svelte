@@ -3,6 +3,7 @@
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
     import DonationWidget from '../components/DonationWidget/DonationWidget.svelte';
 
+    import {onMount} from 'svelte';
     import {locale, translations, _ } from 'svelte-intl';
     import {userLayer, layerPrice } from '../store';
 
@@ -16,8 +17,9 @@
             do_cta2: 'Zurück',
             do_phone: 'Deine Handynummer',
             do_waiting_title: 'Schritt 4/4 — SMS bestätigen',
-            do_waiting_msg: 'Antworte nun mit "JA" auf die SMS um deine Spende zu bestätigen. ⚠️ Lass diese Seite offen, damit du anschliessend dein Regal speichern kannst.',
+            do_waiting_msg: 'Antworte nun mit "JA" auf die SMS um deine Spende zu bestätigen.',
             do_waiting_cta: 'Abschliessen',
+            do_waiting_again: 'Erneut versuchen',
             do_waiting_validation: 'Einen Augenblick bitte. In weniger als 30 Sekunden sollten wir die Bestätigung deiner Spende erhalten.'
         },
         en: {
@@ -29,16 +31,20 @@
             do_cta2: 'Back',
             do_phone: 'Your mobile number',
             do_waiting_title: 'Step 4/4 — Confirm SMS',
-            do_waiting_msg: 'Reply with "YES" to the SMS to confirm your donation. ⚠️ Keep this window open to complete your shelf afterwards.',
+            do_waiting_msg: 'Reply with "YES" to the SMS to confirm your donation.',
             do_waiting_cta: 'Finish donation',
+            do_waiting_again: 'Retry',
             do_waiting_validation: 'One moment please. In less than 30 seconds we should receive the confirmation of your donation.'
         },
     });
 
     let phone = $_('do_phone'),
         toggleDisclaimer,
-        visibleDonationStep;
-    
+        checkPhone,
+        retry,
+        waitForConfirmation,
+        visibleDonationStep = 0;
+
     function raiseNow() {
         
         const raisenow = document.querySelector('.dds-widget-container');
@@ -48,15 +54,46 @@
                     donateBtn = raisenow.querySelector('.bre2-page-form .bre2-btn'),
                     amount = raisenow.querySelector('#caritas-ch-default-form').querySelector('input[name="amount"]');
             //update placeholder
+            console.log('mutations found!');
             phoneInput.placeholder = $_('do_phone');
             // update preset value
             amount.value = $layerPrice + '00';
-            //update donate button text
+            //update donate button text and add eventListener for visibility change
             donateBtn.innerText = $_('do_cta');
-            // set visiblity of the first donation-step
-            visibleDonationStep = 1;
+            // show text as soon as raisenow is ready
+            
+            stepChanger(1);
+
+            // init attribute observer once widget is fully loaded to listen to class changes made by the raisenow js
+            donateBtn.addEventListener('click', () => {
+                // wait for input validation
+                checkPhone();
+            });
         });
         observer.observe(raisenow, {attributes: false, subtree: false, childList: true});
+
+        checkPhone = function () {
+            const   phoneError = raisenow.querySelector('.bre2-row.bre2-input-container'),
+                    notificationError = raisenow.querySelector('.bre2-notification');
+
+            setTimeout(() => {
+                // i know this is ugly and unsafe... but somehow, i was not able to listen to changes here with mutationobserver 🤷‍♂️
+                if(phoneError.classList.contains('error')) {
+                    console.log(false, 'has error');
+                    return;
+                }
+                
+                if (window.getComputedStyle(notificationError).display === "block") {
+                    console.log(false, 'notification visible');
+                    return;
+                }
+                // change to SMS confirm step
+                stepChanger(2);
+                // listen to head changes made by the widget
+                grabConfirmation();
+            }, 100)
+        }
+
         toggleDisclaimer = function () {
             const   pages = raisenow.querySelectorAll('.bre2-page'),
                     disclaimerPage = raisenow.querySelector('.bre2-page-disclaimer'),
@@ -66,19 +103,56 @@
                 if(el == disclaimerPage) {
                     el.classList.remove('bre2-hidden');
                     el.classList.add('bre2-shown');
-                    visibleDonationStep = 0;
+                    stepChanger(0);
                     disclaimerBack.addEventListener('click', function () {
                         el.classList.remove('bre2-shown');
                         el.classList.add('bre2-hidden');
-                        visibleDonationStep = 1;
+                        stepChanger(1);
                     })
                 }
             });
         }
+
+        retry = function () {
+            const retryBtn = raisenow.querySelector('.bre2-linklist [data-action="clear-interval"]');
+            // need to click the button in the widget to reset things. third party shizzle...
+            retryBtn.click();
+        }
+        waitForConfirmation = function () {
+            // todo        
+        }
+    }
+    function grabConfirmation() {
+        // raisenow is injecting a script into the head with all the needed info.
+        // seems like the easiest way to save that URL to check the transaction even
+        // if the window will be closed or the transaction is somehow interupted,
+        const head = document.head;
+        const widgetCalls = new MutationObserver(function(mutations) {
+            mutations.forEach((mut, i) => {
+                if(mut.addedNodes) {
+                    mut.addedNodes.forEach((el, i) => {
+                        if(el.tagName === "SCRIPT") {
+                            userLayer.update((entries) => {
+                                entries.transactionURL = el.src;
+                                return entries
+                            });
+                        }
+                    });
+
+                }
+            });
+            widgetCalls.disconnect();
+        })
+        widgetCalls.observe(head, { subtree: false, childList: true});
+    }
+
+    function stepChanger(step) {
+        visibleDonationStep = step;
     }
     
 </script>
 <Dropzone />
+{$userLayer.transactionURL}
 <hr>
 {#if visibleDonationStep == 0 || visibleDonationStep == 1}
     <p class="title">{$_('do_title')}</p>
@@ -95,10 +169,9 @@
 {#if visibleDonationStep == 2}
     <p class="messages">
         {$_('do_waiting_msg')}
-        <a href="https://caritas.ch/{$locale}" target="_blank"> {$_('do_charity')}.</a>
     </p>
 {/if}
-<DonationWidget on:raiseNow={raiseNow} />
+<DonationWidget on:raiseNow={raiseNow} visibility={visibleDonationStep}/>
 {#if visibleDonationStep == 1}
     <div class="buttons">
         <Link linkClass={'btn btn--tertiary'} page={{path: '/message', name: $_('do_cta2')}}/>
@@ -109,7 +182,8 @@
 {/if}
 {#if visibleDonationStep == 2}
     <div class="buttons">
-        <Link linkClass={'btn btn--primary'} page={{path: '/confirmation', name: $_('do_waiting_cta')}}/>
+        <a role="button" href="#" class="btn btn--primary" on:click={() => {waitForConfirmation(); stepChanger(3)}}>{$_('do_waiting_cta')}</a>
+        <a role="button" href="#" class="btn btn--teritrary" on:click={() => {retry(); stepChanger(1);}}>{$_('do_waiting_again')}</a>
     </div>
 {/if}
 {#if visibleDonationStep == 3}

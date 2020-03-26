@@ -8,7 +8,8 @@
     const raiseNow = () => {
         dispatch("raiseNow");
     }
-
+    export let visibility;
+    
 </script>
 
 <style lang="scss" global>
@@ -21,7 +22,7 @@
 
 <div id="bre2-sms">
     <div id="bre2-sms-inner">
-        <div class="dds-widget-container">
+        <div class="dds-widget-container {visibility == 1 || visibility == 0 ? '': 'is-hidden'}">
             <div class="preloader">Loading...</div>
         </div>
     </div>
