@@ -10,14 +10,14 @@
 
     translations.update({
         de: {
-            cr_title: 'Schritt 1/3 — Zieh Artikel ins Regal',
+            cr_title: 'Schritt 1/4 — Zieh Artikel ins Regal',
             // cr_tabs: 'Hygiene, Essen, Spezial',
             cr_cta: 'Nächster Schritt',
             cr_cta2: 'Zurück',
             cr_more: 'Mehr Produkte',
         },
         en: {
-            cr_title: 'Step 1/3 — Drag items to the shelf',
+            cr_title: 'Step 1/4 — Drag items to the shelf',
             // cr_tabs: 'Hygiene, Food, Specials',
             cr_cta: 'Next step',
             cr_cta2: 'Back',
@@ -120,12 +120,16 @@
 </ul> -->
 <p class="title">{$_('cr_title')}</p>
 <Dragzone />
-<p class="reload">
+<!-- <p class="reload">
     <span class="reload__trigger">
         {$_('cr_more')} &#x21bb;
     </span>
-</p>
+</p> -->
 <div class="buttons">
-    <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
+    {#if $layerPrice}
+        <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
+    {:else}
+        <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/creation', name: $_('cr_cta')}}/>
+    {/if}
     <Link linkClass={'btn btn--teritrary'} page={{path: '/', name: $_('cr_cta2')}}/>
 </div>

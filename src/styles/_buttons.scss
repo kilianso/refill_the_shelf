@@ -12,6 +12,9 @@
         padding: 1rem 3rem;
         border-radius: 10rem;
         color: #1C1648;
+        &.is-disabled {
+            opacity: 0.5;
+        }
     }
     &--secondary {
         background: lightgray;   

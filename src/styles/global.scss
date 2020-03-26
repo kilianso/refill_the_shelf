@@ -58,6 +58,9 @@ a:hover, a:focus {
 	color: rgba(#1C1648, 0.85);
 	text-decoration: none;
 }
+p a {
+	text-decoration: underline;
+}
 
 label {
 	display: block;
@@ -122,10 +125,17 @@ button:focus {
 
 .pricetag {
 	display: flex;
+	.pricetag__text {
+		flex: 1;
+		padding-right: 3vw;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
 }
 
-.pricetag__text {
-	flex: 1;
+.disclaimer {
+	cursor: pointer;
 }
 
 .input__name, .input__msg  {
@@ -134,10 +144,16 @@ button:focus {
 	padding: 1rem;
 }
 
-.title, .messages {
+.title, .messages, .tagline {
     text-align: center;
-    max-width: 85%;
-    margin: 2em auto;
+	margin: 2em auto;
+	max-width: 95%;
+	@media (min-width: 48em) {
+		max-width: 85%;
+	}
+}
+.tagline {
+	margin-bottom: 1rem;
 }
 
 .reload {

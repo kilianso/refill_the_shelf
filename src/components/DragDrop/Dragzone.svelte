@@ -5,10 +5,10 @@
         {price: 2, icon: './assets/images/cans.svg', alt: 'Soap'},
         {price: 5, icon: './assets/images/can.svg', alt: 'Pasta'},
         {price: 10, icon: './assets/images/toilet.svg', alt: 'Ravioli'},
-        {price: 20, icon: './assets/images/cans.svg', alt: 'Sanatizer'},
-        {price: 50, icon: './assets/images/toilet.svg', alt: '50CHF'},
-        {price: 100, icon: './assets/images/can.svg', alt: '100CHF'},
-        {price: 200, icon: './assets/images/cans.svg', alt: '200CHF'}
+        {price: 15, icon: './assets/images/cans.svg', alt: 'Sanatizer'},
+        {price: 20, icon: './assets/images/toilet.svg', alt: '50CHF'},
+        {price: 25, icon: './assets/images/can.svg', alt: '100CHF'},
+        {price: 25, icon: './assets/images/cans.svg', alt: '200CHF'}
     ];
 </script>
 <style lang="scss" global>

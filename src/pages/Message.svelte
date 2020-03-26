@@ -2,8 +2,9 @@
     import Link from '../components/Link.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
 
+    import {onMount} from 'svelte';
     import {translations, _ } from 'svelte-intl';
-    import { userLayer } from '../store';
+    import { userLayer, layerPrice } from '../store';
 
     let shelf_height = 400,
         shelf_price = 320000;
@@ -24,6 +25,16 @@
             me_cta2: 'Back'
         },
     })
+
+    onMount(() => {
+        // update layerPrice in userLayer object, 
+        // so it's ready to pass to firebase in the end
+        userLayer.update((entries) => {
+            entries.layerPrice = $layerPrice;
+            return entries;
+        });
+    });
+
 </script>
 <Dropzone />
 <hr>
@@ -34,6 +45,10 @@
 </div>
 
 <div class="buttons">
-    <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
+    {#if $userLayer.name}
+        <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
+    {:else}
+        <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/message', name: $_('me_cta')}}/>
+    {/if}
     <Link linkClass={'btn btn--tertiary'} page={{path: '/creation', name: $_('me_cta2')}}/>
 </div>

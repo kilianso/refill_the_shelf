@@ -21,6 +21,8 @@
 
 <div id="bre2-sms">
     <div id="bre2-sms-inner">
-        <div class="dds-widget-container"></div>
+        <div class="dds-widget-container">
+            <div class="preloader">Loading...</div>
+        </div>
     </div>
 </div>

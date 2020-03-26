@@ -1,5 +1,5 @@
 <script>
-    import {userLayer, layerPrice} from '../../store'
+    import {userLayer, layerPrice} from '../../store';
 </script>
 
 <style lang="scss" src='./Price.scss'></style>

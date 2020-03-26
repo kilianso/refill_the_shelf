@@ -9,7 +9,7 @@ $mainFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, U
     * {
       box-sizing: border-box!important;
     }
-    [rnwid="rnw-preloader"] {
+    [rnwid="rnw-preloader"], .preloader {
       text-align: center;
       margin: 1rem 0;
     }
@@ -20,7 +20,8 @@ $mainFont: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, U
           background: none;
           
           .bre2-page-form .bre2-row.bre2-title,
-          .bre2-page-form .bre2-row.bre2-text {
+          .bre2-page-form .bre2-row.bre2-text,
+          .bre2-page-disclaimer .bre2-row.bre2-title {
             display: none;
           }
           .bre2-page .bre2-row {
