@@ -1,19 +1,7 @@
 <script>
     import LangSelector from './LangSelector.svelte';
     import Link from '../Link.svelte';
-    import { _, translations } from 'svelte-intl';
-
-    translations.update({
-        de: {
-            brand: 'Refill the Shelf',
-            layer: 'Regal-Ebene'
-        },
-        en: {
-            brand: 'Refill the Shelf',
-            layer: 'shelf-layer'
-        },
-    })
-
+    import { _ } from 'svelte-intl';
 </script>
 
 <style lang="scss" src="./Header.scss"></style>
