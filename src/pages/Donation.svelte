@@ -54,7 +54,7 @@
                     donateBtn = raisenow.querySelector('.bre2-page-form .bre2-btn'),
                     amount = raisenow.querySelector('#caritas-ch-default-form').querySelector('input[name="amount"]');
             //update placeholder
-            console.log('mutations found!');
+            //console.log('mutations found!');
             phoneInput.placeholder = $_('do_phone');
             // update preset value
             amount.value = $layerPrice + '00';
@@ -97,7 +97,7 @@
         toggleDisclaimer = function () {
             const   pages = raisenow.querySelectorAll('.bre2-page'),
                     disclaimerPage = raisenow.querySelector('.bre2-page-disclaimer'),
-                    disclaimerBack = disclaimerPage.querySelector('[data-show="form"]');            
+                    disclaimerBack = disclaimerPage.querySelector('[data-show="form"]');
             pages.forEach(function(el, i) {
                 el.classList.add('bre2-hidden');
                 if(el == disclaimerPage) {
@@ -119,7 +119,7 @@
             retryBtn.click();
         }
         waitForConfirmation = function () {
-            // todo        
+            // todo
         }
     }
     function grabConfirmation() {
@@ -132,10 +132,19 @@
                 if(mut.addedNodes) {
                     mut.addedNodes.forEach((el, i) => {
                         if(el.tagName === "SCRIPT") {
-                            userLayer.update((entries) => {
-                                entries.transactionURL = el.src;
-                                return entries
-                            });
+                            fetch(el.src,{ 
+                                method: 'GET',
+                                })
+                                .then( response => response.json() )
+                                .then( json => {
+                                    console.log(json);
+                                    userLayer.update((entries) => {
+                                        entries.transactionURL = el.src;
+                                        entries.transactionStatus = 'pending';
+                                        return entries;
+                                    });
+                                })
+                                .catch( error => console.error('error:', error) );
                         }
                     });
 
@@ -152,7 +161,6 @@
     
 </script>
 <Dropzone />
-{$userLayer.transactionURL}
 <hr>
 {#if visibleDonationStep == 0 || visibleDonationStep == 1}
     <p class="title">{$_('do_title')}</p>
