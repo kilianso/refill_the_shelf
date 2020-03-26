@@ -8,7 +8,7 @@
 	translations.update({
         de: {
             brand: 'Refill the Shelf',
-			tagline: 'Füll das Regal auf und helfe Menschen, die durch das Coronakrise in Not sind.',
+			tagline: 'Füll das Regal auf und helfe Menschen, die durch die Coronakrise in Not sind.',
 			layer: 'Regal-Ebene',
         },
         en: {

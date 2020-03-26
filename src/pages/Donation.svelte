@@ -9,7 +9,7 @@
     translations.update({
         de: {
             do_title: 'Schritt 3/4 — Spende dein Regal',
-            do_msg: `Aufgrund des Coronavirus brauchen gerade viele Menschen in der Schweiz deine Hilfe. Spende dein Regal (${$layerPrice} CHF) per SMS an die`,
+            do_msg: `Aufgrund des Coronavirus brauchen gerade viele Menschen in der Schweiz deine Hilfe. Spende jetzt dein Regal (${$layerPrice} CHF) per SMS an die`,
             do_charity: 'Caritas Schweiz',
             do_disclaimer: 'Datenschutz',
             do_cta: "Jetzt spenden",
@@ -22,7 +22,7 @@
         },
         en: {
             do_title: 'Step 3/4 Donate your shelf',
-            do_msg: `Because of the Coronavirus, many people in Switzerland need your help right now. Donate your shelf (${$layerPrice} CHF) by SMS to`,
+            do_msg: `Because of the Coronavirus, many people in Switzerland need your help right now. Donate your shelf (${$layerPrice} CHF) now by SMS to`,
             do_charity: 'Caritas Switzerland',
             do_disclaimer: 'Data protection',
             do_cta: "Donate now",
@@ -83,7 +83,7 @@
 {#if visibleDonationStep == 0 || visibleDonationStep == 1}
     <p class="title">{$_('do_title')}</p>
 {/if}
-{#if visibleDonationStep != 0 || visibleDonationStep != 1}
+{#if visibleDonationStep == 2 || visibleDonationStep == 3}
     <p class="title">{$_('do_waiting_title')}</p>
 {/if}
 {#if visibleDonationStep == 1}
