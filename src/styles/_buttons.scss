@@ -6,6 +6,7 @@
 }
 .btn {
     display: inline-block;
+    cursor: pointer;
     &--primary, &--secondary {
         margin: 1rem 0;
         background: #F8E71C;

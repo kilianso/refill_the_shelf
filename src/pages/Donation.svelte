@@ -1,49 +1,54 @@
 <script>
     import Link from '../components/Link.svelte';
+    import Loader from '../components/Loader.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
     import DonationWidget from '../components/DonationWidget/DonationWidget.svelte';
 
     import {onMount} from 'svelte';
     import {locale, translations, _ } from 'svelte-intl';
-    import {userLayer, layerPrice } from '../store';
+    import {userLayer, layerPrice, curRoute } from '../store';
+
+    let phone = $_('do_phone'),
+    toggleDisclaimer,
+    checkPhone,
+    retry,
+    waitForConfirmation,
+    visibleDonationStep = 0;
 
     translations.update({
         de: {
             do_title: 'Schritt 3/4 — Spende dein Regal',
-            do_msg: `Aufgrund des Coronavirus brauchen gerade viele Menschen in der Schweiz deine Hilfe. Spende dein Regal (${$layerPrice} CHF) per SMS an die`,
+            do_msg: `Aufgrund des Coronavirus brauchen viele Menschen in der Schweiz dringend deine Hilfe. <strong>Spende jetzt dein Regal (${$layerPrice} CHF)</strong> per SMS an`,
             do_charity: 'Caritas Schweiz',
             do_disclaimer: 'Datenschutz',
-            do_cta: "Jetzt spenden",
+            do_cta: 'Jetzt spenden',
             do_cta2: 'Zurück',
             do_phone: 'Deine Handynummer',
             do_waiting_title: 'Schritt 4/4 — SMS bestätigen',
-            do_waiting_msg: 'Antworte nun mit "JA" auf die SMS um deine Spende zu bestätigen.',
+            do_waiting_msg: `<strong>Antworte nun mit "JA" auf die SMS</strong> um deine Spende zu bestätigen.`,
             do_waiting_cta: 'Abschliessen',
-            do_waiting_again: 'Erneut versuchen',
-            do_waiting_validation: 'Einen Augenblick bitte. In weniger als 30 Sekunden sollten wir die Bestätigung deiner Spende erhalten.'
+            do_validation: `Einen Augenblick. <strong>In wenigen Sekunden</strong> sollten wir die Bestätigung erhalten.`,
+            do_validation_pending: `Die Bestätigung ist noch ausstehend. <strong>Wir überprüfen deine Spende nun nocheinmal.</strong>`,
+            do_validation_error: `Oh nein! Deine Spende konnte nicht bestätigt werden. <strong>Bitte versuch es erneut.</strong>`,
+            do_retry: 'Erneut versuchen'
         },
         en: {
             do_title: 'Step 3/4 Donate your shelf',
-            do_msg: `Because of the Coronavirus, many people in Switzerland need your help right now. Donate your shelf (${$layerPrice} CHF) by SMS to`,
+            do_msg: `Because of the corona virus, many people in Switzerland urgently need your help. <strong>Donate now your shelf (${$layerPrice} CHF)</strong> by SMS to`,
             do_charity: 'Caritas Switzerland',
             do_disclaimer: 'Data protection',
-            do_cta: "Donate now",
+            do_cta: 'Donate now',
             do_cta2: 'Back',
             do_phone: 'Your mobile number',
             do_waiting_title: 'Step 4/4 — Confirm SMS',
-            do_waiting_msg: 'Reply with "YES" to the SMS to confirm your donation.',
-            do_waiting_cta: 'Finish donation',
-            do_waiting_again: 'Retry',
-            do_waiting_validation: 'One moment please. In less than 30 seconds we should receive the confirmation of your donation.'
+            do_waiting_msg: `<strong>Reply with "YES"< to the SMS</strong> to confirm your donation.`,
+            do_waiting_cta: 'Complete donation',
+            do_validation: `One moment, <strong>in a few seconds</strong> we should receive the confirmation of your donation.`,
+            do_validation_pending: `The confirmation is still pending. <strong>We\'ll recheck your donation now.</strong>`,
+            do_validation_error: `Oh no! Your donation could not be confirmed. <strong>Please try again.</strong>`,
+            do_retry: 'Retry'
         },
     });
-
-    let phone = $_('do_phone'),
-        toggleDisclaimer,
-        checkPhone,
-        retry,
-        waitForConfirmation,
-        visibleDonationStep = 0;
 
     function raiseNow() {
         
@@ -118,10 +123,43 @@
             // need to click the button in the widget to reset things. third party shizzle...
             retryBtn.click();
         }
-        waitForConfirmation = function () {
-            // todo
-        }
+
     }
+    function checkConfirmation() {
+        const head = document.head;
+        // url for testing
+        // const url = 'https://widget.raisenow.com/widgets/bre2/_default/pollstatus.php?callback=jQuery111007879204804892952_1585243027008&transaction-id=c175158lqw3029&widget-uuid=caritas-ch&_=1585243027010';
+        const url = $userLayer.transactionURL;
+        let script = document.createElement("script");
+
+        script.setAttribute("src", url+'&callback=customCallback');
+        head.appendChild(script);
+        head.removeChild(script);
+    }
+    // binding this to the window so customCallback will find it
+    window.customCallback = function(data) {
+        let response = JSON.parse(data);
+
+        // wait few seconds so user can see do_validation message, then check data from transactionURL
+        setTimeout(() => {
+            console.log(response.status);
+            if(response.status == 'pending') {
+                stepChanger(4);
+                checkConfirmation();
+            }
+            if(response.status == 'declined') {
+                stepChanger(5);
+            }
+            if(response.status == 'confirmed') {
+                userLayer.update((entries) => {
+                    entries.transactionStatus = 'confirmed';
+                    return entries;
+                })
+                curRoute.set('/confirmation');
+            }
+        }, 5000);
+    }
+
     function grabConfirmation() {
         // raisenow is injecting a script into the head with all the needed info.
         // seems like the easiest way to save that URL to check the transaction even
@@ -132,22 +170,13 @@
                 if(mut.addedNodes) {
                     mut.addedNodes.forEach((el, i) => {
                         if(el.tagName === "SCRIPT") {
-                            fetch(el.src,{ 
-                                method: 'GET',
-                                })
-                                .then( response => response.json() )
-                                .then( json => {
-                                    console.log(json);
-                                    userLayer.update((entries) => {
-                                        entries.transactionURL = el.src;
-                                        entries.transactionStatus = 'pending';
-                                        return entries;
-                                    });
-                                })
-                                .catch( error => console.error('error:', error) );
+                            userLayer.update((entries) => {
+                                entries.transactionURL = el.src;
+                                entries.transactionStatus = 'pending';
+                                return entries;
+                            })
                         }
-                    });
-
+                    })
                 }
             });
             widgetCalls.disconnect();
@@ -165,18 +194,18 @@
 {#if visibleDonationStep == 0 || visibleDonationStep == 1}
     <p class="title">{$_('do_title')}</p>
 {/if}
-{#if visibleDonationStep == 2 || visibleDonationStep == 3}
+{#if visibleDonationStep !== 0 && visibleDonationStep !== 1}
     <p class="title">{$_('do_waiting_title')}</p>
 {/if}
 {#if visibleDonationStep == 1}
     <p class="messages">
-        {$_('do_msg')}
+        {@html $_('do_msg')}
         <a href="https://caritas.ch/{$locale}" target="_blank"> {$_('do_charity')}.</a>
     </p>
 {/if}
 {#if visibleDonationStep == 2}
     <p class="messages">
-        {$_('do_waiting_msg')}
+        {@html $_('do_waiting_msg')}
     </p>
 {/if}
 <DonationWidget on:raiseNow={raiseNow} visibility={visibleDonationStep}/>
@@ -190,10 +219,24 @@
 {/if}
 {#if visibleDonationStep == 2}
     <div class="buttons">
-        <a role="button" href="#" class="btn btn--primary" on:click={() => {waitForConfirmation(); stepChanger(3)}}>{$_('do_waiting_cta')}</a>
-        <a role="button" href="#" class="btn btn--teritrary" on:click={() => {retry(); stepChanger(1);}}>{$_('do_waiting_again')}</a>
+        {#if $userLayer.transactionURL}
+            <a role="button" class="btn btn--primary" on:click={() => {checkConfirmation(); stepChanger(3);}}>{$_('do_waiting_cta')}</a>
+        {:else}
+            <a role="button" class="btn btn--primary is-disabled">{$_('do_waiting_cta')}</a>
+        {/if}
     </div>
 {/if}
 {#if visibleDonationStep == 3}
-    <p class="messages">{$_('do_waiting_validation')}</p>
+    <p class="messages">{@html $_('do_validation')}</p>
+    <Loader />
+{/if}
+{#if visibleDonationStep == 4}
+    <p class="messages">{@html $_('do_validation_pending')}</p>
+    <Loader />
+{/if}
+{#if visibleDonationStep == 5}
+    <p class="messages">{@html $_('do_validation_error')}</p>
+    <div class="buttons">
+        <a role="button" class="btn btn--primary" on:click={() => {retry(); stepChanger(1);}}>{$_('do_retry')}</a>
+    </div>
 {/if}
