@@ -2,15 +2,14 @@
     import Loader from '../components/Loader.svelte';
 
 	import { onMount } from "svelte";
+    import { _ } from 'svelte-intl';
+
 	import { FirebaseApp, User, Doc, Collection, collectionStore } from "sveltefire";
 	import firebase from "firebase/app";
 	import "firebase/firestore";
 	import "firebase/auth";
 	import "firebase/performance";
     import "firebase/analytics";
-
-    export let loadingText;
-    export let errorText;
 
 	let firebaseConfig = {
 		apiKey: "AIzaSyBRj157K5lmuc-K4TUKaMtgNcZZBw4qncc",
@@ -28,7 +27,7 @@
     }
 
     const   db = firebase.firestore(),
-            pageSize = 25,
+            pageSize = 10,
             orderField = 'createdAt',
             timestamp = firebase.firestore.FieldValue.serverTimestamp(),
             incrementLayers = firebase.firestore.FieldValue.increment(1),
@@ -46,10 +45,12 @@
     };
 
     function prevPage (first) {
+        window.scrollTo(0, 0);
         postCounter -= pageSize;
         query = (ref) => ref.orderBy(orderField, 'desc').endBefore(first[orderField]).limitToLast(pageSize);
     }
     function nextPage (last) {
+        window.scrollTo(0, 0);
         postCounter += pageSize;
         query = (ref) => ref.orderBy(orderField, 'desc').startAfter(last[orderField]).limit(pageSize);
     }
@@ -84,16 +85,7 @@
         let:last={last}
         let:first={first}
         log>
-        <!-- Pagination -->
-        {#if posts.length && posts.length < total.layers}
-          {#if postCounter > posts.length && posts.length}
-              <button on:click={() => prevPage(first)}>Previous shelfs</button>
-          {/if}
-          {#if total.layers > postCounter && posts.length}
-              <button on:click={() => nextPage(last)}>Next shelfs</button>
-          {/if}
-        {/if}
-        
+        <!-- Pagination -->        
           {#each posts as post}
             <p>
               ID: <em>{post.ref.id}</em>
@@ -119,14 +111,22 @@
               }}>
             Add post
           </button>
+        {#if posts.length && posts.length < total.layers}
+          {#if postCounter > posts.length && posts.length}
+              <button on:click={() => prevPage(first)}>{$_('fe_prev')}</button>
+          {/if}
+          {#if total.layers > postCounter && posts.length}
+              <button on:click={() => nextPage(last)}>{$_('fe_next')}</button>
+          {/if}
+        {/if}
           <div slot="loading">
             <p class="messages">
-                {loadingText}
+                {$_('fe_loading')}
             </p>
             <Loader />
           </div>
           <div slot="fallback">
-            {errorText}
+            {$_('fe_error')}
           </div>
     </Collection>
   </FirebaseApp>

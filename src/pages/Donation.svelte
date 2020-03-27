@@ -185,6 +185,7 @@
     }
 
     function stepChanger(step) {
+        window.scrollTo(0, 0);
         visibleDonationStep = step;
     }
     

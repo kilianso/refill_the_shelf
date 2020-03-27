@@ -15,9 +15,7 @@
       window.history.replaceState(null, null, window.location.origin);
   }
 
-  function popState(event) {   
-    console.log(event.state);
-    
+  function popState(event) { 
     curRoute.set(event.state ? event.state.path : '/');
   }
 

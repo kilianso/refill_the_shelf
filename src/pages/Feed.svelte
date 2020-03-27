@@ -14,14 +14,18 @@
             fe_ff_title: 'Fakten & Zahlen',
             fe_ff_msg: `An dieser Stelle ist unser Regal ${shelf_height} Meter hoch und es wurden ${shelf_price} CHF gespendet.`,
             fe_loading: 'Regal wird geladen...',
-            fe_error: 'Irgendwas ist schiefgelaufen. 😔 Lade die Seite neu.'
+            fe_error: 'Irgendwas ist schiefgelaufen. 😔 Lade die Seite neu.',
+            fe_prev: 'Neuere Einträge',
+            fe_prev: 'Ältere Einträge'
         },
         en: {
             fe_cta: 'Start refilling',
             fe_ff_title: 'Facts & figures',
             fe_ff_msg: `At this point, our shelf is ${shelf_height} meters height and ${shelf_price} CHF have been donated.`,
             fe_loading: 'Loading shelf...',
-            fe_error: 'Something went wrong. 😔 Try reloading.'
+            fe_error: 'Something went wrong. 😔 Try reloading.',
+            fe_prev: 'Newer entries',
+            fe_prev: 'Older entries'
         },
     })
 </script>
