@@ -1,6 +1,6 @@
 <script>
   import { onDestroy } from 'svelte';
-  import { user, curRoute } from '../store';
+  import { userLayer, curRoute } from '../store';
   import router from '../router';
 
   let component;
@@ -8,8 +8,21 @@
     component = router.filter(r => r.path === $curRoute)[0].component;
   })
 
+  // check if there is already a subpage in the URL
+  if(location.pathname !== '/' && userLayer.layerPrice || location.pathname == '/about') {
+      curRoute.set(location.pathname);
+  }else {
+      window.history.replaceState(null, null, window.location.origin);
+  }
+
+  function popState(event) {   
+    console.log(event.state);
+    
+    curRoute.set(event.state ? event.state.path : '/');
+  }
+
 onDestroy(unsubscribe);
 
 </script>
-
-<svelte:component {...$user} this={component} />
+<svelte:window on:popstate={popState}/>
+<svelte:component this={component} />

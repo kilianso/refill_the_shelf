@@ -1,7 +1,6 @@
 import { writable, derived } from 'svelte/store';
 
 export const curRoute = writable('/');
-export const user = writable(undefined);
 
 export const feedLayers = writable([]);
 /* single feed layer should have the following data - will be fetched from database
