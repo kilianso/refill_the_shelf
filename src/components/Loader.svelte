@@ -2,7 +2,7 @@
 /* Progress Bar */
 .progress {
     position: relative;
-    height: 4px;
+    height: 2px;
     display: block;
     width: 100%;
     background-color: rgba(0,0,0,0.15);

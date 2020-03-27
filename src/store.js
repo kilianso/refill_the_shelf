@@ -26,6 +26,7 @@ export const userLayer = writable({
     layerPrice: 0,
     transactionURL: '',
     transactionStatus: '',
+    timestamp: '',
     items: [
         {
             price: 0,

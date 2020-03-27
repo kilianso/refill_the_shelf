@@ -50,7 +50,15 @@ export default {
 			browser: true,
 			dedupe: ['svelte']
 		}),
-		commonjs(),
+		commonjs({
+			namedExports: {
+				// left-hand side can be an absolute path, a path
+				// relative to the current directory, or the name
+				// of a module in node_modules
+				'node_modules/idb/build/idb.js': ['openDb'],
+				'node_modules/firebase/dist/index.cjs.js': ['initializeApp', 'firestore']
+			}
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

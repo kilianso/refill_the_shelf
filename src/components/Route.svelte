@@ -12,6 +12,4 @@ onDestroy(unsubscribe);
 
 </script>
 
-<div class="main-container">
-  <svelte:component {...$user} this={component} />
-</div>
+<svelte:component {...$user} this={component} />
