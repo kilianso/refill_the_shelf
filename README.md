@@ -1,15 +1,5 @@
 # Refill shelf
-A not that serious game where you have to refill empty shelves with toiletpaper, hand-sanitizer, pasta, cans and so on.
-Your refill value can be donated in the end.
-
-
-### TODO
-- Limit text-length in message input
-- Read/Extend full message functionality
-- Reset scrollTop on route-change
-- Could do - Infinite scrolling instead of load more button
-- Could do - Keep already loaded feed in store (faster loading on route change)
----
+A tiny collaborative game where you have to refill empty shelves with toiletpaper, hand-sanitizer, pasta, cans and so on and then donated the value of your refill to charity.
 
 ## Get started
 
