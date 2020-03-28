@@ -7,7 +7,12 @@
     import { userLayer, layerPrice } from '../store';
 
     let shelf_height = 400,
-        shelf_price = 320000;
+        shelf_price = 320000,
+        maxName =  20,
+        maxText = 140;
+
+    $: countName = maxName - $userLayer.name.length;
+    $: countText = maxText - $userLayer.message.length;
     
     translations.update({
         de: {
@@ -39,11 +44,14 @@
 <Dropzone />
 <hr>
 <p class="title">{$_('me_title')}</p>
-<div>
-    <input class="input__name" type="text" placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
-    <input class="input__msg" type="text" placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
+<div class="message__name">
+    <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
+    <span class="message__name__counter">{countName}</span>
 </div>
-
+<div class="message__text">
+    <input class="message__text" type="text" maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
+    <span class="message__text__counter">{countText}</span>
+</div>
 <div class="buttons">
     {#if $userLayer.name}
         <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
