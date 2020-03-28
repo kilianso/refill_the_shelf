@@ -36,7 +36,6 @@ body {
 	overflow-x: hidden;
 	overflow-wrap: break-word;
 	word-wrap: break-word;
-	hyphens: auto;
 	&.lock {
 		user-select: none;
 	}
@@ -46,10 +45,6 @@ main, header {
     margin: 0 auto;
 	// max-width: 48em;
 	padding: 0 var(--main-padding);
-}
-
-input {
-    @include reset-input;
 }
 
 a, a:visited {
@@ -70,6 +65,7 @@ label {
 }
 
 input, button, select, textarea {
+	@include reset-input;
 	font-family: inherit;
 	font-size: inherit;
 	padding: 0.4em;
@@ -77,6 +73,7 @@ input, button, select, textarea {
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;
+	box-shadow: none;
 }
 
 input:disabled {
@@ -177,7 +174,8 @@ button:focus {
 	input {
 		display: block;
 		width: 100%;
-		padding: 1rem;
+		white-space: nowrap;
+		padding: 1rem 2rem 1rem 1rem;
 	}
 	&__counter {
 		position: absolute;
