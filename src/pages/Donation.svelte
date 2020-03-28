@@ -27,8 +27,8 @@
             do_waiting_title: 'Schritt 4/4 — SMS bestätigen',
             do_waiting_msg: `<strong>Antworte nun mit "JA" auf die SMS</strong> um deine Spende zu bestätigen.`,
             do_waiting_cta: 'Abschliessen',
-            do_validation: `Einen Augenblick. <strong>In wenigen Sekunden</strong> sollten wir die Bestätigung erhalten.`,
-            do_validation_pending: `Die Bestätigung ist noch ausstehend. <strong>Wir überprüfen deine Spende nun nocheinmal.</strong>`,
+            do_validation: `<strong>Einen Augenblick.</strong> In wenigen Sekunden sollten wir die Bestätigung erhalten.`,
+            do_validation_pending: `<strong>Die Bestätigung ist noch ausstehend.</strong> Wir überprüfen den Status deiner Spende alle 5 Sekunden.`,
             do_validation_error: `Oh nein! Deine Spende konnte nicht bestätigt werden. <strong>Bitte versuch es erneut.</strong>`,
             do_retry: 'Erneut versuchen'
         },
@@ -43,8 +43,8 @@
             do_waiting_title: 'Step 4/4 — Confirm SMS',
             do_waiting_msg: `<strong>Reply with "YES"< to the SMS</strong> to confirm your donation.`,
             do_waiting_cta: 'Complete donation',
-            do_validation: `One moment, <strong>in a few seconds</strong> we should receive the confirmation of your donation.`,
-            do_validation_pending: `The confirmation is still pending. <strong>We\'ll recheck your donation now.</strong>`,
+            do_validation: `<strong>One moment,</strong> in a few seconds we should receive the confirmation of your donation.`,
+            do_validation_pending: `<strong>The confirmation is still pending.</strong> We check the status of your donation every 5 seconds.`,
             do_validation_error: `Oh no! Your donation could not be confirmed. <strong>Please try again.</strong>`,
             do_retry: 'Retry'
         },
@@ -142,14 +142,7 @@
 
         // wait few seconds so user can see do_validation message, then check data from transactionURL
         setTimeout(() => {
-            console.log(response.status);
-            if(response.status == 'pending') {
-                stepChanger(4);
-                checkConfirmation();
-            }
-            if(response.status == 'declined') {
-                stepChanger(5);
-            }
+            //console.log(response.status);
             if(response.status == 'confirmed') {
                 userLayer.update((entries) => {
                     entries.transactionStatus = 'confirmed';
@@ -157,7 +150,14 @@
                 })
                 curRoute.set('/confirmation');
             }
-        }, 5000);
+            if(response.status == 'pending') {
+                stepChanger(4);
+                checkConfirmation();
+            }
+            if(response.status == 'declined') {
+                stepChanger(5);
+            }
+        }, 7000);
     }
 
     function grabConfirmation() {
@@ -185,7 +185,7 @@
     }
 
     function stepChanger(step) {
-        window.scrollTo(0, 0);
+        //window.scrollTo(0, 0);
         visibleDonationStep = step;
     }
     
