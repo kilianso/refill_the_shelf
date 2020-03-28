@@ -1,9 +1,20 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read: if true;
-      allow write: if request.auth.uid != null;
+  	// shelves
+    match /posts/{entries}/{document=**} {
+      // read all public shelf layers and create new ones with anonymus login.
+      allow read, create: if request.auth.uid != null;
+			// DELTE and UPDATE is blocked
+			allow update: if false;
+      allow delete: if false;
+		}
+		// global stats
+    match /global/{entries}/{document=**} {
+      // read and update global data with anonymus login.
+    	allow read, update: if request.auth.uid != null;
+      // DELTE and CREATE is blocked
+      allow create, delete: if false;
     }
   }
 }
