@@ -1,5 +1,5 @@
 <script>
-    import Link from '../components/Link.svelte';
+    import Link from '../components/Base/Link.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
 
     import {onMount} from 'svelte';

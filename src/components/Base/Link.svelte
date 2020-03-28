@@ -1,5 +1,5 @@
 <script>
-  import { curRoute } from '../store';
+  import { curRoute } from '../../store';
   
   export let page;
   export let linkClass = '';

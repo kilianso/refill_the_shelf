@@ -1,7 +1,7 @@
 <script>
-    import Link from '../components/Link.svelte';
-    import Feed from '../components/Feed.svelte';
-    import Loader from '../components/Loader.svelte';
+    import Link from '../components/Base/Link.svelte';
+    import Feed from '../components/ReadWrite/Feed.svelte';
+    import Loader from '../components/Base/Loader.svelte';
 
     import {translations, _ } from 'svelte-intl';
 

@@ -1,7 +1,7 @@
 <script>
   import { onDestroy } from 'svelte';
-  import { userLayer, curRoute } from '../store';
-  import router from '../router';
+  import { userLayer, curRoute } from '../../store';
+  import router from '../../router';
 
   let component;
   const unsubscribe = curRoute.subscribe(value => {

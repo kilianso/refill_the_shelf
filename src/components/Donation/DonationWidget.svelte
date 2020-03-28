@@ -1,5 +1,5 @@
 <script>
-    import Link from '../../components/Link.svelte';
+    import Link from '../../components/Base/Link.svelte';
     import { createEventDispatcher } from 'svelte';
     import {locale} from 'svelte-intl';
 

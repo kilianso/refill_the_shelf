@@ -1,5 +1,5 @@
 <script>
-    import Link from '../components/Link.svelte';
+    import Link from '../components/Base/Link.svelte';
     import {translations, _ } from 'svelte-intl';
     
     translations.update({

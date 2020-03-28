@@ -1,5 +1,5 @@
 <script>
-    import Loader from '../components/Loader.svelte';
+    import Loader from '../Base/Loader.svelte';
 
     import { _ } from 'svelte-intl';
     import { createEventDispatcher } from 'svelte'

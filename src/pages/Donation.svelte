@@ -1,8 +1,8 @@
 <script>
-    import Link from '../components/Link.svelte';
-    import Loader from '../components/Loader.svelte';
+    import Link from '../components/Base/Link.svelte';
+    import Loader from '../components/Base/Loader.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
-    import DonationWidget from '../components/DonationWidget/DonationWidget.svelte';
+    import DonationWidget from '../components/Donation/DonationWidget.svelte';
 
     import {onMount} from 'svelte';
     import {locale, translations, _ } from 'svelte-intl';

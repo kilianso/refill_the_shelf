@@ -1,6 +1,6 @@
 <script>
     import LangSelector from './LangSelector.svelte';
-    import Link from '../Link.svelte';
+    import Link from '../Base/Link.svelte';
     import { _ } from 'svelte-intl';
 </script>
 

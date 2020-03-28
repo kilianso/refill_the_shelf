@@ -1,7 +1,7 @@
 <script>
 	import Header from './components/Header/Header.svelte';
-    import Link from './components/Link.svelte';
-	import Route from './components/Route.svelte';
+    import Link from './components/Base/Link.svelte';
+	import Route from './components/Base/Route.svelte';
 
 	import {translations, _ } from 'svelte-intl';
 
