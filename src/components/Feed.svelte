@@ -2,6 +2,7 @@
     import Loader from '../components/Loader.svelte';
 
     import { _ } from 'svelte-intl';
+    import { createEventDispatcher } from 'svelte'
 
 	import { FirebaseApp, User, Doc, Collection } from "sveltefire";
 	import firebase from "firebase/app";
@@ -10,7 +11,9 @@
 	import "firebase/performance";
     import "firebase/analytics";
 
-	let firebaseConfig = {
+    const dispatch = createEventDispatcher();
+
+	const firebaseConfig = {
 		apiKey: "AIzaSyBRj157K5lmuc-K4TUKaMtgNcZZBw4qncc",
 		authDomain: "refill-the-shelf.firebaseapp.com",
 		databaseURL: "https://refill-the-shelf.firebaseio.com",
@@ -26,10 +29,10 @@
     }
 
     firebase.auth().signInAnonymously().catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // ...
+        // Handle Errors.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorCode, errorMessage)
     });
 
     const   db = firebase.firestore(),
@@ -86,7 +89,7 @@
             let:ref={postRef}
             let:last={last}
             let:first={first}
-            log on:data={() => getTotal()}>
+            log on:data={() => {getTotal(); dispatch('dataReady')}}>
             <!-- Pagination -->        
             {#each posts as post}
                 <p>
@@ -114,19 +117,13 @@
                 Add post
             </button>
             {#if posts.length && posts.length < total.layers}
-            {#if postCounter > posts.length && posts.length}
-                <button on:click={() => prevPage(first)}>{$_('fe_prev')}</button>
+                {#if postCounter > posts.length && posts.length}
+                    <button on:click={() => prevPage(first)}>{$_('fe_prev')}</button>
+                {/if}
+                {#if total.layers > postCounter && posts.length}
+                    <button on:click={() => nextPage(last)}>{$_('fe_next')}</button>
+                {/if}
             {/if}
-            {#if total.layers > postCounter && posts.length}
-                <button on:click={() => nextPage(last)}>{$_('fe_next')}</button>
-            {/if}
-            {/if}
-            <div slot="loading">
-                <p class="messages">
-                    {$_('fe_loading')}
-                </p>
-                <Loader />
-            </div>
             <div slot="fallback">
                 {$_('fe_error')}
             </div>

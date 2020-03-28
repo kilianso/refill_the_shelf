@@ -1,12 +1,14 @@
 <script>
     import Link from '../components/Link.svelte';
     import Feed from '../components/Feed.svelte';
+    import Loader from '../components/Loader.svelte';
 
     import {translations, _ } from 'svelte-intl';
 
     // TODO
     let shelf_height = 400,
-        shelf_price = 320000;
+        shelf_price = 320000,
+        loading = true;
     
     translations.update({
         de: {
@@ -35,7 +37,16 @@
     <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('fe_cta')}}/>
 </div>
 
-<Feed />
+<Feed on:dataReady={() => loading = false}/>
+
+{#if loading}
+    <div class="loading">
+        <p class="messages">
+            {$_('fe_loading')}
+        </p>
+        <Loader />
+    </div>
+{/if}
 
 <!-- <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
