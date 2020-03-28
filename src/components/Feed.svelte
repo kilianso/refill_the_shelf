@@ -1,10 +1,9 @@
 <script>
     import Loader from '../components/Loader.svelte';
 
-	import { onMount } from "svelte";
     import { _ } from 'svelte-intl';
 
-	import { FirebaseApp, User, Doc, Collection, collectionStore } from "sveltefire";
+	import { FirebaseApp, User, Doc, Collection } from "sveltefire";
 	import firebase from "firebase/app";
 	import "firebase/firestore";
 	import "firebase/auth";
@@ -26,6 +25,13 @@
         firebase.initializeApp(firebaseConfig);
     }
 
+    firebase.auth().signInAnonymously().catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+    });
+
     const   db = firebase.firestore(),
             pageSize = 10,
             orderField = 'createdAt',
@@ -35,13 +41,13 @@
             totalRef = db.collection('global').doc('total');
     
     let query = (ref) => ref.orderBy(orderField, 'desc').limit(pageSize),
-        total,
+        total = 0,
         postCounter = pageSize;
 
     // global document reference
     async function getTotal() {
         const snapshot = await totalRef.get();
-        total = snapshot.data();        
+        total = snapshot.data();
     };
 
     function prevPage (first) {
@@ -54,10 +60,6 @@
         postCounter += pageSize;
         query = (ref) => ref.orderBy(orderField, 'desc').startAfter(last[orderField]).limit(pageSize);
     }
-
-    onMount(()=> {
-        getTotal();
-    })
     
     // TODO - store loaded stuff
 
@@ -75,59 +77,60 @@
     // on:data={(data) => storeLoadedStuff(data)}
 
 </script>
-  <!-- 1. 🔥 Firebase App -->
   <section class="feed">    
-  <FirebaseApp {firebase}>   
-    <Collection path={'posts'} 
-        {query}
-        let:data={posts}
-        let:ref={postRef}
-        let:last={last}
-        let:first={first}
-        log>
-        <!-- Pagination -->        
-          {#each posts as post}
-            <p>
-              ID: <em>{post.ref.id}</em>
-            </p>
-            <p>
-              {post.text}
-              <button on:click={() => {
-                    post.ref.delete();
-                    totalRef.delete();
-                  }}>Delete</button>
-            </p>
-          {/each}
+  <FirebaseApp {firebase} perf analytics>
+    <User let:user>
+        <Collection path={'posts'} 
+            {query}
+            let:data={posts}
+            let:ref={postRef}
+            let:last={last}
+            let:first={first}
+            log on:data={() => getTotal()}>
+            <!-- Pagination -->        
+            {#each posts as post}
+                <p>
+                ID: <em>{post.ref.id}</em>
+                </p>
+                <p>
+                {post.text}
+                <button on:click={() => {
+                        post.ref.delete();
+                        totalRef.delete();
+                    }}>Delete</button>
+                </p>
+            {/each}
 
-          <button
-            on:click={() => {
-                postRef.add({
-                    text: 'Juhuuuuuu',
-                    createdAt: timestamp
-                });
-                totalRef.update({layers: incrementLayers, donations: incrementDonations}).then((response)=> {
-                    getTotal();
-                });
-              }}>
-            Add post
-          </button>
-        {#if posts.length && posts.length < total.layers}
-          {#if postCounter > posts.length && posts.length}
-              <button on:click={() => prevPage(first)}>{$_('fe_prev')}</button>
-          {/if}
-          {#if total.layers > postCounter && posts.length}
-              <button on:click={() => nextPage(last)}>{$_('fe_next')}</button>
-          {/if}
-        {/if}
-          <div slot="loading">
-            <p class="messages">
-                {$_('fe_loading')}
-            </p>
-            <Loader />
-          </div>
-          <div slot="fallback">
-            {$_('fe_error')}
-          </div>
-    </Collection>
+            <button
+                on:click={() => {
+                    postRef.add({
+                        text: 'Juhuuuuuu',
+                        createdAt: timestamp
+                    });
+                    totalRef.update({layers: incrementLayers, donations: incrementDonations}).then((response)=> {
+                        getTotal();
+                    });
+                }}>
+                Add post
+            </button>
+            {#if posts.length && posts.length < total.layers}
+            {#if postCounter > posts.length && posts.length}
+                <button on:click={() => prevPage(first)}>{$_('fe_prev')}</button>
+            {/if}
+            {#if total.layers > postCounter && posts.length}
+                <button on:click={() => nextPage(last)}>{$_('fe_next')}</button>
+            {/if}
+            {/if}
+            <div slot="loading">
+                <p class="messages">
+                    {$_('fe_loading')}
+                </p>
+                <Loader />
+            </div>
+            <div slot="fallback">
+                {$_('fe_error')}
+            </div>
+        </Collection>
+    </User>
   </FirebaseApp>
 </section>
