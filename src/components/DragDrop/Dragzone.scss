@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size);
-    grid-gap: 2vw;
+    grid-gap: 5vw;
 }
 .draggable {
     position: relative;
@@ -59,7 +59,7 @@
             padding: var(--close-size);
             line-height: 0;
         }
-        .droppable.taken & {
+        .is-creation .droppable.taken & {
             display: flex;
         }
     }

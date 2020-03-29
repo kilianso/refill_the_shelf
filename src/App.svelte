@@ -4,6 +4,8 @@
     import Link from './components/Base/Link.svelte';
 	import Route from './components/Base/Route.svelte';
 
+    import { onMount } from 'svelte';
+
 	// FIREBASE
 	import { FirebaseApp, User, Doc, Collection } from "sveltefire";
 	import firebase from "firebase/app";
@@ -32,7 +34,7 @@
         let errorCode = error.code;
         let errorMessage = error.message;
         console.log(errorCode, errorMessage)
-    });
+	});
 
 	// GLOABL TRANSLATIONS
 	import {translations, _ } from 'svelte-intl';
@@ -40,7 +42,7 @@
 	translations.update({
         de: {
             brand: 'Refill the Shelf',
-			tagline: 'Füll das Regal auf und helfe Menschen, die durch die Coronakrise in Not sind.',
+			tagline: 'Füll das Regal auf und hilf damit Menschen, die durch die Coronakrise in Not sind.',
 			layer: 'Regal-Ebene',
         },
         en: {
@@ -48,6 +50,19 @@
 			tagline: 'Refill the shelf and help people who are in need due to the corona crisis.',
             layer: 'shelf-layer'
         },
+	});
+
+	// PRELOAD SHELF SVG TO PREVENT UGLY GLITCHES ON PRICETAG
+	function preloadImage(){
+		var img=new Image();
+		img.src='./assets/images/layer.svg';
+		img.onload = function() {
+			document.body.classList.add('layer_graphic_loaded');
+		}
+    };
+
+	onMount(() => {
+		preloadImage();
 	})
 
 </script>
@@ -56,10 +71,7 @@
 	@import "./styles/global.scss";
 </style>
 
-<header>
-	<Header />
-</header>
-
+<Header />
 <svelte:head>
 	<!-- Not sure if this will be indexed correctly by Google, Bing etc.
 	since we are not using Sapper or SSR, this will be injected.
@@ -74,6 +86,7 @@
 	<meta name="twitter:creator" content="@kilian_so">
 	<meta name="twitter:title" content="{$_('brand')}">
 	<meta name="twitter:description" content="{$_('tagline')}">
+
 </svelte:head>
 
 <main>

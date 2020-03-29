@@ -1,6 +1,28 @@
+.layer {
+    position: relative;
+    &__items {
+        position: absolute;
+        top: 35%;
+        left: 0;
+        transform: translateY(-100%);
+    }
+    &__graphic, &__spacer {
+        width: 100%;
+        display: block;
+        margin-bottom: calc((0.225vw + 0.225vh) * -1)
+    }
+    &__spacer.has--two-bars {
+        display: none;
+        @media (max-width: 48em) {
+            display: block;
+        }
+    }
+}
+
 .dropzone {
     width: 100%;
     display: grid;
+    justify-content: center;
     grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size);
     grid-gap: 2vw;
 }
@@ -11,8 +33,10 @@
     .is-creation & {
         border-color: black;
         //transform: scale3d(1,1,1);
+        background: rgba(255,255,255,0.8);
         &.taken {
             border-color: transparent;
+            background: none;
         }
         /*.lock & {
             &:not(.taken) {

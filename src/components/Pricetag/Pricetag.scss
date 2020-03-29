@@ -1,4 +1,25 @@
+@import '../../styles/variables';
+
 .pricetag {
+    display: none;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 100%;
+    padding: .5em;
+    background: white;    
+    border: 0.75vw solid $c-contrast;
+    font-size: 14px;
+    @media (min-width: 48em) {
+        border: 0.375vw solid $c-contrast;
+        font-size: 1rem;
+    }
+	@media (min-width: 100em) {
+        border: 0.275vw solid $c-contrast;
+	}
+    body.layer_graphic_loaded & {
+        display: block;
+    }
     input[type=checkbox]:checked + .pricetag__content > .pricetag__text{
         white-space: unset;
     }
@@ -16,4 +37,9 @@
         overflow: hidden;
         white-space: nowrap;
     }
+    // &__price {
+    //     font-weight: bold;
+    //     background: #F8E71C;
+    //     padding: 0.5em;
+    // }
 }

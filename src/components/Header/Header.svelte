@@ -6,7 +6,7 @@
 
 <style lang="scss" src="./Header.scss"></style>
 
-<div class="main-header">
+<header class="main-header">
     <LangSelector />
     <div class="logo">
         <h1>
@@ -16,4 +16,4 @@
     <div class="about">
         <Link page={{path: '/about', name: '?'}} linkClass="about__link" ariaLabel={'about'}/>
     </div>
-</div>
+</header>

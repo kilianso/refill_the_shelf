@@ -8,7 +8,9 @@
 
 </script>
 
-<style lang="scss" src='./Pricetag.scss'></style>
+<style lang="scss" global>
+    @import './Pricetag.scss';
+</style>
 
 <div class="pricetag">
     <label class="pricetag__label">

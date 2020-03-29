@@ -18,10 +18,14 @@
 :root {
 	--main-padding: 5vw;
 	--close-size: calc(8px + 0.5vw);
-	--item-size: calc((100vw - var(--main-padding) * 2 - 6vw) / 4);
+	// viewport width - padding left/right * 2 - grid-gap / columns
+	--item-size: calc((90vw - var(--main-padding) * 2 - 6vw) / 4);
 	@media (min-width: 48em) {
-		--close-size: calc(5px + 0.5vw);
 		--main-padding: 20vw;
+		--close-size: calc(5px + 0.5vw);
+	}
+	@media (min-width: 100em) {
+		--main-padding: 30vw;
 	}
 }
 
@@ -38,6 +42,7 @@ body {
 	color: #1C1648;
     font-weight: normal;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
 	overflow-x: hidden; // this is needed to prevent scrollbars when you drag an item to the very edge of the screen
 	&.lock {
 		user-select: none;

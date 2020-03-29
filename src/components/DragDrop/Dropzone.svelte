@@ -24,7 +24,7 @@
     @import './Dropzone.scss';
 </style>
 <div class="layer" id="{route === 'feed' ? ref.id : null}">
-    <div class="grid dropzone {route === 'creation' ? 'is-creation': ''}">
+    <div class="layer__items grid dropzone {route === 'creation' ? 'is-creation': ''}">
         {#if route === 'feed'}
             {#each items as dropzone, i}
                 <div class="droppable">
@@ -41,6 +41,13 @@
             {/each}
         {/if}
     </div>
-    <br>
+    <div class="layer__shelf">
+        <img class="layer__graphic" src="./assets/images/layer.svg" alt="layer">
+    </div>
     <Pricetag route={route} {message} {name} {layerPrice}/>
 </div>
+{#if route === 'feed'}
+    <div class="layer__shelf">
+        <img class="layer__spacer has--two-bars" src="./assets/images/two_bars.svg" alt="bars">
+    </div>
+{/if}
