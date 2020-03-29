@@ -11,12 +11,14 @@
     border-radius: calc(var(--close-size) * 2);
     width: var(--item-size);
     height: var(--item-size);
-    cursor: grab;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: opacity 0.15s ease-out;
+    .is-creation &, .dragzone & {
+        cursor: grab;
+    }
     &.sortable-ghost {
         opacity: 0.5;
     }

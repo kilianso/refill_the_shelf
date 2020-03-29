@@ -6,7 +6,7 @@
     import Sortable from 'sortablejs/modular/sortable.core.esm.js';
     import { translations, _ } from 'svelte-intl';
     import { onMount } from 'svelte';
-    import { userLayer, layerPrice } from '../store';
+    import { userLayer, storeLayerPrice } from '../store';
 
     translations.update({
         de: {
@@ -109,7 +109,7 @@
     });
 
 </script>
-<Dropzone creationRoute={true}/>
+<Dropzone route={'creation'}/>
 <hr>
 <!-- <ul>
     {#each tabArray as tab }
@@ -126,7 +126,7 @@
     </span>
 </p> -->
 <div class="buttons">
-    {#if $layerPrice}
+    {#if $storeLayerPrice}
         <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
     {:else}
         <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/creation', name: $_('cr_cta')}}/>

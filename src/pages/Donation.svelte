@@ -7,7 +7,7 @@
 
     import {onMount} from 'svelte';
     import {locale, translations, _ } from 'svelte-intl';
-    import {userLayer, layerPrice, curRoute } from '../store';
+    import {userLayer, storeLayerPrice, curRoute } from '../store';
 
     let phone = $_('do_phone'),
     toggleDisclaimer,
@@ -19,7 +19,7 @@
     translations.update({
         de: {
             do_title: 'Schritt 3/4 — Spende dein Regal',
-            do_msg: `Aufgrund des Coronavirus brauchen viele Menschen in der Schweiz dringend deine Hilfe. <strong>Spende jetzt dein Regal (${$layerPrice} CHF)</strong> per SMS an`,
+            do_msg: `Aufgrund des Coronavirus brauchen viele Menschen in der Schweiz dringend deine Hilfe. <strong>Spende jetzt dein Regal (${$storeLayerPrice} CHF)</strong> per SMS an`,
             do_charity: 'Caritas Schweiz',
             do_disclaimer: 'Datenschutz',
             do_cta: 'Jetzt spenden',
@@ -35,7 +35,7 @@
         },
         en: {
             do_title: 'Step 3/4 Donate your shelf',
-            do_msg: `Because of the corona virus, many people in Switzerland urgently need your help. <strong>Donate now your shelf (${$layerPrice} CHF)</strong> by SMS to`,
+            do_msg: `Because of the corona virus, many people in Switzerland urgently need your help. <strong>Donate now your shelf (${$storeLayerPrice} CHF)</strong> by SMS to`,
             do_charity: 'Caritas Switzerland',
             do_disclaimer: 'Data protection',
             do_cta: 'Donate now',
@@ -63,7 +63,7 @@
             //console.log('mutations found!');
             phoneInput.placeholder = $_('do_phone');
             // update preset value
-            amount.value = $layerPrice + '00';
+            amount.value = $storeLayerPrice + '00';
             //update donate button text and add eventListener for visibility change
             donateBtn.innerText = $_('do_cta');
             // show text as soon as raisenow is ready

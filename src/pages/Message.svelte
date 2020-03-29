@@ -4,7 +4,7 @@
 
     import {onMount} from 'svelte';
     import {translations, _ } from 'svelte-intl';
-    import { userLayer, layerPrice } from '../store';
+    import { userLayer, storeLayerPrice } from '../store';
 
     let shelf_height = 400,
         shelf_price = 320000,
@@ -35,7 +35,7 @@
         // update layerPrice in userLayer object, 
         // so it's ready to pass to firebase in the end
         userLayer.update((entries) => {
-            entries.layerPrice = $layerPrice;
+            entries.layerPrice = $storeLayerPrice;
             return entries;
         });
     });

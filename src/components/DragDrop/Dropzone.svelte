@@ -4,7 +4,15 @@
 
     import { userLayer } from '../../store';
 
-    export let creationRoute = false;
+    // used on feed and confirmation route
+    export let ref;
+    export let items;
+    export let name;
+    export let message;
+    export let layerPrice;
+
+    // used on creation route
+    export let route = false;
 
     let dropzones = [0,1,2,3],
         nonReactiveStoreCopy = $userLayer.items;
@@ -15,14 +23,24 @@
 <style lang="scss" global>
     @import './Dropzone.scss';
 </style>
-<div class="grid dropzone {creationRoute ? 'is-creation': ''}">
-    {#each dropzones as {dropzone}, i}
-        <div class="droppable {nonReactiveStoreCopy[i].price && creationRoute ? 'taken' : ''}" data-position={i}>
-            {#if nonReactiveStoreCopy[i].price}
-                <Item price={nonReactiveStoreCopy[i].price} icon={nonReactiveStoreCopy[i].icon} alt={nonReactiveStoreCopy[i].alt} />
-            {/if}
-        </div>
-    {/each}
+<div class="layer" id="{route === 'feed' ? ref.id : null}">
+    <div class="grid dropzone {route === 'creation' ? 'is-creation': ''}">
+        {#if route === 'feed'}
+            {#each items as dropzone, i}
+                <div class="droppable">
+                    <Item price={dropzone.price} icon={dropzone.icon} alt={dropzone.alt} />
+                </div>
+            {/each}
+        {:else}
+            {#each dropzones as dropzone, i}
+                <div class="droppable {nonReactiveStoreCopy[i].price ? 'taken' : ''}" data-position={i}>
+                    {#if nonReactiveStoreCopy[i].price}
+                        <Item price={nonReactiveStoreCopy[i].price} icon={nonReactiveStoreCopy[i].icon} alt={nonReactiveStoreCopy[i].alt} />
+                    {/if}
+                </div>
+            {/each}
+        {/if}
+    </div>
+    <br>
+    <Pricetag route={route} {message} {name} {layerPrice}/>
 </div>
-<br>
-<Pricetag />

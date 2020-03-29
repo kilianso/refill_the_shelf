@@ -61,6 +61,6 @@ function calculateTotal (items) {
 // syntax of derived store
 //derived(storeName, ($storeValues) => {})
 
-export const layerPrice = derived(userLayer,($userLayer) => {
+export const storeLayerPrice = derived(userLayer,($userLayer) => {
     return calculateTotal($userLayer.items);
 })

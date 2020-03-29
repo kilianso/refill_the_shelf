@@ -1,5 +1,6 @@
 <script>
     import Loader from '../Base/Loader.svelte';
+    import Dropzone from '../DragDrop/Dropzone.svelte';
 
     import firebase from "firebase/app";
     import { FirebaseApp, User, Collection } from "sveltefire";
@@ -37,12 +38,7 @@
   <section class="feed">
     {#if allPosts.length}
         {#each allPosts as post, i}
-            <p class="messages" style="background: {i % 2 ? 'red' : 'yellow'}">
-                ID: <em>{post.ref.id}</em>
-                {post.name}<br>
-                {post.message}<br>
-                {post.layerPrice}
-            </p>
+            <Dropzone {...post} route={'feed'}/>
         {/each}
     {/if}
     <FirebaseApp {firebase} perf analytics>
