@@ -3,6 +3,7 @@
     import Loader from '../components/Base/Loader.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
     import DonationWidget from '../components/Donation/DonationWidget.svelte';
+    import firebase from "firebase/app";
 
     import {onMount} from 'svelte';
     import {locale, translations, _ } from 'svelte-intl';
@@ -25,7 +26,7 @@
             do_cta2: 'Zurück',
             do_phone: 'Deine Handynummer',
             do_waiting_title: 'Schritt 4/4 — SMS bestätigen',
-            do_waiting_msg: `<strong>Antworte nun mit "JA" auf die SMS</strong> um deine Spende zu bestätigen.`,
+            do_waiting_msg: `<strong>Antworte nun mit JA auf die SMS</strong> um deine Spende zu bestätigen.`,
             do_waiting_cta: 'Abschliessen',
             do_validation: `<strong>Einen Augenblick.</strong> In wenigen Sekunden sollten wir die Bestätigung erhalten.`,
             do_validation_pending: `<strong>Die Bestätigung ist noch ausstehend.</strong> Wir überprüfen den Status deiner Spende alle 5 Sekunden.`,
@@ -41,7 +42,7 @@
             do_cta2: 'Back',
             do_phone: 'Your mobile number',
             do_waiting_title: 'Step 4/4 — Confirm SMS',
-            do_waiting_msg: `<strong>Reply with "YES"< to the SMS</strong> to confirm your donation.`,
+            do_waiting_msg: `<strong>Reply with YES< to the SMS</strong> to confirm your donation.`,
             do_waiting_cta: 'Complete donation',
             do_validation: `<strong>One moment,</strong> in a few seconds we should receive the confirmation of your donation.`,
             do_validation_pending: `<strong>The confirmation is still pending.</strong> We check the status of your donation every 5 seconds.`,
@@ -148,7 +149,7 @@
                     entries.transactionStatus = 'confirmed';
                     return entries;
                 })
-                curRoute.set('/confirmation');
+                saveToFirebase();
             }
             if(response.status == 'pending') {
                 stepChanger(4);
@@ -187,6 +188,24 @@
     function stepChanger(step) {
         //window.scrollTo(0, 0);
         visibleDonationStep = step;
+    }
+
+
+    // SAVE TO FIREBASE
+    const   timestamp = firebase.firestore.FieldValue.serverTimestamp(),
+            incrementLayers = firebase.firestore.FieldValue.increment(1),
+            incrementDonations = firebase.firestore.FieldValue.increment($userLayer.layerPrice),
+            totalRef = firebase.firestore().collection('global').doc('total'),
+            postRef = firebase.firestore().collection('posts').doc();
+
+    function saveToFirebase() {
+        const batch = firebase.firestore().batch();
+        batch.update(totalRef, {layers: incrementLayers, donations: incrementDonations})
+        batch.set(postRef, {timestamp: timestamp, ...$userLayer});
+        batch.commit().then(() => {
+            console.log('saved');
+            curRoute.set('/confirmation');
+        });
     }
     
 </script>

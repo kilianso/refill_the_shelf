@@ -1,8 +1,40 @@
 <script>
+	// BASIC COMPONENTS
 	import Header from './components/Header/Header.svelte';
     import Link from './components/Base/Link.svelte';
 	import Route from './components/Base/Route.svelte';
 
+	// FIREBASE
+	import { FirebaseApp, User, Doc, Collection } from "sveltefire";
+	import firebase from "firebase/app";
+	import "firebase/firestore";
+	import "firebase/auth";
+	import "firebase/performance";
+    import "firebase/analytics";
+
+	const firebaseConfig = {
+		apiKey: "AIzaSyBRj157K5lmuc-K4TUKaMtgNcZZBw4qncc",
+		authDomain: "refill-the-shelf.firebaseapp.com",
+		databaseURL: "https://refill-the-shelf.firebaseio.com",
+		projectId: "refill-the-shelf",
+		storageBucket: "refill-the-shelf.appspot.com",
+		messagingSenderId: "541634737907",
+		appId: "1:541634737907:web:75a14c957e75fe52dba986",
+        measurementId: "G-NG35NZZEFD",
+      };
+    
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+
+    firebase.auth().signInAnonymously().catch(function(error) {
+        // Handle Errors.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorCode, errorMessage)
+    });
+
+	// GLOABL TRANSLATIONS
 	import {translations, _ } from 'svelte-intl';
 
 	translations.update({
@@ -16,7 +48,8 @@
 			tagline: 'Refill the shelf and help people who are in need due to the corona crisis.',
             layer: 'shelf-layer'
         },
-    })
+	})
+
 </script>
 
 <style lang="scss" global>

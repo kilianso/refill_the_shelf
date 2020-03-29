@@ -1,5 +1,7 @@
 <script>
     import Link from '../components/Base/Link.svelte';
+    import Feed from '../components/Base/Feed.svelte';
+
     import {translations, _ } from 'svelte-intl';
     
     translations.update({
@@ -12,16 +14,21 @@
             co_cta: 'Now share this with friends',
         },
     })
+    let loading = true;
 
 </script>
 
-<div class="sharing">
-    <p><strong>{$_('co_title')}</strong></p>
-    <p>{$_('co_cta')}</p>
-    <p class="social">Social Icons</p>
-</div>
+{#if !loading}
+    <div class="sharing">
+        <p><strong>{$_('co_title')}</strong></p>
+        <p>{$_('co_cta')}</p>
+        <p class="social">Social Icons</p>
+    </div>
+{/if}
 
-<div class="layer">{$_('layer')}</div>
+<Feed on:dataReady={() => {loading = false, console.log('show firework')}}/>
+
+<!-- <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
@@ -33,4 +40,4 @@
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div>
+<div class="layer">{$_('layer')}</div> -->
