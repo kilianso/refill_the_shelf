@@ -10,6 +10,9 @@
 	-moz-osx-font-smoothing: grayscale;
 	overflow-wrap: break-word;
 	word-wrap: break-word;
+	&:focus {
+		outline: 0; // yeah i know, accessiblity... but it's ugly... will fix this properly soon i promise
+	}
 }
 
 :root {
@@ -84,24 +87,6 @@ input[type="range"] {
 	height: 0;
 }
 
-button {
-	color: #333;
-	background-color: #f4f4f4;
-	outline: none;
-}
-
-button:disabled {
-	color: #999;
-}
-
-button:not(:disabled):active {
-	background-color: #ddd;
-}
-
-button:focus {
-	border-color: #666;
-}
-
 .social {
 	display: block;
 	padding: 1.5rem 1rem;
@@ -135,8 +120,15 @@ button:focus {
 		max-width: 85%;
 	}
 }
-.tagline {
+.title, .tagline {
+	font-size: 1rem;
+	font-weight: normal;
 	margin-bottom: 1rem;
+}
+
+.about__link {
+	padding: 1em;
+	margin: -1em;
 }
 
 .reload {

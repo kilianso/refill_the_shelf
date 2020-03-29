@@ -1,3 +1,5 @@
+@import "variables";
+
 .buttons, .sharing {
     display: flex;
     align-items: center;
@@ -7,21 +9,26 @@
 .btn {
     display: inline-block;
     cursor: pointer;
+    color: $c-contrast;
     &--primary, &--secondary {
         margin: 1rem 0;
-        background: #F8E71C;
         padding: 1rem 3rem;
         border-radius: 10rem;
-        color: #1C1648;
+        border: 0;
         &.is-disabled {
             opacity: 0.5;
         }
     }
-    &--secondary {
-        background: lightgray;   
-        color: #1C1648;
+    &--primary {
+        background: $c-primary;
+        &:hover, &:focus, &:active {
+            background: lighten($c-primary, 10%);
+        }
     }
-    &--tertiary {
-        color: #1C1648;
+    &--secondary {
+        background: $c-secondary;
+        &:hover, &:focus {
+            background: lighten($c-secondary, 10%);
+        }
     }
 }

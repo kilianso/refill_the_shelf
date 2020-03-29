@@ -14,6 +14,6 @@
         </h1>
     </div>
     <div class="about">
-        <Link page={{path: '/about', name: '?'}}/>
+        <Link page={{path: '/about', name: '?'}} linkClass="about__link" ariaLabel={'about'}/>
     </div>
 </div>

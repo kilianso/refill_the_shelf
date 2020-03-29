@@ -43,7 +43,7 @@
 </script>
 <Dropzone />
 <hr>
-<p class="title">{$_('me_title')}</p>
+<h2 class="title" tabindex="0">{$_('me_title')}</h2>
 <div class="message__name">
     <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
     <span class="message__name__counter">{countName}</span>

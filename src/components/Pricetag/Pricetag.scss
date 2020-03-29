@@ -1,0 +1,19 @@
+.pricetag {
+    input[type=checkbox]:checked + .pricetag__content > .pricetag__text{
+        white-space: unset;
+    }
+    
+    &__content {        
+        display: flex;
+    }
+    
+    &__text {
+        cursor: pointer;
+        user-select:none;
+        flex: 1;
+        padding-right: 3vw;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}

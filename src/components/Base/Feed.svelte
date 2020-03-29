@@ -63,7 +63,9 @@
                 }}>
                 {#if posts.length && posts.length < total.layers}
                     {#if total.layers > postCounter && posts.length}
-                        <button on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
+                        <div class="buttons">
+                            <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
+                        </div>
                     {/if}
                 {/if}
                 <div slot="fallback">

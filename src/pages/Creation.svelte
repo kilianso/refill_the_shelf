@@ -118,7 +118,7 @@
         </li>
     {/each}
 </ul> -->
-<p class="title">{$_('cr_title')}</p>
+<h2 class="title" tabindex="0">{$_('cr_title')}</h2>
 <Dragzone />
 <!-- <p class="reload">
     <span class="reload__trigger">

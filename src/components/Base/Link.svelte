@@ -2,6 +2,7 @@
   import { curRoute } from '../../store';
   
   export let page;
+  export let ariaLabel;
   export let linkClass = '';
 
   function redirectTo(event){
@@ -15,4 +16,4 @@
   
 </script>
 
-<a class={linkClass} href={page.path} on:click|preventDefault={redirectTo}>{page.name}</a>
+<a class={linkClass} href={page.path} on:click|preventDefault={redirectTo} aria-label={ariaLabel ? ariaLabel : null}>{page.name}</a>
