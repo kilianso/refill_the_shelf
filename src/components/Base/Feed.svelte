@@ -56,9 +56,13 @@
                 log on:data={(data) => {
                     getTotal();
                     dispatch('dataReady');
-                    // TODO do not append new data if it's already there. compare arrays
                     if(data.detail.data) {
-                        allPosts = [...allPosts, ...data.detail.data];
+                        // make sure you'll never append a post twice
+                        if(allPosts.some((el) => {return el.timestamp.seconds === data.detail.data[0].timestamp.seconds})) {
+                            return;
+                        }else {
+                            allPosts = [...allPosts, ...data.detail.data];
+                        }
                     }
                 }}>
                 {#if posts.length && posts.length < total.layers}
