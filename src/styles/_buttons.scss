@@ -19,8 +19,10 @@
     }
     &--primary {
         background: $c-primary;
-        &:hover, &:focus, &:active {
-            background: lighten($c-primary, 10%);
+        @media (hover: hover) {
+            &:hover, &:focus, &:active {
+                background: lighten($c-primary, 10%);
+            }
         }
         &.is-disabled {
             background: rgba($c-primary, 0.45);
@@ -28,8 +30,10 @@
     }
     &--secondary {
         background: $c-secondary;
-        &:hover, &:focus {
-            background: lighten($c-secondary, 20%);
+        @media (hover: hover) {
+            &:hover, &:focus {
+                background: lighten($c-secondary, 20%);
+            }
         }
     }
     &--tertiary {
