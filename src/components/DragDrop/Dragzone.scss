@@ -3,6 +3,10 @@
     display: grid;
     grid-template: #{var(--item-size)} / var(--item-size) var(--item-size) var(--item-size) var(--item-size);
     grid-gap: 5vw;
+    @media (min-width: 48em) {
+        grid-column-gap: 5vw;
+        grid-row-gap: 2vw;
+    }
 }
 .draggable {
     position: relative;

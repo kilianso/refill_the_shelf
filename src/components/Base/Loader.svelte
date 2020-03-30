@@ -1,4 +1,4 @@
-<style>
+<style lang="scss" global>
 /* Progress Bar */
 .progress {
     position: relative;
@@ -12,8 +12,15 @@
     overflow: hidden;
 }
 
+.modal .progress {
+    background-color: rgba(255,255,255,0.35);    
+}
+
 .progress .indeterminate {
     background-color: #1C1648;
+    .modal & {
+        background-color: white;
+    }
 }
 
 .progress .indeterminate:before {

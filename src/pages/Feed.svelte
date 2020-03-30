@@ -10,27 +10,6 @@
     let shelf_height = 400,
         shelf_price = 320000,
         loading = true;
-
-    let debugPost = {
-        ref: {id: 1},
-        name: 'Kili Vanilli',
-        message: 'Super tolli Sach.',
-        layerPrice: 20,
-        transactionURL: 'https://lalalala.com',
-        transactionStatus: 'confirmed',
-        items: [
-            {price: 1, icon: './assets/images/items/toiletPaper.svg', alt: 'Toiletpaper'},
-            {price: 2, icon: './assets/images/items/faceMask.svg', alt: 'Mask'},
-            {price: 3, icon: './assets/images/items/tunaCan.svg', alt: 'Tuna'},
-            {price: 5, icon: './assets/images/items/pasta.svg', alt: 'Pasta'}
-        ],
-        items2: [
-            {price: 10, icon: './assets/images/items/sanatizer.svg', alt: 'Sanatizer'},
-            {price: 10, icon: './assets/images/items/soap.svg', alt: 'Soap'},
-            {price: 15, icon: './assets/images/items/oil.svg', alt: 'Oil'},
-            {price: 20, icon: './assets/images/items/20Stutz.svg', alt: '20CHF'},
-        ]
-    }
     
     translations.update({
         de: {
@@ -52,20 +31,13 @@
     });
 
 </script>
-
-<h2 class="tagline" tabindex="0">{$_('tagline')}</h2>
-<div class="buttons">
-    <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('fe_cta')}}/>
-</div>
-
-<br>
-<br>
-<br>
-<!-- FOR DEBUGGING PURPOSE -->
-<Dropzone {...debugPost} route={'feed'} />
-<Dropzone {...debugPost} route={'feed'} />
-
-<!-- <Feed on:dataReady={() => loading = false}/> -->
+<section class="stage">
+    <h2 class="tagline" tabindex="0">{$_('tagline')}</h2>
+    <div class="buttons">
+        <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('fe_cta')}}/>
+    </div>
+</section>
+<Feed on:dataReady={() => loading = false}/>
 
 <!-- {#if loading}
     <div class="loading">

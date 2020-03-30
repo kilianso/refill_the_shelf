@@ -18,13 +18,13 @@
 
 </script>
 
-{#if !loading}
+<!-- {#if !loading} -->
     <div class="sharing">
         <p><strong>{$_('co_title')}</strong></p>
         <p>{$_('co_cta')}</p>
         <p class="social">Social Icons</p>
     </div>
-{/if}
+<!-- {/if} -->
 
 <Feed on:dataReady={() => {loading = false, console.log('show firework')}}/>
 

@@ -1,5 +1,8 @@
 .layer {
     position: relative;
+    &__shelf {
+        margin-top: calc((0.225vw + 0.225vh) * -1)
+    }
     &__items {
         position: absolute;
         top: 35%;
@@ -9,7 +12,6 @@
     &__graphic, &__spacer {
         width: 100%;
         display: block;
-        margin-bottom: calc((0.225vw + 0.225vh) * -1)
     }
     &__spacer.has--two-bars {
         display: none;

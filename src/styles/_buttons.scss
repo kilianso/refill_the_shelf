@@ -1,10 +1,11 @@
 @import "variables";
 
-.buttons, .sharing {
+.buttons {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
+    margin: 2rem auto;
 }
 .btn {
     display: inline-block;
@@ -15,20 +16,25 @@
         padding: 1rem 3rem;
         border-radius: 10rem;
         border: 0;
-        &.is-disabled {
-            opacity: 0.5;
-        }
     }
     &--primary {
         background: $c-primary;
         &:hover, &:focus, &:active {
             background: lighten($c-primary, 10%);
         }
+        &.is-disabled {
+            background: rgba($c-primary, 0.45);
+        }
     }
     &--secondary {
         background: $c-secondary;
         &:hover, &:focus {
-            background: lighten($c-secondary, 10%);
+            background: lighten($c-secondary, 20%);
+        }
+    }
+    &--tertiary {
+        .modal & {
+            color: white;
         }
     }
 }

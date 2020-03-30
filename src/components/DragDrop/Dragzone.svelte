@@ -10,13 +10,23 @@
         {price: 15, icon: './assets/images/items/oil.svg', alt: 'Oil'},
         {price: 20, icon: './assets/images/items/20Stutz.svg', alt: '20CHF'},
     ];
+    
+    const getShuffledArr = (arr => {
+        const newArr = arr.slice();
+        for (let i = newArr.length - 1; i > 0; i--) {
+            const rand = Math.floor(Math.random() * (i + 1));
+            [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+        }
+        return newArr;
+    })(items);
+    
 </script>
 <style lang="scss" global>
     @import './Dragzone.scss';
 </style>
 
 <div class="grid dragzone">
-    {#each items as item }
+    {#each getShuffledArr as item }
         <Item {...item} />
     {/each}
 </div>

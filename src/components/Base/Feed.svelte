@@ -34,8 +34,46 @@
         query = (ref) => ref.orderBy(orderField, 'desc').startAfter(last[orderField]).limit(pageSize);
     }
 
+    const debugData = [
+        {
+            ref: {id: 1},
+            name: 'Kili Vanilli',
+            message: 'Super tolli Sach.',
+            layerPrice: 20,
+            transactionURL: 'https://lalalala.com',
+            transactionStatus: 'confirmed',
+            items: [
+                {price: 1, icon: './assets/images/items/toiletPaper.svg', alt: 'Toiletpaper'},
+                {price: 2, icon: './assets/images/items/faceMask.svg', alt: 'Mask'},
+                {price: 3, icon: './assets/images/items/tunaCan.svg', alt: 'Tuna'},
+                {price: 5, icon: './assets/images/items/pasta.svg', alt: 'Pasta'}
+            ]
+        },
+        {
+            ref: {id: 2},
+            name: 'Kili Vanilli',
+            message: 'Super tolli Sach.',
+            layerPrice: 18,
+            transactionURL: 'https://lalalala.com',
+            transactionStatus: 'confirmed',
+            items: [
+                {price: 10, icon: './assets/images/items/sanatizer.svg', alt: 'Sanatizer'},
+                {price: 10, icon: './assets/images/items/soap.svg', alt: 'Soap'},
+                {price: 15, icon: './assets/images/items/oil.svg', alt: 'Oil'},
+                {price: 20, icon: './assets/images/items/20Stutz.svg', alt: '20CHF'},
+            ]
+        }
+    ]
+
 </script>
   <section class="feed">
+    <!-- // DEBUGGING -->
+    {#if debugData.length}
+        {#each debugData as post, i}
+            <Dropzone {...post} route={'feed'}/>
+        {/each}
+    {/if}
+    <!--
     {#if allPosts.length}
         {#each allPosts as post, i}
             <Dropzone {...post} route={'feed'}/>
@@ -79,5 +117,5 @@
                 </div>
             </Collection>
         </User>
-    </FirebaseApp>
+    </FirebaseApp> -->
 </section>

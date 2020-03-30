@@ -16,14 +16,14 @@
     
     translations.update({
         de: {
-            me_title: 'Schritt 2/3 — Füge eine Nachricht hinzu',
+            me_title: 'Schritt 2/4 — Füge eine Nachricht hinzu',
             me_name: 'Dein Name',
             me_msg: 'Deine Nachricht',
             me_cta: 'Nächster Schritt',
             me_cta2: 'Zurück'
         },
         en: {
-            me_title: 'Step 2/3 — Add a message',
+            me_title: 'Step 2/4 — Add a message',
             me_name: 'Your name',
             me_msg: 'Your message',
             me_cta: 'Next Step',
@@ -41,22 +41,25 @@
     });
 
 </script>
-<Dropzone />
-<hr>
-<h2 class="title" tabindex="0">{$_('me_title')}</h2>
-<div class="message__name">
-    <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
-    <span class="message__name__counter">{countName}</span>
-</div>
-<div class="message__text">
-    <input class="message__text" type="text" maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
-    <span class="message__text__counter">{countText}</span>
-</div>
-<div class="buttons">
-    {#if $userLayer.name}
-        <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
-    {:else}
-        <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/message', name: $_('me_cta')}}/>
-    {/if}
-    <Link linkClass={'btn btn--tertiary'} page={{path: '/creation', name: $_('me_cta2')}}/>
-</div>
+<section class="stage">
+    <Dropzone />
+</section>
+<section class="modal">
+    <h2 class="title" tabindex="0">{$_('me_title')}</h2>
+    <div class="message__name">
+        <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
+        <span class="message__name__counter">{countName}</span>
+    </div>
+    <div class="message__text">
+        <input class="message__text" type="text" maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
+        <span class="message__text__counter">{countText}</span>
+    </div>
+    <div class="buttons">
+        {#if $userLayer.name}
+            <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
+        {:else}
+            <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/message', name: $_('me_cta')}}/>
+        {/if}
+        <Link linkClass={'btn btn--tertiary'} page={{path: '/creation', name: $_('me_cta2')}}/>
+    </div>
+</section>

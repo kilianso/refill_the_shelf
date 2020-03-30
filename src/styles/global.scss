@@ -16,11 +16,13 @@
 }
 
 :root {
+	--border-radius: 10vw;
 	--main-padding: 5vw;
 	--close-size: calc(8px + 0.5vw);
 	// viewport width - padding left/right * 2 - grid-gap / columns
 	--item-size: calc((90vw - var(--main-padding) * 2 - 6vw) / 4);
 	@media (min-width: 48em) {
+		--border-radius: 3vw;
 		--main-padding: 20vw;
 		--close-size: calc(5px + 0.5vw);
 	}
@@ -41,18 +43,28 @@ body {
 	margin: 0;
 	color: #1C1648;
     font-weight: normal;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: $mainFont;
 	font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
 	overflow-x: hidden; // this is needed to prevent scrollbars when you drag an item to the very edge of the screen
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	letter-spacing: .015em;
 	&.lock {
 		user-select: none;
 	}
 }
 
 main, header {
-    margin: 0 auto;
-	// max-width: 48em;
+    margin: 0;
 	padding: 0 var(--main-padding);
+}
+
+main {
+	flex: 1 0 0;
+	display: flex;
+	flex-direction: column;
 }
 
 a, a:visited {
@@ -84,12 +96,12 @@ input, button, select, textarea {
 	box-shadow: none;
 }
 
-input:disabled {
-	color: #ccc;
-}
-
-input[type="range"] {
-	height: 0;
+.sharing {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+	margin: 2em auto;
 }
 
 .social {
@@ -117,17 +129,25 @@ input[type="range"] {
 	cursor: pointer;
 }
 
-.title, .messages, .tagline {
-    text-align: center;
+.title, .tagline{
+	text-align: center;
+	padding: 1rem 0;
+	margin: 0;
+	font-size: 1rem;
+	font-weight: normal;
+}
+
+.messages, .tagline {
+	text-align: center;
 	margin: 2em auto;
 	max-width: 95%;
 	@media (min-width: 48em) {
 		max-width: 85%;
 	}
 }
-.title, .tagline {
-	font-size: 1rem;
-	font-weight: normal;
+
+.tagline {
+	padding: 0;
 	margin-bottom: 1rem;
 }
 
@@ -162,6 +182,9 @@ input[type="range"] {
 		width: 100%;
 		white-space: nowrap;
 		padding: 1rem 2rem 1rem 1rem;
+		color: $c-contrast;
+		background: white;
+		border-radius: .35rem;
 	}
 	&__counter {
 		position: absolute;
@@ -172,5 +195,26 @@ input[type="range"] {
 		background: white;
 		padding: calc(1rem - 2px) 0.5rem;
 		z-index: 1;
+		border-radius: .35rem;
+	}
+}
+
+.modal {
+	flex: 1;
+	background: $c-contrast;
+	color: white;
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin: 3vw -5vw 0;
+	padding: 0 5vw;
+	// font-size: 14px;
+    @media (min-width: 48em) {
+		// font-size: 1rem;
+		margin: 2vw -5vw 0;
+	}
+	.messages {
+		margin-top: 1rem;
+	}
+	p a {
+		color: white;
 	}
 }

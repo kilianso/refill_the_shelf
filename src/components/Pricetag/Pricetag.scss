@@ -37,9 +37,11 @@
         overflow: hidden;
         white-space: nowrap;
     }
-    // &__price {
-    //     font-weight: bold;
-    //     background: #F8E71C;
-    //     padding: 0.5em;
-    // }
+    &__price {
+        font-weight: bold;
+        color: $c-contrast;
+        background: $c-primary;
+        padding: 0.5em;
+        margin: -0.5em;
+    }
 }
