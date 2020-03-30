@@ -3,6 +3,12 @@
 
 $caritasRed: #db001b;
 
+.celebrate {
+  width: calc(var(--item-size) * 2);
+  margin: calc((var(--item-size) / 1.5) * -1) auto 0;
+  transform: translateX(20%);
+}
+
 #bre2-sms {
     font-family: $mainFont;
     * {

@@ -1,6 +1,7 @@
 <script>
-    import Link from '../components/Base/Link.svelte';
     import Feed from '../components/Base/Feed.svelte';
+    import Link from '../components/Base/Link.svelte';
+    import Celebration from '../components/Donation/Celebration.svelte';
 
     import {translations, _ } from 'svelte-intl';
     
@@ -19,6 +20,7 @@
 </script>
 <section class="stage no-layer sharing">
     <!-- {#if !loading} -->
+        <Celebration />
         <h2 class="tagline">{$_('co_title')}</h2>
         <p class="messages">{$_('co_cta')}</p>
         <div class="social">
