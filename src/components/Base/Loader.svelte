@@ -11,16 +11,16 @@
     margin: 0.5rem 0 1rem 0;
     overflow: hidden;
 }
+.progress .indeterminate {
+    background-color: #1C1648;
+}
 
 .modal .progress {
     background-color: rgba(255,255,255,0.35);    
 }
 
-.progress .indeterminate {
-    background-color: #1C1648;
-    .modal & {
-        background-color: white;
-    }
+.modal .progress .indeterminate {
+    background-color: white;
 }
 
 .progress .indeterminate:before {
