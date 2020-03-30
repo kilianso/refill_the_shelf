@@ -5,7 +5,10 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    margin: 2rem auto;
+    margin: 3vw auto;
+    @media (max-width: 48em) {
+        margin: 5vw auto;
+    }
     &.no-gutter {
         margin: 0 auto;
     }

@@ -127,17 +127,23 @@ input, button, select, textarea {
 	cursor: pointer;
 }
 
-.title, .tagline{
+.title {
 	text-align: center;
-	padding: 1rem 0;
 	margin: 0;
 	font-size: 1rem;
 	font-weight: normal;
+	padding: 5vw 0;
+	@media (min-width: 48em) {
+		padding: 3vw 0;
+	}
+	@media (min-width: 100em) {
+		padding: 2vw 0;
+	}
 }
 
 .messages, .tagline {
 	text-align: center;
-	margin: 2em auto;
+	margin: 5vw auto;
 	max-width: 95%;
 	@media (min-width: 48em) {
 		max-width: 85%;
@@ -145,6 +151,9 @@ input, button, select, textarea {
 }
 
 .tagline {
+	font-size: 1rem;
+	font-weight: normal;
+	text-align: center;
 	padding: 0;
 	margin: 0 auto 1rem;
 	.sharing & {
