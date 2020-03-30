@@ -1,7 +1,7 @@
 <script>
     import { locale, locales, getBrowserLocale } from 'svelte-intl';
     
-    locale.set(getBrowserLocale('en')) // try to use window.navigator.language, fallback to EN
+    locale.set(getBrowserLocale('de')) // try to use window.navigator.language, fallback to EN
     const setLocale = e => locale.set(e.target.value)
 
 </script>
