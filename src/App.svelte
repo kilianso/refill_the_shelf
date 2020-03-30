@@ -71,23 +71,6 @@
 	@import "./styles/global.scss";
 </style>
 
-<svelte:head>
-	<!-- Not sure if this will be indexed correctly by Google, Bing etc.
-	since we are not using Sapper or SSR, this will be injected.
-	-->
-	<!-- https://stackoverflow.com/questions/57749479/svelte3-adding-sveltehead-without-sapper -->
-	<meta name="description" content="{$_('tagline')}">
-	<meta property="og:title" content="{$_('brand')}">
-	<meta property="og:description" content="{$_('tagline')}">
-	<meta property="og:image" content="https://refilltheshelf.ch/assets/images/refill_the_shelf.jpg">
-	<meta property="og:url" content="https://refilltheshelf.ch">
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:creator" content="@kilian_so">
-	<meta name="twitter:title" content="{$_('brand')}">
-	<meta name="twitter:description" content="{$_('tagline')}">
-
-</svelte:head>
-
 <div class="wrapper">
 	<Header />
 	<main>
