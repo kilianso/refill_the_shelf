@@ -16,6 +16,7 @@
 }
 
 :root {
+	--base-font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
 	--border-radius: 10vw;
 	--main-padding: 5vw;
 	--close-size: calc(8px + 0.5vw);
@@ -44,16 +45,24 @@ body {
 	color: #1C1648;
     font-weight: normal;
 	font-family: $mainFont;
-	font-size: calc(16px + (20 - 16) * ((100vw - 300px) / (1600 - 300)));
-	overflow-x: hidden; // this is needed to prevent scrollbars when you drag an item to the very edge of the screen
+	font-size: var(--base-font-size);
 	width: 100%;
 	height: 100%;
-	display: flex;
-	flex-direction: column;
 	letter-spacing: .015em;
 	&.lock {
 		user-select: none;
 	}
+}
+
+body {
+	min-height: 100vh;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
 }
 
 main, header {
@@ -61,10 +70,12 @@ main, header {
 	padding: 0 var(--main-padding);
 }
 
+header {
+	flex: 1 0 auto;
+}
+
 main {
-	flex: 1 0 0;
-	display: flex;
-	flex-direction: column;
+	height: 100%;
 }
 
 a, a:visited {
@@ -216,22 +227,35 @@ input, button, select, textarea {
 	}
 }
 
-.modal {
-	flex: 1;
-	background: $c-contrast;
-	color: white;
-	border-radius: var(--border-radius) var(--border-radius) 0 0;
-    margin: 3vw -5vw 0;
-	padding: 0 5vw;
-	// font-size: 14px;
-    @media (min-width: 48em) {
-		// font-size: 1rem;
-		margin: 2vw -5vw 0;
+.modal__wrapper {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	.stage {
+		flex: 1 1 30%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
-	.messages {
-		margin-top: 1rem;
-	}
-	p a {
+	
+	.modal {
+		flex: 1 0 70%;
+		background: $c-contrast;
 		color: white;
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+		margin: 3vw -5vw 0;
+		padding: 0 5vw;
+		// font-size: 14px;
+		@media (min-width: 48em) {
+			// font-size: 1rem;
+			margin: 2vw -5vw 0;
+		}
+		.messages {
+			margin-top: 1rem;
+		}
+		p a {
+			color: white;
+		}
 	}
 }

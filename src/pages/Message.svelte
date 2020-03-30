@@ -41,25 +41,27 @@
     });
 
 </script>
-<section class="stage">
-    <Dropzone />
-</section>
-<section class="modal">
-    <h2 class="title" tabindex="0">{$_('me_title')}</h2>
-    <div class="message__name">
-        <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
-        <span class="message__name__counter">{countName}</span>
-    </div>
-    <div class="message__text">
-        <input class="message__text" type="text" maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
-        <span class="message__text__counter">{countText}</span>
-    </div>
-    <div class="buttons">
-        {#if $userLayer.name}
-            <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
-        {:else}
-            <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/message', name: $_('me_cta')}}/>
-        {/if}
-        <Link linkClass={'btn btn--tertiary'} page={{path: '/creation', name: $_('me_cta2')}}/>
-    </div>
-</section>
+<div class="modal__wrapper">
+    <section class="stage">
+        <Dropzone />
+    </section>
+    <section class="modal">
+        <h2 class="title" tabindex="0">{$_('me_title')}</h2>
+        <div class="message__name">
+            <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
+            <span class="message__name__counter">{countName}</span>
+        </div>
+        <div class="message__text">
+            <input class="message__text" type="text" maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
+            <span class="message__text__counter">{countText}</span>
+        </div>
+        <div class="buttons">
+            {#if $userLayer.name}
+                <Link linkClass={'btn btn--primary'} page={{path: '/donation', name: $_('me_cta')}}/>
+            {:else}
+                <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/message', name: $_('me_cta')}}/>
+            {/if}
+            <Link linkClass={'btn btn--tertiary'} page={{path: '/creation', name: $_('me_cta2')}}/>
+        </div>
+    </section>
+</div>

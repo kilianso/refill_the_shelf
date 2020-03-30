@@ -47,7 +47,7 @@
     <Pricetag route={route} {message} {name} {layerPrice}/>
 </div>
 {#if route === 'feed'}
-    <div class="layer__shelf">
+    <div class="layer__spacing">
         <img class="layer__spacer has--two-bars" src="./assets/images/two_bars.svg" alt="bars">
     </div>
 {/if}

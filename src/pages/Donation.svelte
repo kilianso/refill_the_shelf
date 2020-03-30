@@ -209,57 +209,59 @@
     }
     
 </script>
-<section class="stage">
-    <Dropzone />
-</section>
-<section class="modal">
-    {#if visibleDonationStep == 0 || visibleDonationStep == 1}
-        <h2 class="title" tabindex="0">{$_('do_title')}</h2>
-    {/if}
-    {#if visibleDonationStep !== 0 && visibleDonationStep !== 1}
-        <h2 class="title" tabindex="0">{$_('do_waiting_title')}</h2>
-    {/if}
-    {#if visibleDonationStep == 1}
-        <p class="messages" tabindex="0">
-            {@html $_('do_msg')}
-            <a href="https://caritas.ch/{$locale}" target="_blank"> {$_('do_charity')}.</a>
-        </p>
-    {/if}
-    {#if visibleDonationStep == 2}
-        <p class="messages" tabindex="0">
-            {@html $_('do_waiting_msg')}
-        </p>
-    {/if}
-    <DonationWidget on:raiseNow={raiseNow} visibility={visibleDonationStep}/>
-    {#if visibleDonationStep == 1}
-        <div class="buttons">
-            <Link linkClass={'btn btn--tertiary'} page={{path: '/message', name: $_('do_cta2')}}/>
-        </div>
-        <p class="messages" tabindex="0">
-            <a role="button" class="disclaimer" on:click={toggleDisclaimer} tabindex="0"><small>{$_('do_disclaimer')}</small></a>
-        </p>
-    {/if}
-    {#if visibleDonationStep == 2}
-        <div class="buttons">
-            {#if $userLayer.transactionURL}
-                <a role="button" class="btn btn--primary" on:click={(e) => {e.preventDefault(); checkConfirmation(); stepChanger(3);}} tabindex="0">{$_('do_waiting_cta')}</a>
-            {:else}
-                <a role="button" class="btn btn--primary is-disabled" tabindex="0">{$_('do_waiting_cta')}</a>
-            {/if}
-        </div>
-    {/if}
-    {#if visibleDonationStep == 3}
-        <p class="messages" tabindex="0">{@html $_('do_validation')}</p>
-        <Loader />
-    {/if}
-    {#if visibleDonationStep == 4}
-        <p class="messages" tabindex="0">{@html $_('do_validation_pending')}</p>
-        <Loader />
-    {/if}
-    {#if visibleDonationStep == 5}
-        <p class="messages" tabindex="0">{@html $_('do_validation_error')}</p>
-        <div class="buttons">   
-            <a role="button" class="btn btn--primary" on:click={() => {retry(); stepChanger(1);}} tabindex="0">{$_('do_retry')}</a>
-        </div>
-    {/if}
-</section>
+<div class="modal__wrapper">
+    <section class="stage">
+        <Dropzone />
+    </section>
+    <section class="modal">
+        {#if visibleDonationStep == 0 || visibleDonationStep == 1}
+            <h2 class="title" tabindex="0">{$_('do_title')}</h2>
+        {/if}
+        {#if visibleDonationStep !== 0 && visibleDonationStep !== 1}
+            <h2 class="title" tabindex="0">{$_('do_waiting_title')}</h2>
+        {/if}
+        {#if visibleDonationStep == 1}
+            <p class="messages" tabindex="0">
+                {@html $_('do_msg')}
+                <a href="https://caritas.ch/{$locale}" target="_blank"> {$_('do_charity')}.</a>
+            </p>
+        {/if}
+        {#if visibleDonationStep == 2}
+            <p class="messages" tabindex="0">
+                {@html $_('do_waiting_msg')}
+            </p>
+        {/if}
+        <DonationWidget on:raiseNow={raiseNow} visibility={visibleDonationStep}/>
+        {#if visibleDonationStep == 1}
+            <div class="buttons">
+                <Link linkClass={'btn btn--tertiary'} page={{path: '/message', name: $_('do_cta2')}}/>
+            </div>
+            <p class="messages" tabindex="0">
+                <a role="button" class="disclaimer" on:click={toggleDisclaimer} tabindex="0"><small>{$_('do_disclaimer')}</small></a>
+            </p>
+        {/if}
+        {#if visibleDonationStep == 2}
+            <div class="buttons">
+                {#if $userLayer.transactionURL}
+                    <a role="button" class="btn btn--primary" on:click={(e) => {e.preventDefault(); checkConfirmation(); stepChanger(3);}} tabindex="0">{$_('do_waiting_cta')}</a>
+                {:else}
+                    <a role="button" class="btn btn--primary is-disabled" tabindex="0">{$_('do_waiting_cta')}</a>
+                {/if}
+            </div>
+        {/if}
+        {#if visibleDonationStep == 3}
+            <p class="messages" tabindex="0">{@html $_('do_validation')}</p>
+            <Loader />
+        {/if}
+        {#if visibleDonationStep == 4}
+            <p class="messages" tabindex="0">{@html $_('do_validation_pending')}</p>
+            <Loader />
+        {/if}
+        {#if visibleDonationStep == 5}
+            <p class="messages" tabindex="0">{@html $_('do_validation_error')}</p>
+            <div class="buttons">   
+                <a role="button" class="btn btn--primary" on:click={() => {retry(); stepChanger(1);}} tabindex="0">{$_('do_retry')}</a>
+            </div>
+        {/if}
+    </section>
+</div>

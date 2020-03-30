@@ -109,18 +109,20 @@
     });
 
 </script>
-<section class="stage">
-    <Dropzone route={'creation'}/>
-</section>
-<section class="modal">
-    <h2 class="title" tabindex="0">{$_('cr_title')}</h2>
-    <Dragzone />
-    <div class="buttons">
-        {#if $storeLayerPrice}
-            <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
-        {:else}
-            <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/creation', name: $_('cr_cta')}}/>
-        {/if}
-        <Link linkClass={'btn btn--tertiary'} page={{path: '/', name: $_('cr_cta2')}}/>
-    </div>
-</section>
+<div class="modal__wrapper">
+    <section class="stage">
+        <Dropzone route={'creation'}/>
+    </section>
+    <section class="modal">
+        <h2 class="title" tabindex="0">{$_('cr_title')}</h2>
+        <Dragzone />
+        <div class="buttons">
+            {#if $storeLayerPrice}
+                <Link linkClass={'btn btn--primary'} page={{path: '/message', name: $_('cr_cta')}}/>
+            {:else}
+                <Link linkClass={'btn btn--primary is-disabled'} page={{path: '/creation', name: $_('cr_cta')}}/>
+            {/if}
+            <Link linkClass={'btn btn--tertiary'} page={{path: '/', name: $_('cr_cta2')}}/>
+        </div>
+    </section>
+</div>
