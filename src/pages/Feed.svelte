@@ -31,9 +31,9 @@
     });
 
 </script>
-<section class="stage">
+<section class="stage no-layer">
     <h2 class="tagline" tabindex="0">{$_('tagline')}</h2>
-    <div class="buttons">
+    <div class="buttons no-gutter">
         <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('fe_cta')}}/>
     </div>
 </section>

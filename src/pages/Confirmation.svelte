@@ -6,25 +6,30 @@
     
     translations.update({
         de: {
-            co_title: 'Toll gemacht!',
-            co_cta: 'Jetzt teile es mit Freunden',
+            co_title: 'Alles klar, tausend Dank!',
+            co_cta: 'Bitte teile diese Spendenaktion mit Freunden.',
         },
         en: {
-            co_title: 'Nice one!',
-            co_cta: 'Now share this with friends',
+            co_title: 'Alrighty, thank you!',
+            co_cta: 'Please share this fundraiser with friends.',
         },
     })
     let loading = true;
 
 </script>
+<section class="stage no-layer sharing">
+    <!-- {#if !loading} -->
+        <h2 class="tagline">{$_('co_title')}</h2>
+        <p class="messages">{$_('co_cta')}</p>
+        <div class="social">
+            <img class="social__icon" src="./assets/images/social/twitter.svg" alt="twitter">
+            <img class="social__icon" src="./assets/images/social/linkedin.svg" alt="linkedin">
+            <img class="social__icon" src="./assets/images/social/facebook.svg" alt="facebook">
+            <img class="social__icon" src="./assets/images/social/whatsapp.svg" alt="whatsapp">
+        </div>
+    <!-- {/if} -->
+</section>
 
-<!-- {#if !loading} -->
-    <div class="sharing">
-        <p><strong>{$_('co_title')}</strong></p>
-        <p>{$_('co_cta')}</p>
-        <p class="social">Social Icons</p>
-    </div>
-<!-- {/if} -->
 
 <Feed on:dataReady={() => {loading = false, console.log('show firework')}}/>
 
