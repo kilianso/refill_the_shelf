@@ -138,6 +138,10 @@ $caritasRed: #db001b;
               background: white;
               color: $c-contrast;
               border-radius: .35rem;
+              &::placeholder {
+                font-family: $mainFont;
+                font-size: 1rem;
+              }
             }
             
             .bre2-btn {
