@@ -75,6 +75,10 @@
                 // wait for input validation
                 checkPhone();
             });
+            phoneInput.addEventListener('blur', () => {
+                // this is needed to prevent an ugly glitch in instagram browser where the page is cutoff as soon as the user closes the keyboard
+                window.scrollBy(0, -1);
+            });
         });
         observer.observe(raisenow, {attributes: false, subtree: false, childList: true});
 

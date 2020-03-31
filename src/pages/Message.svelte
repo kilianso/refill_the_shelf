@@ -40,6 +40,11 @@
         });
     });
 
+    function resetScrollPositiononBlur () {
+        // this is needed to prevent an ugly glitch in instagram browser where the page is cutoff as soon as the user closes the keyboard
+        window.scrollBy(0, -1);
+    };
+
 </script>
 <div class="modal__wrapper">
     <section class="stage">
@@ -48,11 +53,11 @@
     <section class="modal">
         <h2 class="title" tabindex="0">{$_('me_title')}</h2>
         <div class="message__name">
-            <input class="message__name" type="text" maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
+            <input class="message__name" type="text"  on:blur={resetScrollPositiononBlur} maxlength={maxName} placeholder="{$_('me_name')}" bind:value={$userLayer.name}>
             <span class="message__name__counter">{countName}</span>
         </div>
         <div class="message__text">
-            <input class="message__text" type="text" maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
+            <input class="message__text" type="text" on:blur={resetScrollPositiononBlur} maxlength={maxText} placeholder="{$_('me_msg')}" bind:value={$userLayer.message}>
             <span class="message__text__counter">{countText}</span>
         </div>
         <div class="buttons">

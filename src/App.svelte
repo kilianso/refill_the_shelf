@@ -75,7 +75,7 @@
 	<Header />
 	<main>
 		<Route />
-		<div class="debug" style="margin-top: 5rem;">
+		<!-- <div class="debug" style="margin-top: 5rem;">
 			<hr>
 			<h3>Debug nav</h3>
 			<nav class="navigation">
@@ -86,6 +86,6 @@
 				<Link page={{path: '/confirmation', name: 'Confirmation'}} />
 				<Link page={{path: '/about', name: 'About'}} />
 			</nav>
-		</div>
+		</div> -->
 	</main>
 </div>
