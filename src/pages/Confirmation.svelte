@@ -24,10 +24,15 @@
         <h2 class="tagline">{$_('co_title')}</h2>
         <p class="messages">{$_('co_cta')}</p>
         <div class="social">
-            <img class="social__icon" src="./assets/images/social/twitter.svg" alt="twitter">
-            <img class="social__icon" src="./assets/images/social/linkedin.svg" alt="linkedin">
-            <img class="social__icon" src="./assets/images/social/facebook.svg" alt="facebook">
-            <img class="social__icon" src="./assets/images/social/whatsapp.svg" alt="whatsapp">
+            <a href="https://twitter.com/intent/tweet?text={$_('brand')} — {$_('tagline')}&amp;url=https://refilltheshelf.ch&amp;via=kilian_so&amp;hashtags=refilltheshelf">
+                <img class="social__icon" src="./assets/images/social/twitter.svg" alt="twitter">
+            </a>
+            <a href="http://www.facebook.com/sharer.php?u=https://refilltheshelf.ch&p[title]=Refill+the+Shelf">
+                <img class="social__icon" src="./assets/images/social/facebook.svg" alt="facebook">
+            </a>
+            <a href="https://wa.me/?text={$_('brand')} — {$_('tagline')} – https://refilltheshelf.ch">
+                <img class="social__icon" src="./assets/images/social/whatsapp.svg" alt="whatsapp">
+            </a>
         </div>
     <!-- {/if} -->
 </section>
