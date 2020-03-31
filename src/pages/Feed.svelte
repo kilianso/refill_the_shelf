@@ -1,5 +1,6 @@
 <script>
     import Link from '../components/Base/Link.svelte';
+    import Loader from '../components/Base/Loader.svelte';
     import Feed from '../components/Base/Feed.svelte';
     
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
@@ -37,16 +38,15 @@
         <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('fe_cta')}}/>
     </div>
 </section>
-<Feed on:dataReady={() => loading = false}/>
-
-<!-- {#if loading}
+{#if loading}
     <div class="loading">
         <p class="messages">
             {$_('fe_loading')}
         </p>
         <Loader />
     </div>
-{/if} -->
+{/if}
+<Feed on:dataReady={() => loading = false}/>
 
 <!-- <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>

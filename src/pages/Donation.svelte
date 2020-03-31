@@ -217,6 +217,7 @@
     <section class="stage">
         <Dropzone />
     </section>
+    <!-- <button on:click={saveToFirebase}>DEBUG - Save to Firebase</button> -->
     <section class="modal">
         {#if visibleDonationStep == 0 || visibleDonationStep == 1}
             <h2 class="title" tabindex="0">{$_('do_title')}</h2>

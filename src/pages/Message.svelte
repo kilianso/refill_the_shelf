@@ -1,7 +1,7 @@
 <script>
     import Link from '../components/Base/Link.svelte';
     import Dropzone from '../components/DragDrop/Dropzone.svelte';
-
+    
     import {onMount} from 'svelte';
     import {translations, _ } from 'svelte-intl';
     import { userLayer, storeLayerPrice } from '../store';

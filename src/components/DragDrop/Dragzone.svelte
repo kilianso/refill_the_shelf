@@ -5,9 +5,9 @@
         {price: 2, icon: './assets/images/items/faceMask.svg', alt: 'Mask'},
         {price: 3, icon: './assets/images/items/tunaCan.svg', alt: 'Tuna'},
         {price: 5, icon: './assets/images/items/pasta.svg', alt: 'Pasta'},
-        {price: 10, icon: './assets/images/items/sanatizer.svg', alt: 'Sanatizer'},
-        {price: 10, icon: './assets/images/items/soap.svg', alt: 'Soap'},
-        {price: 15, icon: './assets/images/items/oil.svg', alt: 'Oil'},
+        {price: 5, icon: './assets/images/items/sanatizer.svg', alt: 'Sanatizer'},
+        {price: 7, icon: './assets/images/items/soap.svg', alt: 'Soap'},
+        {price: 10, icon: './assets/images/items/oil.svg', alt: 'Oil'},
         {price: 20, icon: './assets/images/items/20Stutz.svg', alt: '20CHF'},
     ];
     

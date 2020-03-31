@@ -1,6 +1,7 @@
 <script>
     import Feed from '../components/Base/Feed.svelte';
     import Link from '../components/Base/Link.svelte';
+    import Loader from '../components/Base/Loader.svelte';
     import Celebration from '../components/Donation/Celebration.svelte';
 
     import {translations, _ } from 'svelte-intl';
@@ -19,7 +20,6 @@
 
 </script>
 <section class="stage no-layer sharing">
-    <!-- {#if !loading} -->
         <Celebration />
         <h2 class="tagline">{$_('co_title')}</h2>
         <p class="messages">{$_('co_cta')}</p>
@@ -34,11 +34,18 @@
                 <img class="social__icon" src="./assets/images/social/whatsapp.svg" alt="whatsapp">
             </a>
         </div>
-    <!-- {/if} -->
 </section>
 
+{#if loading}
+    <div class="loading">
+        <p class="messages">
+            {$_('fe_loading')}
+        </p>
+        <Loader />
+    </div>
+{/if}
 
-<Feed on:dataReady={() => {loading = false, console.log('show firework')}}/>
+<Feed on:dataReady={() => {loading = false}}/>
 
 <!-- <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>
