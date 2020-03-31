@@ -45,7 +45,7 @@
     </div>
 {/if}
 
-<Feed on:dataReady={() => {loading = false}}/>
+<Feed on:dataReady={() => loading = false}/>
 
 <!-- <div class="layer">{$_('layer')}</div>
 <div class="layer">{$_('layer')}</div>

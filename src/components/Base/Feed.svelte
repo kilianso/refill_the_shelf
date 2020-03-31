@@ -20,6 +20,7 @@
     let query = (ref) => ref.orderBy(orderField, 'desc').limit(pageSize),
         total = 0,
         postCounter = 0,
+        currentBatch = [],
         allPosts = [];
 
     // totals document reference
@@ -28,8 +29,20 @@
         total = snapshot.data();
     };
 
-    function loadedPostCount(dataLength) {
-        postCounter += dataLength;
+    function loadedPostCount(data) {
+        if(currentBatch && currentBatch.length && data.length) {
+            if(currentBatch[0].id !== data[0].id) {
+                currentBatch = data;
+                postCounter += data.length;
+                // console.log('new data!', data)
+            }
+        }else {
+            if(data.length) {
+                currentBatch = data;
+                postCounter += data.length;
+                // console.log('initial data!', data)
+            }
+        }
     }
 
     function nextPage (e, last) {
@@ -92,7 +105,7 @@
                 on:data={(data) => {
                     getTotal();
                     dispatch('dataReady');
-                    loadedPostCount(data.detail.data ? data.detail.data.length : 0);
+                    loadedPostCount(data.detail.data ? data.detail.data : 0);
                     if(data.detail.data) {
                         // make sure you'll never append a post twice
                         if(allPosts.some((el) => {return el.timestamp.seconds === data.detail.data[0].timestamp.seconds})) {
@@ -102,8 +115,13 @@
                         }
                     }
                 }}>
+                <!-- <p>
+                length of this data batch: {posts.length}<br>
+                postCounter: {postCounter}<br>
+                total layers in database: {total.layers}
+                </p>-->
                 {#if posts.length && postCounter < total.layers}
-                    <div class="buttons">
+                    <div class="buttons no-gutter">
                         <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
                     </div>
                 {/if}
