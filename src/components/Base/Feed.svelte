@@ -121,7 +121,11 @@
                 total layers in database: {total.layers}
                 </p>-->
                 {#if posts.length && postCounter < total.layers}
-                    <div class="buttons no-gutter">
+                    <div class="buttons more no-gutter">
+                        <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
+                    </div>
+                {:else}
+                    <div class="buttons more no-gutter visibility-hidden">
                         <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
                     </div>
                 {/if}

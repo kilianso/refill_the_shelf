@@ -39,27 +39,28 @@
         },
     })
 </script>
+<section class="about__content">
+    <h2>{$_('ab_title1')}</h2>
+    <p>{$_('ab_content1')}</p>
 
-<h2>{$_('ab_title1')}</h2>
-<p>{$_('ab_content1')}</p>
+    <h2>{$_('ab_title2')}</h2>
+    <p>{$_('ab_content2')}</p>
 
-<h2>{$_('ab_title2')}</h2>
-<p>{$_('ab_content2')}</p>
+    <h2>{$_('ab_title3')}</h2>
+    <p>{$_('ab_content3')}</p>
 
-<h2>{$_('ab_title3')}</h2>
-<p>{$_('ab_content3')}</p>
+    <h2>{$_('ab_title4')}</h2>
+    <p>{$_('ab_content4')}</p>
 
-<h2>{$_('ab_title4')}</h2>
-<p>{$_('ab_content4')}</p>
+    <h2>{$_('ab_title5')}</h2>
+    <p>{$_('ab_content5')}</p>
 
-<h2>{$_('ab_title5')}</h2>
-<p>{$_('ab_content5')}</p>
+    <h2>{$_('ab_title6')}</h2>
+    <p>{$_('ab_content6')}</p>
 
-<h2>{$_('ab_title6')}</h2>
-<p>{$_('ab_content6')}</p>
+    <h2>{$_('ab_title7')}</h2>
+    <p>{$_('ab_content7')}</p>
 
-<h2>{$_('ab_title7')}</h2>
-<p>{$_('ab_content7')}</p>
-
-<h2>{$_('ab_title8')}</h2>
-<p>{$_('ab_content8')}</p>
+    <h2>{$_('ab_title8')}</h2>
+    <p>{$_('ab_content8')}</p>
+</section>

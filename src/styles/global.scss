@@ -192,6 +192,14 @@ input, button, select, textarea {
 	display: none;
 }
 
+.buttons.more {
+	margin-top: calc(var(--item-size) * -.5);
+}
+
+.visibility-hidden {
+	visibility: hidden;
+}
+
 .warning {
 	width: 1.5em;
     height: 1.5em;
@@ -230,8 +238,8 @@ input, button, select, textarea {
 	}
 }
 
-.feed {
-	margin-bottom: calc(var(--item-size) / 1.5);
+.feed, .about__content {
+	padding-bottom: calc(var(--item-size) / 1.25);
 }
 
 .modal__wrapper {
