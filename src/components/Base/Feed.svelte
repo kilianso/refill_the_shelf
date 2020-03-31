@@ -1,6 +1,8 @@
 <script>
     import Loader from '../Base/Loader.svelte';
     import Dropzone from '../DragDrop/Dropzone.svelte';
+    
+    import {userLayer} from "../../store";
 
     import firebase from "firebase/app";
     import { FirebaseApp, User, Collection } from "sveltefire";
@@ -13,13 +15,11 @@
     const   pageSize = 3,
             orderField = 'timestamp',
             timestamp = firebase.firestore.FieldValue.serverTimestamp(),
-            incrementLayers = firebase.firestore.FieldValue.increment(1),
-            incrementDonations = firebase.firestore.FieldValue.increment(10),
             totalRef = firebase.firestore().collection('global').doc('total');
     
     let query = (ref) => ref.orderBy(orderField, 'desc').limit(pageSize),
         total = 0,
-        postCounter = pageSize,
+        postCounter = 0,
         allPosts = [];
 
     // totals document reference
@@ -28,9 +28,12 @@
         total = snapshot.data();
     };
 
+    function loadedPostCount(dataLength) {
+        postCounter += dataLength;
+    }
+
     function nextPage (e, last) {
         e.preventDefault();
-        postCounter += pageSize;
         query = (ref) => ref.orderBy(orderField, 'desc').startAfter(last[orderField]).limit(pageSize);
     }
 
@@ -68,12 +71,11 @@
 </script>
   <section class="feed">
     <!-- // DEBUGGING -->
-    {#if debugData.length}
+    <!-- {#if debugData.length}
         {#each debugData as post, i}
             <Dropzone {...post} route={'feed'}/>
         {/each}
-    {/if}
-    <!--
+    {/if} -->
     {#if allPosts.length}
         {#each allPosts as post, i}
             <Dropzone {...post} route={'feed'}/>
@@ -87,9 +89,10 @@
                 let:ref={postRef}
                 let:last={last}
                 let:first={first}
-                log on:data={(data) => {
+                on:data={(data) => {
                     getTotal();
                     dispatch('dataReady');
+                    loadedPostCount(data.detail.data ? data.detail.data.length : 0);
                     if(data.detail.data) {
                         // make sure you'll never append a post twice
                         if(allPosts.some((el) => {return el.timestamp.seconds === data.detail.data[0].timestamp.seconds})) {
@@ -99,23 +102,15 @@
                         }
                     }
                 }}>
-                {#if posts.length && posts.length < total.layers}
-                    {#if total.layers > postCounter && posts.length}
-                        <div class="buttons">
-                            <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
-                        </div>
-                    {/if}
+                {#if posts.length && postCounter < total.layers}
+                    <div class="buttons">
+                        <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
+                    </div>
                 {/if}
                 <div slot="fallback">
                     {$_('fe_error')}
                 </div>
-                <div slot="loading">
-                    <p class="messages">
-                        {$_('fe_loading')}
-                    </p>
-                    <Loader />
-                </div>
             </Collection>
         </User>
-    </FirebaseApp> -->
+    </FirebaseApp>
 </section>
