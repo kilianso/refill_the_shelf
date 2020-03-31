@@ -1,6 +1,7 @@
 <script>
     import Loader from '../Base/Loader.svelte';
     import Dropzone from '../DragDrop/Dropzone.svelte';
+    import TotalLayer from '../DragDrop/TotalLayer.svelte';
     
     import {userLayer} from "../../store";
 
@@ -18,10 +19,12 @@
             totalRef = firebase.firestore().collection('global').doc('total');
     
     let query = (ref) => ref.orderBy(orderField, 'desc').limit(pageSize),
-        total = 0,
+        total = {},
         postCounter = 0,
         currentBatch = [],
         allPosts = [];
+
+    $: total = total;
 
     // totals document reference
     async function getTotal() {
@@ -92,6 +95,9 @@
     {#if allPosts.length}
         {#each allPosts as post, i}
             <Dropzone {...post} route={'feed'}/>
+            {#if i === 2}
+                <TotalLayer {...total} />
+            {/if}
         {/each}
     {/if}
     <FirebaseApp {firebase} perf analytics>

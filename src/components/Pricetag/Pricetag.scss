@@ -11,6 +11,7 @@
     border: 0.75vw solid $c-contrast;
     font-size: 14px;
     overflow: hidden;
+    z-index: 2;
     @media (min-width: 48em) {
         border: 0.375vw solid $c-contrast;
         font-size: 1rem;

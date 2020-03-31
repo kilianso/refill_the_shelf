@@ -12,6 +12,10 @@
     &.no-gutter {
         margin: 0 auto;
     }
+    &.more {
+        position: relative;
+        z-index: 1;
+    }
 }
 .btn {
     display: inline-block;
