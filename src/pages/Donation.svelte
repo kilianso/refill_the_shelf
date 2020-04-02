@@ -30,7 +30,7 @@
             do_waiting_cta: 'Abschliessen',
             do_validation: `<strong>Einen Augenblick.</strong> In wenigen Sekunden sollten wir die Bestätigung erhalten.`,
             do_validation_pending: `<strong>Die Bestätigung ist noch ausstehend.</strong> Wir überprüfen den Status deiner Spende alle 5 Sekunden.`,
-            do_validation_error: `Oh nein! Deine Spende konnte nicht bestätigt werden. <strong>Bitte versuch es erneut.</strong>`,
+            do_validation_error: `Oh nein, etwas ist schiefgelaufen! 😔 Womöglich blockiert dein Handyanbieter die SMS-Spende. <a href="https://caritas.ch/corona" target="_blank">Trotzdem spenden</a>`,
             do_retry: 'Erneut versuchen'
         },
         en: {
@@ -46,7 +46,7 @@
             do_waiting_cta: 'Complete donation',
             do_validation: `<strong>One moment.</strong> In a few seconds we should receive the confirmation of your donation.`,
             do_validation_pending: `<strong>The confirmation is still pending.</strong> We check the status of your donation every 5 seconds.`,
-            do_validation_error: `Oh no! Your donation could not be confirmed. <strong>Please try again.</strong>`,
+            do_validation_error: `Oh no, something's wrong! 😔 It is possible that your mobile phone operator blocks SMS donations. <a href="https://caritas.ch/corona" target="_blank">Donate anyway.</a>`,
             do_retry: 'Retry'
         },
         fr: {
@@ -62,7 +62,7 @@
             do_waiting_cta: 'Finaliser',
             do_validation: `<strong>Juste un moment.</strong> Dans quelques secondes, nous devrions recevoir une confirmation de ton don. `,
             do_validation_pending: `<strong>La confirmation est toujours en cours.</strong> Nous vérifions l'état de ton don toutes les 5 secondes.`,
-            do_validation_error: `Oh non! Ton don n'a pas pu être confirmé. <strong>Essaie encore une fois stp.</strong>`,
+            do_validation_error: `Oh non, quelque chose ne va pas ! 😔 Il est possible que votre opérateur de téléphonie mobile bloque les dons par SMS. <a href="https://caritas.ch/corona" target="_blank">Faites un don quand même.</a>`,
             do_retry: 'Réessayer'
         },
     });
@@ -280,9 +280,9 @@
         {/if}
         {#if visibleDonationStep == 5}
             <p class="messages" tabindex="0">{@html $_('do_validation_error')}</p>
-            <div class="buttons">   
+            <!-- <div class="buttons">   
                 <a role="button" class="btn btn--primary" on:click={() => {retry(); stepChanger(1);}} tabindex="0">{$_('do_retry')}</a>
-            </div>
+            </div> -->
         {/if}
     </section>
 </div>
