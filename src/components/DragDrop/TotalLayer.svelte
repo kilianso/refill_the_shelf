@@ -14,7 +14,7 @@
         en: {
             fe_ff_title: 'Facts & figures',
             fe_ff_msg1: 'At this point, our shelf is',
-            fe_ff_msg2: 'meters height and',
+            fe_ff_msg2: 'meters high and',
             fe_ff_msg3: 'CHF have been donated.'
         },
         fr: {
