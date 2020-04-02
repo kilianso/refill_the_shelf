@@ -1,7 +1,9 @@
 <script>
+    import Link from '../components/Base/Link.svelte';
     import {translations, _ } from 'svelte-intl';
     translations.update({
         de: {
+            ab_cta: 'Jetzt mitmachen',
             ab_title1: 'Um was es hier geht',
             ab_content1: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aperiam dolorem voluptate labore explicabo eaque animi perspiciatis ipsam quae ducimus. Assumenda officia accusantium est facilis autem pariatur iusto excepturi sapiente!',
             ab_title2: 'Warum du mitmachen solltest',
@@ -20,6 +22,7 @@
             ab_content8: 'Privacy by Design...',
         },
         en: {
+            ab_cta: 'Start refilling',
             ab_title1: 'What this is all about',
             ab_content1: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aperiam dolorem voluptate labore explicabo eaque animi perspiciatis ipsam quae ducimus. Assumenda officia accusantium est facilis autem pariatur iusto excepturi sapiente!',
             ab_title2: 'Why you should be part of it',
@@ -63,4 +66,7 @@
 
     <h2>{$_('ab_title8')}</h2>
     <p>{$_('ab_content8')}</p>
+    <div class="buttons">
+        <Link linkClass={'btn btn--primary'} page={{path: '/creation', name: $_('ab_cta')}}/>
+    </div>
 </section>

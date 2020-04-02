@@ -15,6 +15,10 @@
             co_title: 'Alrighty, thank you!',
             co_cta: 'Please share this fundraiser with friends.',
         },
+        fr: {
+            co_title: 'Très bien, merci mille fois!',
+            co_cta: 'Partage stp cette collecte de dons avec tes amis.',
+        },
     })
     let loading = true;
 
@@ -46,17 +50,3 @@
 {/if}
 
 <Feed on:dataReady={() => loading = false}/>
-
-<!-- <div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div>
-<div class="messages">
-    <strong>{$_('fe_ff_title')}</strong>
-    <p>{$_('fe_ff_msg')}</p>
-</div>
-
-<div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div>
-<div class="layer">{$_('layer')}</div> -->

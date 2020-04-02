@@ -44,10 +44,26 @@
             do_waiting_title: 'Step 4/4 — Confirm SMS',
             do_waiting_msg: `<strong>Reply with YES to the SMS</strong> to confirm your donation.`,
             do_waiting_cta: 'Complete donation',
-            do_validation: `<strong>One moment,</strong> in a few seconds we should receive the confirmation of your donation.`,
+            do_validation: `<strong>One moment.</strong> In a few seconds we should receive the confirmation of your donation.`,
             do_validation_pending: `<strong>The confirmation is still pending.</strong> We check the status of your donation every 5 seconds.`,
             do_validation_error: `Oh no! Your donation could not be confirmed. <strong>Please try again.</strong>`,
             do_retry: 'Retry'
+        },
+        fr: {
+            do_title: 'Étape 3/4 - Fais don de ton étagère',
+            do_msg: `En raison du coronavirus, de nombreuses personnes en Suisse ont besoin de ton aide de toute urgence. Fais don maintenant de ton étagère (${$storeLayerPrice} CHF) par SMS à`,
+            do_charity: 'Caritas Suisse',
+            do_disclaimer: 'Protection des données',
+            do_cta: 'Faire un don',
+            do_cta2: 'Retour',
+            do_phone: 'Ton numéro mobile',
+            do_waiting_title: 'Étape 4/4 - Confirmer le SMS',
+            do_waiting_msg: `<strong>Réponds maintenant par OUI au SMS</strong> de confirmation de ton don.`,
+            do_waiting_cta: 'Finaliser',
+            do_validation: `<strong>Juste un moment.</strong> Dans quelques secondes, nous devrions recevoir une confirmation de ton don. `,
+            do_validation_pending: `<strong>La confirmation est toujours en cours.</strong> Nous vérifions l'état de ton don toutes les 5 secondes.`,
+            do_validation_error: `Oh non! Ton don n'a pas pu être confirmé. <strong>Essaie encore une fois stp.</strong>`,
+            do_retry: 'Réessayer'
         },
     });
 

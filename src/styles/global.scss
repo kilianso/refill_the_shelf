@@ -147,6 +147,9 @@ input, button, select, textarea {
 	font-size: 1rem;
 	font-weight: normal;
 	padding: 5vw 0;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 	@media (min-width: 48em) {
 		padding: 3vw 0;
 	}

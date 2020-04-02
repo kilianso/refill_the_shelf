@@ -25,6 +25,12 @@
             fe_error: 'Something went wrong. 😔 Try reloading.',
             fe_more: 'Load more'
         },
+        fr: {
+            fe_cta: 'Participer',
+            fe_loading: 'chargement...',
+            fe_error: 'Quelque chose a mal tourné 😔 Recharge la page.',
+            fe_more: 'Charger plus'
+        },
     });
 
 </script>

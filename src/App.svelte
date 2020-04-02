@@ -43,13 +43,15 @@
         de: {
             brand: 'Refill the Shelf',
 			tagline: 'Füll das Regal auf und hilf damit Menschen, die durch die Coronakrise in Not sind.',
-			layer: 'Regal-Ebene',
         },
         en: {
 			brand: 'Refill the Shelf',
 			tagline: 'Refill the shelf and help people who are in need due to the corona crisis.',
-            layer: 'shelf-layer'
-        },
+		},
+		fr: {
+			brand: 'Refill the Shelf',
+			tagline: 'Remplis l\'étagère et aide les personnes qui sont dans le besoin à cause du coronavirus.',
+		}
 	});
 
 	// PRELOAD SHELF SVG TO PREVENT UGLY GLITCHES ON PRICETAG

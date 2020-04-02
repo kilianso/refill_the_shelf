@@ -29,6 +29,13 @@
             me_cta: 'Next Step',
             me_cta2: 'Back'
         },
+        fr: {
+            me_title: 'Étape 2/4 - Ajoute un message',
+            me_name: 'Ton nom',
+            me_msg: 'Ton message',
+            me_cta: 'Prochaine étape',
+            me_cta2: 'Retour'
+        },
     })
 
     onMount(() => {

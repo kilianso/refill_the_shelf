@@ -17,6 +17,12 @@
             fe_ff_msg2: 'meters height and',
             fe_ff_msg3: 'CHF have been donated.'
         },
+        fr: {
+            fe_ff_title: 'Faits et chiffres',
+            fe_ff_msg1: 'A ce stade, notre étagère fait',
+            fe_ff_msg2: 'mètres de haut et',
+            fe_ff_msg3: 'CHF francs ont été récoltés.'
+        },
     });
 
 </script>

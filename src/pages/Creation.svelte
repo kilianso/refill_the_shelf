@@ -14,14 +14,16 @@
             // cr_tabs: 'Hygiene, Essen, Spezial',
             cr_cta: 'Nächster Schritt',
             cr_cta2: 'Zurück',
-            cr_more: 'Mehr Produkte',
         },
         en: {
             cr_title: 'Step 1/4 — Drag items to the shelf',
-            // cr_tabs: 'Hygiene, Food, Specials',
             cr_cta: 'Next step',
             cr_cta2: 'Back',
-            cr_more: 'More products',
+        },
+        fr: {
+            cr_title: 'Étape 1/4 - Place les articles sur l\'étagère',
+            cr_cta: 'Prochaine étape',
+            cr_cta2: 'Retour',
         },
     });
     
