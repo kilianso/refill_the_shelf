@@ -30,7 +30,7 @@
         },
     })
     let loading = true;
-
+    
 </script>
 <section class="stage no-layer sharing">
         <Celebration />

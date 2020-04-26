@@ -67,8 +67,6 @@
         },
     });
 
-    localStorage.setItem('userLayer', JSON.stringify($userLayer));
-
     function raiseNow() {
         
         const raisenow = document.querySelector('.dds-widget-container');
