@@ -1,4 +1,9 @@
 <style>
+    .celebrate {
+    width: calc(var(--item-size) * 2);
+    margin: calc((var(--item-size) / 1.5) * -1) auto 0;
+    transform: translateX(20%);
+    }
     .conf0 {
         fill: #FC6394;
     }

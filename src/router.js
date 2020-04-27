@@ -2,6 +2,7 @@ import Feed from './pages/Feed.svelte';
 import Creation from './pages/Creation.svelte';
 import Message from './pages/Message.svelte';
 import Donation from './pages/Donation.svelte';
+import Payment from './pages/Payment.svelte';
 import Confirmation from './pages/Confirmation.svelte';
 import About from './pages/About.svelte';
 
@@ -25,6 +26,11 @@ export default [
     path: '/donation',
     name: 'Donation',
     component: Donation,
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: Payment,
   },
   {
     path: '/confirmation',

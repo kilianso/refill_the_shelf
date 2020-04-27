@@ -9,7 +9,7 @@
 <style lang="scss" src="./LangSelector.scss"></style>
 
 <div class="lang" aria-label="language">
-  <select value={$locale} on:change={setLocale}>
+  <select class="langSelector" value={$locale} on:change={setLocale}>
     {#each $locales as l}
       <option value={l}> {l} </option>
     {/each}

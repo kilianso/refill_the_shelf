@@ -42,6 +42,7 @@
     left: 0;
     bottom: 0;
     will-change: left, right;
+    transform: translateZ(0);
     -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
     animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
     -webkit-animation-delay: 1.15s;

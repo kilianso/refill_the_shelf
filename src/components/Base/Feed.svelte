@@ -135,7 +135,7 @@
                         <button class="btn btn--secondary" on:click={(e) => nextPage(e, last)}>{$_('fe_more')}</button>
                     </div>
                 {/if}
-                <div slot="fallback">
+                <div class="messages" slot="fallback">
                     {$_('fe_error')}
                 </div>
             </Collection>

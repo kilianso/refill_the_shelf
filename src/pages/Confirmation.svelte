@@ -30,7 +30,10 @@
         },
     })
     let loading = true;
-    
+
+    // ditch localstorage
+    // localStorage.clear();
+
 </script>
 <section class="stage no-layer sharing">
         <Celebration />

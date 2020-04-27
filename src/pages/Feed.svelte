@@ -27,7 +27,7 @@
         },
         fr: {
             fe_cta: 'Participer',
-            fe_loading: 'chargement...',
+            fe_loading: 'Chargement...',
             fe_error: 'Quelque chose a mal tourné 😔 Recharge la page.',
             fe_more: 'Charger plus'
         },
