@@ -24,7 +24,6 @@
     <section class="stage">
         <Dropzone />
     </section>
-    <!-- <button on:click={saveToFirebase}>DEBUG - Save to Firebase</button> -->
     <section class="modal">
         <h2 class="title" tabindex="0">{$_('pa_title')}</h2>
         <DonationWidget />

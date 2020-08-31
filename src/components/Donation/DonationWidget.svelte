@@ -205,6 +205,7 @@
 <svelte:head>
 	<script src="https://tamaro.raisenow.com/caritas-refill/latest/widget.js" on:load={raiseNow}></script>
 </svelte:head>
+<!-- <button class="debugSave" on:click={saveToFirebase}>DEBUG - Save to Firebase</button> -->
 {#if visibleDonationStep === 0}
     <p class="messages">{$_('pa_loading')}</p>
 {:else}
