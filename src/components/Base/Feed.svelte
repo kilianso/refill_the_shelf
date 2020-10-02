@@ -13,7 +13,7 @@
     
     const dispatch = createEventDispatcher();
 
-    const   pageSize = 5,
+    const   pageSize = 20,
             orderField = 'timestamp',
             timestamp = firebase.firestore.FieldValue.serverTimestamp(),
             totalRef = firebase.firestore().collection('global').doc('total');
