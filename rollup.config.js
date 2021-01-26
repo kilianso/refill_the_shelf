@@ -3,23 +3,25 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import { string } from 'rollup-plugin-string';
 import autoPreprocess from 'svelte-preprocess';
+import css from 'rollup-plugin-css-only';
 
 const production = !process.env.ROLLUP_WATCH;
 
 const preprocessOptions = {
 	scss: {
-	  includePaths: [
+		includePaths: [
 		'node_modules',
 		'src/styles'
-	  ]
+		]
 	},
 	postcss: {
-	  plugins: [
+		plugins: [
 		require('autoprefixer'),
-	  ]
+		]
 	}
-  }
+}
 
 export default {
 	input: 'src/main.js',
@@ -31,34 +33,30 @@ export default {
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file - better for performance
-			css: css => {
-				css.write('public/build/bundle.css');
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production,
 			},
 			preprocess: autoPreprocess(preprocessOptions)
 		}),
-
+		
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'bundle.css' }),
+		
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration -
+		// some cases you'll need additional configuration —
 		// consult the documentation for details:
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
 			browser: true,
 			dedupe: ['svelte']
 		}),
-		commonjs({
-			namedExports: {
-				// left-hand side can be an absolute path, a path
-				// relative to the current directory, or the name
-				// of a module in node_modules
-				'node_modules/idb/build/idb.js': ['openDb'],
-				'node_modules/firebase/dist/index.cjs.js': ['initializeApp', 'firestore']
-			}
+		string({
+			include: 'public/assets/**/*.svg',
 		}),
+		commonjs(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated
