@@ -73,21 +73,19 @@
 	@import "./styles/global.scss";
 </style>
 
-<div class="wrapper">
-	<Header />
-	<main>
-		<Route />
-		<!-- <div class="debug" style="margin-top: 5rem;">
-			<hr>
-			<h3>Debug nav</h3>
-			<nav class="navigation">
-				<Link page={{path: '/', name: 'Feed'}} />
-				<Link page={{path: '/creation', name: 'Creation'}} />
-				<Link page={{path: '/message', name: 'Message'}} />
-				<Link page={{path: '/donation', name: 'Donation'}} />
-				<Link page={{path: '/confirmation', name: 'Confirmation'}} />
-				<Link page={{path: '/about', name: 'About'}} />
-			</nav>
-		</div> -->
-	</main>
-</div>
+<Header />
+<main>
+	<Route />
+</main>
+<!-- <div class="debug" style="margin-top: 5rem;">
+	<hr>
+	<h3>Debug nav</h3>
+	<nav class="navigation">
+		<Link page={{path: '/', name: 'Feed'}} />
+		<Link page={{path: '/creation', name: 'Creation'}} />
+		<Link page={{path: '/message', name: 'Message'}} />
+		<Link page={{path: '/donation', name: 'Donation'}} />
+		<Link page={{path: '/confirmation', name: 'Confirmation'}} />
+		<Link page={{path: '/about', name: 'About'}} />
+	</nav>
+-->
